@@ -5,6 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private CharacterController cController;
+
+    public Transform thirdPersonCamera;
     public int walkSpeed;
     public int sprintSpeed;
     public int dash;
@@ -35,6 +37,8 @@ public class Movement : MonoBehaviour
 
         moveDir = new Vector3(hor, 0f, vert);
 
+        moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Sprint();
@@ -50,11 +54,11 @@ public class Movement : MonoBehaviour
     }
     void Walk()
     {
-        cController.Move(moveDir * walkSpeed * Time.deltaTime);
+        cController.Move(moveDir.normalized * walkSpeed * Time.deltaTime);
     }
     void Sprint()
     {
-        cController.Move(moveDir * sprintSpeed * Time.deltaTime);
+        cController.Move(moveDir.normalized * sprintSpeed * Time.deltaTime);
     }
    
     IEnumerator Dash()
@@ -64,12 +68,11 @@ public class Movement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            cController.Move(moveDir * dash * Time.deltaTime);
+            cController.Move(moveDir.normalized * dash * Time.deltaTime);
             yield return null;
         }
 
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
     }
-    
 }
