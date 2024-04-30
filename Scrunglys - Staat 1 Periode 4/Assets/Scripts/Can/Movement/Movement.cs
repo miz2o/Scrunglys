@@ -11,10 +11,12 @@ public class Movement : MonoBehaviour
     public int sprintSpeed;
     public int dash;
 
+    
     public float dashCooldown;
     public float dashDuration;
     private float vert;
     private float hor;
+
 
     public bool dashing;
     
@@ -75,4 +77,5 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
     }
+
 }
