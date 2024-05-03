@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("References")]
     private CharacterController cController;
-
     public Transform thirdPersonCamera;
+
+    [Header("Basic movement")]
     public int walkSpeed;
     public int sprintSpeed;
-    public int dash;
 
-    
+    [Header("Dashing")]
+    public int dash;
     public float dashCooldown;
     public float dashDuration;
+    public bool dashing;
+
+    [Header("Inputs")]
     private float vert;
     private float hor;
-
-
-    public bool dashing;
-    
 
     private Vector3 moveDir;
 
