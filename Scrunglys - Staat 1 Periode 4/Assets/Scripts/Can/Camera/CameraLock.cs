@@ -10,7 +10,7 @@ public class CameraLock : MonoBehaviour
     [Header("References")]
     public Camera mainCamera;
     public CinemachineFreeLook freeLook;
-    public CinemachineVirtualCamera enemyCam;
+    public CinemachineVirtualCamera enemyCamera;
     public Transform player;
     private Transform enemy;
 
@@ -22,18 +22,26 @@ public class CameraLock : MonoBehaviour
     public float radius;
     public float maxAngle;
 
+    //private void Start()
+    //{
+    //    enemyCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+    //}
     public void Update()
     {
-        Inputs();   
+        Inputs();
+        PlayerLookAt();
     }
 
     void Inputs()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && !locked)
         {
-            enemyCam.LookAt = CalcEnemyLock();
+            if (enemyCamera == null)
+            {
+                print("Waarom werk jij niet");
+            }
             enemy = CalcEnemyLock();
-            locked = true;
+            enemyCamera.LookAt = enemy;
             SetCamera();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1)  && locked) 
@@ -65,20 +73,32 @@ public class CameraLock : MonoBehaviour
                 closestAngle = angle;
             }
         }
+        locked = true;
         return closestTarget;
     }
     void SetCamera()
     {
         if (locked)
         {
-            player.LookAt(enemy);
             freeLook.Priority = 10;
-            enemyCam.Priority = 20;
+            enemyCamera.Priority = 20;
         }
         else
         {
             freeLook.Priority = 20;
-            enemyCam.Priority = 10;
+            enemyCamera.Priority = 10;
         }
+    }
+    void PlayerLookAt()
+    {
+        if (locked)
+        {
+            player.LookAt(enemy);
+        }
+        else
+        {
+            player.LookAt(null);
+        }
+        
     }
 }
