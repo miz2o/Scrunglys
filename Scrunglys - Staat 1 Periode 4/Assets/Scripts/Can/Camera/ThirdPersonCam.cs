@@ -11,6 +11,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Update()
     {
+        
         Vector3 vieuwDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = vieuwDir.normalized;
 
