@@ -12,6 +12,7 @@ public class CameraLock : MonoBehaviour
     public CinemachineFreeLook freeLook;
     public CinemachineVirtualCamera enemyCamera;
     public Transform player;
+    public Transform camReset;
     private Transform enemy;
 
     [Header("Bools")]
@@ -21,6 +22,7 @@ public class CameraLock : MonoBehaviour
     public LayerMask enemyLayer;
     public float radius;
     public float maxAngle;
+    public float maxDistance;
 
     //private void Start()
     //{
@@ -30,6 +32,7 @@ public class CameraLock : MonoBehaviour
     {
         Inputs();
         PlayerLookAt();
+        CalcEnemyDistance();
     }
 
     void Inputs()
@@ -46,6 +49,7 @@ public class CameraLock : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1)  && locked) 
         {
+            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
             locked = false;
             SetCamera();
         }
@@ -87,6 +91,24 @@ public class CameraLock : MonoBehaviour
         {
             freeLook.Priority = 20;
             enemyCamera.Priority = 10;
+        }
+    }
+
+    void CalcEnemyDistance()
+    {
+        if (enemy != null)
+        {
+            Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
+            Vector3 enemyPos = new Vector3(enemy.position.x, 0, enemy.position.z);
+            float distance = Vector3.Distance(playerPos, enemyPos);
+            if (distance > maxDistance)
+            {
+                locked = false;
+                enemy = null;
+                enemyCamera.LookAt = null;
+                freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
+                SetCamera();
+            }
         }
     }
     void PlayerLookAt()
