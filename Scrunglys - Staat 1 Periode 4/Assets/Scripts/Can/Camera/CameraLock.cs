@@ -24,10 +24,10 @@ public class CameraLock : MonoBehaviour
     public float maxAngle;
     public float maxDistance;
 
-    //private void Start()
-    //{
-    //    enemyCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-    //}
+    private void Start()
+    {
+        enemyCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+    }
     public void Update()
     {
         Inputs();
@@ -45,7 +45,6 @@ public class CameraLock : MonoBehaviour
             }
             enemy = CalcEnemyLock();
             enemyCamera.LookAt = enemy;
-            SetCamera();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1)  && locked) 
         {
@@ -78,6 +77,7 @@ public class CameraLock : MonoBehaviour
             }
         }
         locked = true;
+        SetCamera();
         return closestTarget;
     }
     void SetCamera()
@@ -100,7 +100,9 @@ public class CameraLock : MonoBehaviour
         {
             Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
             Vector3 enemyPos = new Vector3(enemy.position.x, 0, enemy.position.z);
+
             float distance = Vector3.Distance(playerPos, enemyPos);
+
             if (distance > maxDistance)
             {
                 locked = false;
@@ -115,12 +117,11 @@ public class CameraLock : MonoBehaviour
     {
         if (locked)
         {
-            player.LookAt(enemy);
+            player.LookAt(enemy); //this rotates the player try alternative 
         }
         else
         {
             player.LookAt(null);
         }
-        
     }
 }

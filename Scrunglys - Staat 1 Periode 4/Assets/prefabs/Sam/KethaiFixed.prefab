@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KethaiFixed
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 707fb148cd09b5a41b41d97afc70622e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 707fb148cd09b5a41b41d97afc70622e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -790,12 +794,12 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.77
+  m_Height: 1.7
   m_Radius: 0.3
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_StepOffset: 0
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.885, z: 0}
 --- !u!4 &1470259009746004208 stripped
 Transform:
