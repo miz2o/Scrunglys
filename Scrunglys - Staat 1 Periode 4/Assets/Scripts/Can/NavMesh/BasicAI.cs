@@ -5,25 +5,35 @@ using UnityEngine.AI;
 
 public class BasicAI : MonoBehaviour
 {
+    [Header("References")]
     public Transform player;
-   // public List<GameObject> enemies = new List<GameObject>();   make separate script for counting enemies
+    public EnemyCount enemyCount;
 
+    [Header("Ranges")]
     public float noticeRange;
     public float distanceFromPlayer;
+    public float attackRange;
 
-    bool tooClose= false;
-    bool inRange = false;
-    bool crowded = false;
-    bool following = false;
-    bool attacking = false;
+    [Header("Cooldowns")]
+    public float attackTime;
+    [Header("Booleans")]
+    public bool tooClose= false;
+    public bool inRange = false;
+    public bool inAttackRange = false;
+    public bool crowded = false;
+    public bool following = false;
+    public bool attacking = false;
 
+    [Header("Layer")]
     public LayerMask enemy;
+
+    public NavMeshAgent agent;
     void Update()
     {
         CheckDistance();
         States();
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = player.position;
+        agent = GetComponent<NavMeshAgent>();
+        //agent.destination = player.position;
     }
     void States()
     {
@@ -39,20 +49,36 @@ public class BasicAI : MonoBehaviour
         {
             inRange = Physics.CheckSphere(player.position, noticeRange, enemy);
 
+            inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
+
             tooClose = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
-            //enemies.Add(gameObject);
+            //enemyCount.enemies.Add(gameObject);
         }
-        
+        else
+        {
+            
+        }
     }
 
     void FollowPlayer()
     {
         following = true;
-
+        agent.SetDestination(player.position);
     }
     void AttackPlayer()
     {
-        attacking = true;
+        agent.SetDestination(transform.position);
+        agent.transform.LookAt(player);
+
+        if (!attacking)
+        {
+            attacking = true;
+            Invoke(nameof(ResetAttack), attackTime);
+        }
+    }
+    void ResetAttack()
+    {
+        attacking = false;
     }
 
 }

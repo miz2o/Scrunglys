@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -246,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 988632494634038554, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
       propertyPath: m_Name
       value: KethaiFixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384956998231420244, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
+      propertyPath: dashDuration
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4384956998231420244, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
       propertyPath: thirdPersonCamera
@@ -828,7 +832,7 @@ MonoBehaviour:
     m_Bits: 128
   radius: 15
   maxAngle: 45
-  maxDistance: 20
+  maxDistance: 17
 --- !u!1 &1290284247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1565,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2036900615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2036900617}
+  - component: {fileID: 2036900616}
+  m_Layer: 0
+  m_Name: EnemyCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2036900616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036900615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9741d267a4e8dcf49bfe70055f5d6ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2036900617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036900615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116423644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
@@ -1579,11 +1627,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2141974087}
-  noticeRange: 0
-  distanceFromPlayer: 0
+  enemyCount: {fileID: 2036900616}
+  noticeRange: 5
+  distanceFromPlayer: 1
+  attackRange: 1
+  attackTime: 3
+  tooClose: 0
+  inRange: 0
+  inAttackRange: 0
+  crowded: 0
+  following: 0
+  attacking: 0
   enemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  agent: {fileID: 2116423646}
+--- !u!195 &2116423646 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+  m_PrefabInstance: {fileID: 704434773435526995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2141974087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 500889842983481248, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
@@ -1642,7 +1705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1
+      value: 21.84
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2471,4 +2534,5 @@ SceneRoots:
   - {fileID: 1423759308}
   - {fileID: 1466895686}
   - {fileID: 704434773435526995}
+  - {fileID: 2036900617}
   - {fileID: 1290284251}
