@@ -13,7 +13,10 @@ public class CameraLock : MonoBehaviour
     public CinemachineVirtualCamera enemyCamera;
     public Transform player;
     public Transform camReset;
+    public Transform orientation;
     private Transform enemy;
+
+    public ThirdPersonCam cam;  
 
     [Header("Bools")]
     public bool locked;
@@ -24,15 +27,16 @@ public class CameraLock : MonoBehaviour
     public float maxAngle;
     public float maxDistance;
 
-    private void Start()
-    {
-        enemyCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-    }
     public void Update()
     {
         Inputs();
         PlayerLookAt();
         CalcEnemyDistance();
+        if(enemyCamera.LookAt == null)
+        {
+            enemyCamera.Priority = 10;
+            freeLook.Priority = 20;
+        }
     }
 
     void Inputs()
@@ -115,13 +119,12 @@ public class CameraLock : MonoBehaviour
     }
     void PlayerLookAt()
     {
-        if (locked)
+        if (locked && enemy != null)
         {
-            player.LookAt(enemy); //this rotates the player try alternative 
-        }
-        else
-        {
-            player.LookAt(null);
+            Vector3 direction = enemy.position - player.position;
+            direction.y = 0; 
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            player.rotation = rotation;
         }
     }
 }
