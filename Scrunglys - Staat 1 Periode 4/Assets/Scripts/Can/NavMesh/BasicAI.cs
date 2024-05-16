@@ -72,33 +72,33 @@ public class BasicAI : MonoBehaviour
         }
     }
 
-    void CheckDistance()
-    {
-        if (!crowded)
-        {
-            inRange = Physics.CheckSphere(player.position, noticeRange, enemy);
+    //void CheckDistance()
+    //{
+    //    if (!crowded)
+    //    {
+    //        inRange = Physics.CheckSphere(player.position, noticeRange, enemy);
 
-            inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
+    //        inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
 
-            crowded = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
-            if (!alreadyListed && inRange)
-            {
-                enemyCount.enemies.Add(gameObject);
-                listIndex = enemyCount.enemies.Count;
-                alreadyListed = true;
-            }
-            else if (!inRange)
-            {
-                //enemyCount.enemies.Remove(listIndex);
-            }
+    //        crowded = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
+    //        if (!alreadyListed && inRange)
+    //        {
+    //            enemyCount.enemies.Add(gameObject);
+    //            listIndex = enemyCount.enemies.Count;
+    //            alreadyListed = true;
+    //        }
+    //        else if (!inRange)
+    //        {
+    //            //enemyCount.enemies.Remove(listIndex);
+    //        }
 
 
-        }
-        else
-        {
-            WanderAroundPlayer();
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        WanderAroundPlayer();
+    //    }
+    //}
 
     void FollowPlayer()
     {
@@ -124,7 +124,7 @@ public class BasicAI : MonoBehaviour
     {
         agent.radius = enemyPersonalSpace;
     }
-    void WanderAroundPlayer()
+    public void WanderAroundPlayer()
     {
         agent.stoppingDistance = wanderRange;
     }

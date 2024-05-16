@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.SocialPlatforms;
 
 public class EnemyManager : MonoBehaviour
 {
     public Transform player;
-    public GameObject[] enemyInrange;
+  
     public bool crowded = false;
     public bool inWanderRange;
+
+    private HashSet<GameObject> enemyInWanderRange = new HashSet<GameObject>();
+    private List<GameObject> enemies = new List<GameObject>();
 
     public BasicAI basicAI;
     private void Update()
@@ -16,30 +21,53 @@ public class EnemyManager : MonoBehaviour
     }
     public void CheckDistance()
     {
-        if (!crowded)
+        List<GameObject> enemiesToRemove = new List<GameObject>();
+
+        foreach (GameObject enemy in enemies)
         {
-            Vector3 distance = Vector3.Distance(enemy[i].transform.position, player.transform.position);
-            inWanderRange = 
+            float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
 
-            inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
-
-            crowded = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
-            if (!alreadyListed && inRange)
+            if (distance <= basicAI.wanderRange)
             {
-                enemyCount.enemies.Add(gameObject);
-                listIndex = enemyCount.enemies.Count;
-                alreadyListed = true;
+                enemyInWanderRange.Add(enemy);
             }
-            else if (!inRange)
+            else
             {
-                //enemyCount.enemies.Remove(listIndex);
+                if (enemyInWanderRange.Contains(enemy))
+                {
+                    enemiesToRemove.Add(enemy);
+                }
             }
+            //inWanderRange =
 
+            //inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
 
+            //crowded = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
+            //if (!alreadyListed && inRange)
+            //{
+            //    enemyCount.enemies.Add(gameObject);
+            //    listIndex = enemyCount.enemies.Count;
+            //    alreadyListed = true;
+            //}
+            //else if (!inRange)
+            //{
+            //    //enemyCount.enemies.Remove(listIndex);
+            //}
+            //if (!crowded)
+            //{
+
+            //}
+            //else if (crowded)
+            //{
+            //    basicAI.WanderAroundPlayer();
+            //}
         }
-        else
+        foreach(GameObject enemy in enemiesToRemove)
         {
-            WanderAroundPlayer();
+            enemyInWanderRange.Remove(enemy);
         }
     }
+
+    public void CrowdedBeh
+  
 }
