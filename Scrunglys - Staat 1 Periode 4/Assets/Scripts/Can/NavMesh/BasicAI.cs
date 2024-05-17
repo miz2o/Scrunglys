@@ -8,7 +8,6 @@ public class BasicAI : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
-    public EnemyCount enemyCount;
 
     [Header("Ranges")]
     public float noticeRange;
@@ -39,7 +38,6 @@ public class BasicAI : MonoBehaviour
     public NavMeshAgent agent;
     void Update()
     {
-        CheckDistance();
         States();
         agent = GetComponent<NavMeshAgent>();
         //agent.destination = player.position;

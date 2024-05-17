@@ -7,6 +7,8 @@ using UnityEngine.SocialPlatforms;
 public class EnemyManager : MonoBehaviour
 {
     public Transform player;
+
+    public int crowdLimit;
   
     public bool crowded = false;
     public bool inWanderRange;
@@ -18,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         CheckDistance();
+        CheckCrowd();
     }
     public void CheckDistance()
     {
@@ -38,29 +41,20 @@ public class EnemyManager : MonoBehaviour
                     enemiesToRemove.Add(enemy);
                 }
             }
-            //inWanderRange =
 
-            //inAttackRange = Physics.CheckSphere(player.position, attackRange, enemy);
-
-            //crowded = Physics.CheckSphere(player.position, distanceFromPlayer, enemy);
-            //if (!alreadyListed && inRange)
-            //{
-            //    enemyCount.enemies.Add(gameObject);
-            //    listIndex = enemyCount.enemies.Count;
-            //    alreadyListed = true;
-            //}
-            //else if (!inRange)
-            //{
-            //    //enemyCount.enemies.Remove(listIndex);
-            //}
-            //if (!crowded)
-            //{
-
-            //}
-            //else if (crowded)
-            //{
-            //    basicAI.WanderAroundPlayer();
-            //}
+            basicAI = enemy.GetComponent<BasicAI>();
+            if (distance <= basicAI.attackRange)
+            {
+                basicAI.inAttackRange = true;
+            }
+            else if (crowded)
+            {
+                basicAI.WanderAroundPlayer();
+            }
+            else if (distance <= basicAI.noticeRange)
+            {
+                basicAI.inRange = true;
+            }
         }
         foreach(GameObject enemy in enemiesToRemove)
         {
@@ -68,6 +62,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void CrowdedBeh
-  
+    public void CheckCrowd()
+    {
+        if(enemyInWanderRange.Count >= crowdLimit)
+        {
+            crowded = true;
+        }
+        else
+        {
+            crowded = false;
+        }
+    }
 }
