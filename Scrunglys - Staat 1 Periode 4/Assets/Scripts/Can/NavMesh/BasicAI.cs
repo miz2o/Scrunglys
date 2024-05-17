@@ -8,6 +8,7 @@ public class BasicAI : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
+    public EnemyManager enemyManager;
 
     [Header("Ranges")]
     public float noticeRange;
@@ -20,22 +21,33 @@ public class BasicAI : MonoBehaviour
     public float attackTime;
 
     [Header("Booleans")]
-    public bool tooClose= false;
-    public bool inRange = false;
     public bool inAttackRange = false;
     public bool crowded = false;
     public bool following = false;
     public bool attacking = false;
     public bool searching = false;
-    public bool alreadyListed = false;
+    public bool inWanderRange = false;
+
+    public State currentState = State.SEARCH;
+
+    static enum State
+    {
+        SEARCH,
+        FOLLOWING,
+        ATTACKING,
+        WANDERING,
+    }
 
     [Header("Layer")]
     public LayerMask enemy;
 
-    [Header("List settings")]
-    public int listIndex;
 
     public NavMeshAgent agent;
+
+    public void Start()
+    {
+        enemyManager.enemies.Add(gameObject);
+    }
     void Update()
     {
         States();
@@ -44,29 +56,21 @@ public class BasicAI : MonoBehaviour
     }
     void States()
     {
-        //if (!inRange && !inAttackRange && !tooClose)
-        //{
-        //    searching = true;
-        //} 
+        switch (currentState)
+        {
+            case State.SEARCH:
+                agent.destination = player.position;
+                break;
 
-        if (inAttackRange)
-        {
-            AttackPlayer();
-            return;
-        }
-        else if (tooClose)
-        {
-            WanderAroundPlayer();
-            return;
-        }
-        else if (inRange)
-        {
-            FollowPlayer();
-            return;
-        }
-        else 
-        {
-            Search();
+            case State.FOLLOWING:
+                agent.destination = player.position;
+                break;
+
+            case State.ATTACKING;
+                break;
+
+            case State.WANDERING:
+                break;
         }
     }
 
@@ -98,12 +102,13 @@ public class BasicAI : MonoBehaviour
     //    }
     //}
 
-    void FollowPlayer()
+    public void FollowPlayer()
     {
         following = true;
+        agent.stoppingDistance = attackRange / 2;
         agent.SetDestination(player.position);
     }
-    void AttackPlayer()
+    public void AttackPlayer()
     {
         agent.transform.LookAt(player);
         agent.stoppingDistance = attackRange;
@@ -118,7 +123,7 @@ public class BasicAI : MonoBehaviour
     {
         attacking = false;
     }
-    void Search()
+    public void Search()
     {
         agent.radius = enemyPersonalSpace;
     }

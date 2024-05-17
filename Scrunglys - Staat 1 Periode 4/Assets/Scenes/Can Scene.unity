@@ -1586,28 +1586,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2036900617}
-  - component: {fileID: 2036900616}
+  - component: {fileID: 2036900618}
   m_Layer: 0
-  m_Name: EnemyCount
+  m_Name: EnemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2036900616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036900615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9741d267a4e8dcf49bfe70055f5d6ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies: []
-  basicAI: {fileID: 0}
 --- !u!4 &2036900617
 Transform:
   m_ObjectHideFlags: 0
@@ -1623,6 +1609,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036900618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036900615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e640e514cbf43e408525e82d2af9991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2141974087}
+  crowdLimit: 5
+  crowded: 0
+  inWanderRange: 0
+  enemies: []
+  basicAI: {fileID: 0}
 --- !u!1 &2116423644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
@@ -1641,25 +1645,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2141974087}
-  enemyCount: {fileID: 2036900616}
+  enemyManager: {fileID: 2036900618}
   noticeRange: 15
   distanceFromPlayer: 1
   attackRange: 1
-  enemyPersonalSpace: 0
-  wanderRange: 0
+  enemyPersonalSpace: 1
+  wanderRange: 5
   attackTime: 3
-  tooClose: 0
-  inRange: 0
   inAttackRange: 0
   crowded: 0
   following: 0
   attacking: 0
   searching: 0
-  alreadyListed: 0
+  inWanderRange: 0
   enemy:
     serializedVersion: 2
     m_Bits: 128
-  listIndex: 0
   agent: {fileID: 2116423646}
 --- !u!195 &2116423646 stripped
 NavMeshAgent:
@@ -1779,6 +1780,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200673431846174478, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: m_StoppingDistance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}

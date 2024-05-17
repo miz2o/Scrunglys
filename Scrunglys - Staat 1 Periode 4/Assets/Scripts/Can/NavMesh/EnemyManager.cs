@@ -13,8 +13,8 @@ public class EnemyManager : MonoBehaviour
     public bool crowded = false;
     public bool inWanderRange;
 
-    private HashSet<GameObject> enemyInWanderRange = new HashSet<GameObject>();
-    private List<GameObject> enemies = new List<GameObject>();
+    public HashSet<GameObject> enemyInWanderRange = new HashSet<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     public BasicAI basicAI;
     private void Update()
@@ -30,6 +30,8 @@ public class EnemyManager : MonoBehaviour
         {
             float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
 
+            basicAI = enemy.GetComponent<BasicAI>();
+
             if (distance <= basicAI.wanderRange)
             {
                 enemyInWanderRange.Add(enemy);
@@ -42,18 +44,17 @@ public class EnemyManager : MonoBehaviour
                 }
             }
 
-            basicAI = enemy.GetComponent<BasicAI>();
             if (distance <= basicAI.attackRange)
             {
-                basicAI.inAttackRange = true;
+                basicAI.AttackPlayer();
             }
-            else if (crowded)
+            else if (crowded && !basicAI.)
             {
                 basicAI.WanderAroundPlayer();
             }
             else if (distance <= basicAI.noticeRange)
             {
-                basicAI.inRange = true;
+                basicAI.currentState = BasicAI.State.WANDERING;
             }
         }
         foreach(GameObject enemy in enemiesToRemove)
