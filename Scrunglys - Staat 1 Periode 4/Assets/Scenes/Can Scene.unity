@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 28342431}
   serializedVersion: 2
   m_LocalRotation: {x: -0.10360928, y: -0.028921003, z: 0.0074464856, w: 0.9941697}
-  m_LocalPosition: {x: 0.50000006, y: 0.5827209, z: 0.8502567}
+  m_LocalPosition: {x: 0.49999997, y: 0.5827209, z: 0.8502567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297,8 +297,12 @@ PrefabInstance:
       value: KethaiFixed
       objectReference: {fileID: 0}
     - target: {fileID: 1174788012521952488, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174788012521952488, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4384956998231420244, guid: 2c9a7effa90af4e438648460cb0534d9, type: 3}
       propertyPath: gravity
@@ -2002,7 +2006,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.3
   m_Height: 1.7

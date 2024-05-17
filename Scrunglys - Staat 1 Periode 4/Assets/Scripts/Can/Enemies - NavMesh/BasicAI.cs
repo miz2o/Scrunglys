@@ -116,10 +116,7 @@ public class BasicAI : MonoBehaviour
                     enemyManager.crowdCount++;
                     listed = true;
                 }
-                //if (enemyManager.crowded)
-                //{
-                //    currentState = State.WANDERING; 
-                //}
+               
                 if(distance >= attackRange)
                 {
                     currentState = State.CHASING;

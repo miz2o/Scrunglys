@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [Header("References")]
     private CharacterController cController;
     public Transform thirdPersonCamera;
+    public PlayerStats playerStats;
 
     [Header("Basic movement")]
     public int walkSpeed;
@@ -67,7 +68,10 @@ public class Movement : MonoBehaviour
     }
     void ApplyGravity()
     {
-        cController.Move(-Vector3.up * gravity * Time.deltaTime);
+        if (!dashing)
+        {
+            cController.Move(-Vector3.up * gravity * Time.deltaTime);
+        }
     }
     IEnumerator Dash()
     {
@@ -77,6 +81,7 @@ public class Movement : MonoBehaviour
         while (Time.time < startTime + dashDuration)
         {
             cController.Move(moveDir.normalized * dash * Time.deltaTime);
+            
             yield return null;
         }
 
