@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [Header("Basic movement")]
     public int walkSpeed;
     public int sprintSpeed;
+    public float gravity;
 
     [Header("Dashing")]
     public int dash;
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         Inputs();
+        ApplyGravity();
     }
     void Inputs()
     {
@@ -63,7 +65,10 @@ public class Movement : MonoBehaviour
     {
         cController.Move(moveDir.normalized * sprintSpeed * Time.deltaTime);
     }
-   
+    void ApplyGravity()
+    {
+        cController.Move(-Vector3.up * gravity * Time.deltaTime);
+    }
     IEnumerator Dash()
     {
         dashing = true;
@@ -78,5 +83,4 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
     }
-
 }

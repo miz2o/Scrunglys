@@ -1,0 +1,223 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering;
+
+public class BasicAI : MonoBehaviour
+{
+    [Header("References")]
+    public Transform player;
+    public EnemyManager enemyManager;
+
+    [Header("Ranges")]
+    public float noticeRange;
+    public float distanceFromPlayer;
+    public float attackRange;
+    public float enemyPersonalSpace;
+    public float wanderRange;
+    public float searchRange;
+
+    [Header("Cooldowns")]
+    public float attackTime;
+
+    [Header("Timers")]
+    public float wanderTimer;
+    public float wanderTimerMin;
+    public float wanderTimerMax;
+
+    public float searchTimer;
+    public float searchTimerMin;
+    public float searchTimerMax;
+
+    public float timer;
+
+    [Header("Booleans")]
+    public bool listed = false;
+
+    public State currentState = State.IDLE;
+
+    public enum State
+    {
+        IDLE,
+        CHASING,
+        ATTACKING,
+        WANDERING,
+    }
+
+    [Header("Layer")]
+    public LayerMask enemy;
+
+    public NavMeshAgent agent;
+    public void UpdateAI()
+    {
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+        if (enemyManager == null)
+        {
+            enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        }
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        switch (currentState)
+        {
+            case State.IDLE:
+                if(searchTimer == 0)
+                {
+                    searchTimer = Random.Range(searchTimerMin, searchTimerMax);
+                    timer = 0;
+                    Vector3 newPos = RandomNavSphereIdle(transform.position, searchRange, -1);
+                    agent.SetDestination(newPos);
+                }
+
+                Search();
+
+                if(distance <= noticeRange)
+                {
+                    currentState = State.CHASING;
+                }
+
+                if (listed)
+                {
+                    enemyManager.crowdCount--;
+                    listed = false;
+                }
+                break;
+
+            case State.CHASING:
+                agent.destination = player.position;
+                if(distance <= attackRange && !enemyManager.crowded)
+                {
+                    currentState = State.ATTACKING;
+                }
+                else if (distance <= attackRange && enemyManager.crowded)
+                {
+                    currentState = State.WANDERING;
+                }
+                else if (distance >= noticeRange)
+                {
+                    currentState = State.IDLE;
+                }
+
+                if (listed)
+                {
+                    enemyManager.crowdCount--;
+                    listed = false;
+                }
+                break;
+
+            case State.ATTACKING:
+                if (!listed)
+                {
+                    enemyManager.crowdCount++;
+                    listed = true;
+                }
+                //if (enemyManager.crowded)
+                //{
+                //    currentState = State.WANDERING; 
+                //}
+                if(distance >= attackRange)
+                {
+                    currentState = State.CHASING;
+                }
+                break;
+
+            case State.WANDERING:
+
+                if(wanderTimer == 0)
+                {
+                    wanderTimer = Random.Range(wanderTimerMin, wanderTimerMax);
+                    timer = 0;
+                    Vector3 newPos = RandomNavSphereWander(player.position, wanderRange, -1);
+                    agent.SetDestination(newPos);
+                }
+
+                WanderAroundPlayer();
+
+                if (listed)
+                {
+                    enemyManager.crowdCount--;
+                    listed = false;
+                }
+                break;
+        }
+    }
+    //public void AttackPlayer()
+    //{
+    //    agent.transform.LookAt(player);
+    //    agent.stoppingDistance = attackRange;
+
+    //    if (!attacking)
+    //    {
+    //        attacking = true;
+    //        Invoke(nameof(ResetAttack), attackTime);
+    //    }
+    //}
+    //void ResetAttack()
+    //{
+    //    attacking = false;
+    //}
+    #region SEARCHING
+    public void Search()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= searchTimer)
+        {
+            Vector3 newPos = RandomNavSphereIdle(transform.position, searchRange, -1);
+            agent.SetDestination(newPos);
+            SetSearchTime();
+            timer = 0;
+        }
+    }
+    public void SetSearchTime()
+    {
+        searchTimer = Random.Range(searchTimerMin, searchTimerMax);
+    }
+    public static Vector3 RandomNavSphereIdle(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDistance = Random.insideUnitSphere * dist;
+
+        randDistance += origin;
+
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
+
+        return navMeshHit.position;
+    }
+    #endregion
+
+    #region WANDERING
+    public void WanderAroundPlayer()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= wanderTimer)
+        {
+            Vector3 newPos = RandomNavSphereWander(player.position, wanderRange, -1);
+            agent.SetDestination(newPos);
+            SetWanderTime();
+            timer = 0;
+        }
+    }
+    public void SetWanderTime()
+    {
+        wanderTimer = Random.Range(wanderTimerMin, wanderTimerMax);
+    }
+    public static Vector3 RandomNavSphereWander(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDistance = Random.insideUnitSphere * dist;
+
+        randDistance += origin;
+
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
+
+        return navMeshHit.position;
+    }
+    #endregion 
+}

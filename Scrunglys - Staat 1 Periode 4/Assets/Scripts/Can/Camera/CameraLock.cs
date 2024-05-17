@@ -80,9 +80,16 @@ public class CameraLock : MonoBehaviour
                 closestAngle = angle;
             }
         }
-        locked = true;
-        SetCamera();
-        return closestTarget;
+        if (closestTarget != null)
+        {
+            locked = true;
+            SetCamera();
+            return closestTarget;
+        }
+        else
+        {
+            return null;
+        }
     }
     void SetCamera()
     {
@@ -97,7 +104,6 @@ public class CameraLock : MonoBehaviour
             enemyCamera.Priority = 10;
         }
     }
-
     void CalcEnemyDistance()
     {
         if (enemy != null)
