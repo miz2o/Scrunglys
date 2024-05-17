@@ -35,6 +35,7 @@ public class BasicAI : MonoBehaviour
 
     [Header("Booleans")]
     public bool listed = false;
+    public bool attacking = false;
 
     public State currentState = State.IDLE;
 
@@ -50,6 +51,8 @@ public class BasicAI : MonoBehaviour
     public LayerMask enemy;
 
     public NavMeshAgent agent;
+
+    #region UPDATEAI
     public void UpdateAI()
     {
         if (agent == null)
@@ -90,7 +93,13 @@ public class BasicAI : MonoBehaviour
 
             case State.CHASING:
                 agent.destination = player.position;
-                if(distance <= attackRange && !enemyManager.crowded)
+
+                Vector3 direction = player.position - transform.position; //rotate enemy to look at player without ruining other rotations
+                direction.y = 0;
+                Quaternion rotation = Quaternion.LookRotation(direction);
+                transform.rotation = rotation; 
+
+                if (distance <= attackRange && !enemyManager.crowded)
                 {
                     currentState = State.ATTACKING;
                 }
@@ -116,6 +125,8 @@ public class BasicAI : MonoBehaviour
                     enemyManager.crowdCount++;
                     listed = true;
                 }
+
+                AttackPlayer();
                
                 if(distance >= attackRange)
                 {
@@ -143,21 +154,46 @@ public class BasicAI : MonoBehaviour
                 break;
         }
     }
-    //public void AttackPlayer()
-    //{
-    //    agent.transform.LookAt(player);
-    //    agent.stoppingDistance = attackRange;
+    #endregion
 
-    //    if (!attacking)
-    //    {
-    //        attacking = true;
-    //        Invoke(nameof(ResetAttack), attackTime);
-    //    }
-    //}
-    //void ResetAttack()
-    //{
-    //    attacking = false;
-    //}
+    #region ATTACK
+    public void AttackPlayer()
+    {
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = rotation;
+
+        if (!attacking)
+        {
+            attacking = true;
+            Invoke(nameof(ResetAttack), attackTime);
+        }
+
+        if (attacking)
+        {
+            Vector3 newPos = RandomNavSphereAttacking(player.position, attackRange, -1);
+            agent.SetDestination(newPos);
+        }
+    }
+    void ResetAttack()
+    {
+        attacking = false;
+    }
+
+    public static Vector3 RandomNavSphereAttacking(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDistance = Random.insideUnitSphere * dist;
+
+        randDistance += origin;
+
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
+
+        return navMeshHit.position;
+    }
+    #endregion
+
     #region SEARCHING
     public void Search()
     {
@@ -192,6 +228,12 @@ public class BasicAI : MonoBehaviour
     public void WanderAroundPlayer()
     {
         timer += Time.deltaTime;
+
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = rotation;
+
 
         if (timer >= wanderTimer)
         {

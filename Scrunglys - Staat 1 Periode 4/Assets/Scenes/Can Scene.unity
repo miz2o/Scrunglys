@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 28342431}
   serializedVersion: 2
   m_LocalRotation: {x: -0.10360928, y: -0.028921003, z: 0.0074464856, w: 0.9941697}
-  m_LocalPosition: {x: 0.49999997, y: 0.5827209, z: 0.8502567}
+  m_LocalPosition: {x: 0.50000006, y: 0.5827209, z: 0.8502567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -229,6 +229,7 @@ MonoBehaviour:
   searchTimerMax: 10
   timer: 0
   listed: 0
+  attacking: 0
   currentState: 0
   enemy:
     serializedVersion: 2
@@ -599,6 +600,7 @@ MonoBehaviour:
   searchTimerMax: 10
   timer: 0
   listed: 0
+  attacking: 0
   currentState: 0
   enemy:
     serializedVersion: 2
@@ -626,7 +628,7 @@ GameObject:
   - component: {fileID: 555769681}
   - component: {fileID: 555769680}
   - component: {fileID: 555769679}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,50 +820,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &741743083 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-  m_PrefabInstance: {fileID: 1678023422}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &741743084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741743083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2974b7a49455de3448982ec868265369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2141974087}
-  enemyManager: {fileID: 2036900618}
-  noticeRange: 13
-  distanceFromPlayer: 1
-  attackRange: 3
-  enemyPersonalSpace: 1
-  wanderRange: 5
-  searchRange: 10
-  attackTime: 3
-  wanderTimer: 0
-  wanderTimerMin: 3
-  wanderTimerMax: 6
-  searchTimer: 0
-  searchTimerMin: 5
-  searchTimerMax: 10
-  timer: 0
-  listed: 0
-  currentState: 0
-  enemy:
-    serializedVersion: 2
-    m_Bits: 128
-  agent: {fileID: 741743085}
---- !u!195 &741743085 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-  m_PrefabInstance: {fileID: 1678023422}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &741743089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
@@ -955,7 +913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17698534, y: 0.000000015874285, z: -0.0000000028545792, w: 0.98421353}
+  m_LocalRotation: {x: 0.17698534, y: 0.000000017156335, z: -0.000000003085123, w: 0.98421353}
   m_LocalPosition: {x: 0, y: 2, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1036,9 +994,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  radius: 15
+  radius: 18
   maxAngle: 45
-  maxDistance: 17
+  maxDistance: 20
 --- !u!1001 &967490260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,6 +1103,7 @@ MonoBehaviour:
   searchTimerMax: 10
   timer: 0
   listed: 0
+  attacking: 0
   currentState: 0
   enemy:
     serializedVersion: 2
@@ -1266,6 +1225,7 @@ MonoBehaviour:
   searchTimerMax: 10
   timer: 0
   listed: 0
+  attacking: 0
   currentState: 0
   enemy:
     serializedVersion: 2
@@ -1649,29 +1609,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1200673431846174478, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-      propertyPath: m_ProvidesContacts
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_Name
       value: NavMesh Agent (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
+    - target: {fileID: 8951424545732517902, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: listed
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8951424545732517902, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2141974087}
+    - target: {fileID: 8951424545732517902, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 2036900618}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 741743084}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb740b1a542baf4195272a4468310f7, type: 3}
 --- !u!1 &1678296407
 GameObject:
@@ -1914,6 +1871,7 @@ MonoBehaviour:
   searchTimerMax: 10
   timer: 0
   listed: 0
+  attacking: 0
   currentState: 0
   enemy:
     serializedVersion: 2
@@ -2095,6 +2053,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_Name
       value: NavMesh Agent
@@ -2107,6 +2073,22 @@ PrefabInstance:
       propertyPath: enemyManager
       value: 
       objectReference: {fileID: 2036900618}
+    - target: {fileID: 4892209004327906455, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: searchTimerMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892209004327906455, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: searchTimerMin
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892209004327906455, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: wanderTimerMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892209004327906455, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: wanderTimerMin
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2654,7 +2636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6059383550409325749}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000004470348, y: 0.000000020904052, z: -0.00000000776934, w: 1}
+  m_LocalRotation: {x: -0.00000004470348, y: 0.000000023596876, z: -0.000000008770173, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2782,7 +2764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686081654541705497}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06951228, y: 0.000000018651516, z: -0.000000005490307, w: 0.9975811}
+  m_LocalRotation: {x: -0.06951228, y: 0.000000011318038, z: -0.0000000033316057, w: 0.9975811}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2844,7 +2826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8028808902497548288}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000004470348, y: 0.00000001511847, z: -0.000000005619032, w: 1}
+  m_LocalRotation: {x: -0.00000004470348, y: 0.0000000018515969, z: -6.881768e-10, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
