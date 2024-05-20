@@ -7,4 +7,8 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     public float health;
     public float stamina;
+
+    public Movement movement;
+
+
 }
