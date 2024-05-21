@@ -20,22 +20,35 @@ public class CameraLock : MonoBehaviour
 
     [Header("Bools")]
     public bool locked;
+    public bool switched;
 
     [Header("Lock on settings")]
     public LayerMask enemyLayer;
     public float radius;
     public float maxAngle;
     public float maxDistance;
+    //public float switchTimer;
+    //public float timer;
 
+   
     public void Update()
     {
         Inputs();
         PlayerLookAt();
         CalcEnemyDistance();
-        if(enemyCamera.LookAt == null)
+
+        if(enemyCamera.LookAt == null && !switched)
         {
-            enemyCamera.Priority = 10;
-            freeLook.Priority = 20;
+            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
+
+            if(freeLook.transform.position == camReset.position)
+            {
+                enemyCamera.Priority = 10;
+                freeLook.Priority = 20;
+
+                switched = true;
+                locked = false;
+            }
         }
     }
 
@@ -43,12 +56,12 @@ public class CameraLock : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && !locked)
         {
-            if (enemyCamera == null)
-            {
-                print("Waarom werk jij niet");
-            }
             enemy = CalcEnemyLock();
-            enemyCamera.LookAt = enemy;
+            if(enemy != null)
+            {
+                enemyCamera.LookAt = enemy;
+                switched = false;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1)  && locked) 
         {

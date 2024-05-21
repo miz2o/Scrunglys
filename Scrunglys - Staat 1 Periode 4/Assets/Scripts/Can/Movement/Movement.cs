@@ -15,12 +15,14 @@ public class Movement : MonoBehaviour
     public int walkSpeed;
     public int sprintSpeed;
     public float gravity;
+    public float sprintStamina;
 
     [Header("Dashing")]
     public int dash;
     public float dashCooldown;
     public float dashDuration;
     public bool dashing;
+    public float dashStamina;
 
     [Header("Inputs")]
     private float vert;
@@ -63,8 +65,9 @@ public class Movement : MonoBehaviour
 
         moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
         {
+            playerStats.Stamina(sprintStamina);
             Sprint();
             sprint = true;
         }
@@ -73,8 +76,11 @@ public class Movement : MonoBehaviour
             Walk();
             sprint = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing && !swordScript.slashing)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashing && !swordScript.slashing && playerStats.stamina > 0)
         {
+            playerStats.Stamina(dashStamina);
+            mainAnimation.SetTrigger("DashTrigger");
+
             StartCoroutine(Dash());
         }
     }
@@ -105,7 +111,6 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
     }
-
     void AnimatorManager()
     {
         mainAnimation.SetBool("Dash", dashing);
