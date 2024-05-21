@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 7983171879003076620}
   - component: {fileID: 1200673431846174478}
   - component: {fileID: 4691555224585067889}
-  - component: {fileID: 4892209004327906455}
-  - component: {fileID: 8951424545732517902}
+  - component: {fileID: 1363099947465481416}
   m_Layer: 7
   m_Name: NavMesh Agent
   m_TagString: Enemy
@@ -133,7 +132,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4892209004327906455
+--- !u!114 &1363099947465481416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,41 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemyManager: {fileID: 0}
-  noticeRange: 15
-  distanceFromPlayer: 1
-  attackRange: 3.5
-  enemyPersonalSpace: 1
-  wanderRange: 8
-  searchRange: 10
-  attackTime: 3
-  wanderTimer: 0
-  wanderTimerMin: 3
-  wanderTimerMax: 6
-  searchTimer: 0
-  searchTimerMin: 5
-  searchTimerMax: 10
-  timer: 0
-  listed: 0
-  attacking: 0
-  currentState: 0
-  enemy:
-    serializedVersion: 2
-    m_Bits: 128
-  agent: {fileID: 4691555224585067889}
---- !u!114 &8951424545732517902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701001090501062638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2974b7a49455de3448982ec868265369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemyManager: {fileID: 0}
+  health: 10
   noticeRange: 13
   distanceFromPlayer: 1
   attackRange: 3
@@ -198,6 +163,7 @@ MonoBehaviour:
   timer: 0
   listed: 0
   attacking: 0
+  hit: 0
   currentState: 0
   enemy:
     serializedVersion: 2

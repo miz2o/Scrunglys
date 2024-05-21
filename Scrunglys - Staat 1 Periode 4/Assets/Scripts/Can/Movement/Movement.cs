@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     private CharacterController cController;
     public Transform thirdPersonCamera;
     public PlayerStats playerStats;
+    public Animator mainAnimation;
+    public SwordScript swordScript;
 
     [Header("Basic movement")]
     public int walkSpeed;
@@ -24,17 +26,23 @@ public class Movement : MonoBehaviour
     private float vert;
     private float hor;
 
+    [Header("Animation Bools")]
+    public bool sprint;
+    public bool walking;
+
     private Vector3 moveDir;
 
     private void Start()
     {
          cController = GetComponent<CharacterController>();
+         mainAnimation = GetComponent<Animator>();
     }
    
     private void Update()
     {
         Inputs();
         ApplyGravity();
+        AnimatorManager();
     }
     void Inputs()
     {
@@ -43,17 +51,29 @@ public class Movement : MonoBehaviour
 
         moveDir = new Vector3(hor, 0f, vert);
 
+        if(moveDir.magnitude > 0)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+            sprint = false;
+        }
+
         moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Sprint();
+            sprint = true;
         }
         else
         {
             Walk();
+            sprint = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashing && !swordScript.slashing)
         {
             StartCoroutine(Dash());
         }
@@ -68,10 +88,7 @@ public class Movement : MonoBehaviour
     }
     void ApplyGravity()
     {
-        if (!dashing)
-        {
-            cController.Move(-Vector3.up * gravity * Time.deltaTime);
-        }
+         cController.Move(-Vector3.up * gravity * Time.deltaTime);
     }
     IEnumerator Dash()
     {
@@ -87,5 +104,12 @@ public class Movement : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
+    }
+
+    void AnimatorManager()
+    {
+        mainAnimation.SetBool("Dash", dashing);
+        mainAnimation.SetBool("Sprint", sprint);
+        mainAnimation.SetBool("Walking", walking);
     }
 }

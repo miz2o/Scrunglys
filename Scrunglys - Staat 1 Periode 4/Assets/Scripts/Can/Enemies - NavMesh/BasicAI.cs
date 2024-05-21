@@ -11,6 +11,9 @@ public class BasicAI : MonoBehaviour
     public Transform player;
     public EnemyManager enemyManager;
 
+    [Header("Stats/Health")]
+    public float health;
+
     [Header("Ranges")]
     public float noticeRange;
     public float distanceFromPlayer;
@@ -36,6 +39,7 @@ public class BasicAI : MonoBehaviour
     [Header("Booleans")]
     public bool listed = false;
     public bool attacking = false;
+    public bool hit = false;
 
     public State currentState = State.IDLE;
 
@@ -259,4 +263,28 @@ public class BasicAI : MonoBehaviour
         return navMeshHit.position;
     }
     #endregion 
+
+    public void Health(float damageToDo)
+    {
+
+        print("Hit");
+        health -= damageToDo;
+
+        hit = true;
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    void HitTimer()
+    {
+
+    }
 }
+
