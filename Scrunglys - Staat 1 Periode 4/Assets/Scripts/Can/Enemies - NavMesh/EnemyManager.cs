@@ -14,12 +14,13 @@ public class EnemyManager : MonoBehaviour
 
     public int crowdCount;
 
-    public GameObject[] enemies;
+    public List<GameObject> enemies;
     public BasicAI basicAI;
 
     public void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+
         foreach(GameObject enemy in enemies)
         {
             basicAI = enemy.GetComponent<BasicAI>();
@@ -28,10 +29,24 @@ public class EnemyManager : MonoBehaviour
     }
     private void Update()
     {
-        foreach(GameObject enemy in enemies)
+        List<GameObject> enemiesToRemove = new List<GameObject>();
+
+        foreach (GameObject enemy in enemies)
         {
-            basicAI = enemy.GetComponent<BasicAI>();
-            basicAI.UpdateAI();
+            if (enemy == null)
+            {
+                enemiesToRemove.Add(enemy);
+            }
+            else
+            {
+                basicAI = enemy.GetComponent<BasicAI>();
+                basicAI.UpdateAI();
+            }
+        }
+
+        foreach (GameObject enemyToRemove in enemiesToRemove)
+        {
+            enemies.Remove(enemyToRemove);
         }
         CheckCrowd();
     }

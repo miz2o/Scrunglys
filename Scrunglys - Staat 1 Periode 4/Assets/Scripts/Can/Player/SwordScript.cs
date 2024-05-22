@@ -9,17 +9,19 @@ public class SwordScript : MonoBehaviour
     public Collider collider;
     public Animator animator;
     public Movement movement;
+    public PlayerStats playerStats;
 
     [Header("Stats")]
     public float damage;
     public float attackReset;
+    public float staminaCost;
 
     public bool slashing;
 
     public void Start()
     {
         collider = GetComponent<Collider>();
-        //collider.enabled = false;
+        collider.enabled = false;
     }
     private void Update()
     {
@@ -28,8 +30,9 @@ public class SwordScript : MonoBehaviour
     }
     void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina > 0)
         {
+            playerStats.Stamina(staminaCost);
             StartCoroutine(Slash());
         }
     }
@@ -42,29 +45,19 @@ public class SwordScript : MonoBehaviour
     IEnumerator Slash()
     {
         slashing = true;
-        //collider.enabled = true;
+        collider.enabled = true;
 
         yield return new WaitForSeconds(attackReset);
 
-        //collider.enabled = false;
+        collider.enabled = false;
         slashing = false;
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        print("Trigger");
         if(other.transform.tag == "Enemy" && slashing)
         {
             other.GetComponent<BasicAI>().Health(damage);
-            //other.GetComponent<BasicAI>().hit = true;
         }
     }
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    print("Collision");
-    //    if (collision.transform.tag == "Enemy")
-    //    {
-    //        collision.transform.GetComponent<BasicAI>().Health(damage);
-    //    }
-    //}
 }

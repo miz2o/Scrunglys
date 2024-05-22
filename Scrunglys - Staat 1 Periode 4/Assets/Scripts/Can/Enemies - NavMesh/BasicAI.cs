@@ -38,7 +38,7 @@ public class BasicAI : MonoBehaviour
 
     [Header("Booleans")]
     public bool listed = false;
-    public bool attacking = false;
+    public bool attacked = false;
     public bool hit = false;
 
     public State currentState = State.IDLE;
@@ -107,7 +107,7 @@ public class BasicAI : MonoBehaviour
                 {
                     currentState = State.ATTACKING;
                 }
-                else if (distance <= attackRange && enemyManager.crowded)
+                else if (distance <= wanderRange && enemyManager.crowded)
                 {
                     currentState = State.WANDERING;
                 }
@@ -140,7 +140,13 @@ public class BasicAI : MonoBehaviour
 
             case State.WANDERING:
 
-                if(wanderTimer == 0)
+                if (listed)
+                {
+                    enemyManager.crowdCount--;
+                    listed = false;
+                }
+
+                if (wanderTimer == 0)
                 {
                     wanderTimer = Random.Range(wanderTimerMin, wanderTimerMax);
                     timer = 0;
@@ -150,10 +156,9 @@ public class BasicAI : MonoBehaviour
 
                 WanderAroundPlayer();
 
-                if (listed)
+                if (!enemyManager.crowded)
                 {
-                    enemyManager.crowdCount--;
-                    listed = false;
+                    currentState = State.CHASING;
                 }
                 break;
         }
@@ -168,34 +173,34 @@ public class BasicAI : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = rotation;
 
-        if (!attacking)
+        if (!attacked)
         {
-            attacking = true;
+            attacked = true;
             Invoke(nameof(ResetAttack), attackTime);
         }
 
-        if (attacking)
+        if (attacked)
         {
-            Vector3 newPos = RandomNavSphereAttacking(player.position, attackRange, -1);
-            agent.SetDestination(newPos);
+            //Vector3 newPos = RandomNavSphereAttacking(player.position, attackRange, -1);
+            agent.SetDestination(player.position);
         }
     }
     void ResetAttack()
     {
-        attacking = false;
+        attacked = false;
     }
 
-    public static Vector3 RandomNavSphereAttacking(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDistance = Random.insideUnitSphere * dist;
+    //public static Vector3 RandomNavSphereAttacking(Vector3 origin, float dist, int layermask)
+    //{
+    //    Vector3 randDistance = Random.insideUnitSphere * dist;
 
-        randDistance += origin;
+    //    randDistance += origin;
 
-        NavMeshHit navMeshHit;
-        NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
+    //    NavMeshHit navMeshHit;
+    //    NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
 
-        return navMeshHit.position;
-    }
+    //    return navMeshHit.position;
+    //}
     #endregion
 
     #region SEARCHING
@@ -262,15 +267,14 @@ public class BasicAI : MonoBehaviour
 
         return navMeshHit.position;
     }
-    #endregion 
+    #endregion
 
+    #region HEALTH
     public void Health(float damageToDo)
     {
-
         print("Hit");
         health -= damageToDo;
 
-        hit = true;
         if (health <= 0)
         {
             Death();
@@ -281,10 +285,6 @@ public class BasicAI : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    void HitTimer()
-    {
-
-    }
+    #endregion
 }
 

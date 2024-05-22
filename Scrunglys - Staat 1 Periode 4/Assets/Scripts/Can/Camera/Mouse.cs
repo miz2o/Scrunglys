@@ -8,6 +8,13 @@ public class Mouse : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Visible();
+    //    }
+    //}
 
     void Visible()
     {
