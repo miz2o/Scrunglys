@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     public float dashCooldown;
     public float dashDuration;
     public bool dashing;
+    public bool dashed;
     public float dashStamina;
 
     [Header("Inputs")]
@@ -98,18 +99,19 @@ public class Movement : MonoBehaviour
     }
     IEnumerator Dash()
     {
-        dashing = true;
+        dashed = true;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
             cController.Move(moveDir.normalized * dash * Time.deltaTime);
-            
+            dashing = true;
             yield return null;
         }
 
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
+        dashed = false;
     }
     void AnimatorManager()
     {

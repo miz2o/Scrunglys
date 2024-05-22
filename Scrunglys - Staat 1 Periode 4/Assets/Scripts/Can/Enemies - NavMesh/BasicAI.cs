@@ -18,7 +18,6 @@ public class BasicAI : MonoBehaviour
     public float noticeRange;
     public float distanceFromPlayer;
     public float attackRange;
-    public float enemyPersonalSpace;
     public float wanderRange;
     public float searchRange;
 
@@ -130,6 +129,7 @@ public class BasicAI : MonoBehaviour
                     listed = true;
                 }
 
+
                 AttackPlayer();
                
                 if(distance >= attackRange)
@@ -188,6 +188,7 @@ public class BasicAI : MonoBehaviour
     void ResetAttack()
     {
         attacked = false;
+        print("Reset attack");
     }
 
     //public static Vector3 RandomNavSphereAttacking(Vector3 origin, float dist, int layermask)
@@ -277,6 +278,11 @@ public class BasicAI : MonoBehaviour
 
         if (health <= 0)
         {
+            if (listed)
+            {
+                enemyManager.crowdCount--;
+                listed = false;
+            }
             Death();
         }
     }

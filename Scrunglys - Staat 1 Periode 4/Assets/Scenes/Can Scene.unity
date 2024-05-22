@@ -1547,7 +1547,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.888851
+      value: -15.62
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1588,6 +1588,22 @@ PrefabInstance:
     - target: {fileID: 1200673431846174478, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_ProvidesContacts
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: searchTimerMax
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: searchTimerMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: wanderTimerMax
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: wanderTimerMin
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_StoppingDistance
@@ -1768,9 +1784,17 @@ PrefabInstance:
       propertyPath: m_ProvidesContacts
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363099947465481416, guid: abb740b1a542baf4195272a4468310f7, type: 3}
+      propertyPath: searchRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4691555224585067889, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_StoppingDistance
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4701001090501062638, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_Name
@@ -2063,13 +2087,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -2174,8 +2198,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705960403}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0988516, y: 1.0833335, z: 13.507502}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 11.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2187,7 +2211,7 @@ Transform:
   - {fileID: 1084651319}
   - {fileID: 1228210032}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1766593401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,15 +2422,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5888516
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1838389
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.332499
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 346192717652082572, guid: abb740b1a542baf4195272a4468310f7, type: 3}
       propertyPath: m_LocalRotation.w

@@ -27,6 +27,7 @@ public class CameraLock : MonoBehaviour
     public float radius;
     public float maxAngle;
     public float maxDistance;
+    public float rotationSmooth;
     //public float switchTimer;
     //public float timer;
 
@@ -39,16 +40,20 @@ public class CameraLock : MonoBehaviour
 
         if(enemyCamera.LookAt == null && !switched)
         {
-            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
+            //freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
 
-            if(freeLook.transform.position == camReset.position)
-            {
+            //if(freeLook.transform.position == camReset.position)
+            //{
                 enemyCamera.Priority = 10;
                 freeLook.Priority = 20;
 
                 switched = true;
                 locked = false;
-            }
+            //}
+        }
+        if (locked)   //To reduce camere jitter when killing an enemy when camera is locked 
+        {
+            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
         }
     }
 
@@ -108,6 +113,7 @@ public class CameraLock : MonoBehaviour
     {
         if (locked)
         {
+            
             freeLook.Priority = 10;
             enemyCamera.Priority = 20;
         }
@@ -143,7 +149,8 @@ public class CameraLock : MonoBehaviour
             Vector3 direction = enemy.position - player.position;
             direction.y = 0; 
             Quaternion rotation = Quaternion.LookRotation(direction);
-            player.rotation = rotation;
+            Quaternion.Slerp(player.rotation, rotation, rotationSmooth);
+            //player.rotation = rotation;
         }
     }
 }
