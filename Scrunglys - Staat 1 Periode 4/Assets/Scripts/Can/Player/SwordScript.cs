@@ -27,13 +27,14 @@ public class SwordScript : MonoBehaviour
     {
         Inputs();
         AnimationController();
+
     }
     void Inputs()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina > 0)
         {
             playerStats.Stamina(staminaCost);
-            StartCoroutine(Slash());
+            StartCoroutine(Slash(attackReset));
         }
     }
     
@@ -42,7 +43,7 @@ public class SwordScript : MonoBehaviour
         animator.SetBool("Slash", slashing);
     }
 
-    IEnumerator Slash()
+    public IEnumerator Slash(float attackReset)
     {
         slashing = true;
         collider.enabled = true;
@@ -53,6 +54,13 @@ public class SwordScript : MonoBehaviour
         slashing = false;
     }
 
+    public void CheckDashing()
+    {
+        if (movement.dashing)
+        {
+            damage /= 2;
+        }
+    }
     public void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Enemy" && slashing)
