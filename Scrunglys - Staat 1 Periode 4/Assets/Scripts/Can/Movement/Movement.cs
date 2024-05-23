@@ -49,22 +49,26 @@ public class Movement : MonoBehaviour
     }
     void Inputs()
     {
-        vert = Input.GetAxisRaw("Vertical");
-        hor = Input.GetAxisRaw("Horizontal");
-
-        moveDir = new Vector3(hor, 0f, vert);
-
-        if(moveDir.magnitude > 0)
+        if (!swordScript.slashing)
         {
-            walking = true;
-        }
-        else
-        {
-            walking = false;
-            sprint = false;
-        }
+            vert = Input.GetAxisRaw("Vertical");
+            hor = Input.GetAxisRaw("Horizontal");
 
-        moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
+            moveDir = new Vector3(hor, 0f, vert);
+
+            if (moveDir.magnitude > 0)
+            {
+                walking = true;
+            }
+            else
+            {
+                walking = false;
+                sprint = false;
+            }
+
+            moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
+        }
+        
 
         if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
         {
@@ -100,6 +104,8 @@ public class Movement : MonoBehaviour
     IEnumerator Dash()
     {
         dashed = true;
+
+        StartCoroutine(swordScript.Slash(dashDuration));
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)

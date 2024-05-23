@@ -1,22 +1,18 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CameraLock : MonoBehaviour
 {
     [Header("References")]
     public Camera mainCamera;
     public CinemachineFreeLook freeLook;
-    public CinemachineVirtualCamera enemyCamera;
-    public Transform player;
+    public CinemachineFreeLook enemyCamera;
     public Transform camReset;
+    public Transform player;
     public Transform orientation;
     private Transform enemy;
 
-    public ThirdPersonCam cam;  
+    public ThirdPersonCam cam;
 
     [Header("Bools")]
     public bool locked;
@@ -28,129 +24,133 @@ public class CameraLock : MonoBehaviour
     public float maxAngle;
     public float maxDistance;
     public float rotationSmooth;
-    //public float switchTimer;
-    //public float timer;
+    public Vector3 cameraOffset;
 
-   
-    public void Update()
+    private void Update()
     {
-        Inputs();
-        PlayerLookAt();
-        CalcEnemyDistance();
+        HandleInputs();
+        PlayerLookAtEnemy();
+        CheckEnemyDistance();
 
-        if(enemyCamera.LookAt == null && !switched)
+        enemyCamera.transform.position = camReset.position;
+        enemyCamera.transform.rotation = camReset.rotation;
+
+        if (enemyCamera.LookAt == null && !switched)
         {
-            //freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
-
-            //if(freeLook.transform.position == camReset.position)
-            //{
-                enemyCamera.Priority = 10;
-                freeLook.Priority = 20;
-
-                switched = true;
-                locked = false;
-            //}
-        }
-        if (locked)   //To reduce camere jitter when killing an enemy when camera is locked 
-        {
-            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
+            SwitchToFreeLookCamera();
         }
     }
 
-    void Inputs()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !locked)
-        {
-            enemy = CalcEnemyLock();
-            if(enemy != null)
-            {
-                enemyCamera.LookAt = enemy;
-                switched = false;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse1)  && locked) 
-        {
-            freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
-            locked = false;
-            SetCamera();
-        }
-    }
-    Transform CalcEnemyLock()
-    {
-        Collider[] nearbyEnemy = Physics.OverlapSphere(transform.position, radius, enemyLayer);
-        float closestAngle = maxAngle;
-        Transform closestTarget = null;
-
-        if(nearbyEnemy.Length <= 0)
-        {
-            return null;
-        }
-
-        for(int i = 0; i < nearbyEnemy.Length; i++)
-        {
-            Vector3 dir = nearbyEnemy[i].transform.position - mainCamera.transform.position;
-            dir.y = 0;
-
-            float angle = Vector3.Angle(mainCamera.transform.forward, dir);
-            if (angle < maxAngle)
-            {
-                closestTarget = nearbyEnemy[i].transform;
-                closestAngle = angle;
-            }
-        }
-        if (closestTarget != null)
-        {
-            locked = true;
-            SetCamera();
-            return closestTarget;
-        }
-        else
-        {
-            return null;
-        }
-    }
-    //void SetCamera()
-    //{
-    //    if (locked)
-    //    {
-            
-    //        freeLook.Priority = 10;
-    //        enemyCamera.Priority = 20;
-    //    }
-    //    else
-    //    {
-    //        freeLook.Priority = 20;
-    //        enemyCamera.Priority = 10;
-    //    }
-    //}
-    void CalcEnemyDistance()
-    {
-        if (enemy != null)
-        {
-            Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
-            Vector3 enemyPos = new Vector3(enemy.position.x, 0, enemy.position.z);
-
-            float distance = Vector3.Distance(playerPos, enemyPos);
-
-            if (distance > maxDistance)
-            {
-                locked = false;
-                enemy = null;
-                enemyCamera.LookAt = null;
-                freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
-                //SetCamera();
-            }
-        }
-    }
-    void PlayerLookAt()
+    private void LateUpdate()
     {
         if (locked && enemy != null)
         {
-            Vector3 direction = enemy.position - player.position;
-            direction.y = 0; 
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            //Quaternion.Slerp(player.rotation, rotation, rotationSmooth);
-            player.rotation = rotation;
+            UpdateCameraPosition();
+        }
+    }
+
+    private void HandleInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (!locked)
+            {
+                enemy = FindEnemyToLockOn();
+                if (enemy != null)
+                {
+                    enemyCamera.LookAt = enemy;
+                    switched = false;
+                    locked = true;
+                    SwitchToEnemyCamera();
+                }
+            }
+            else
+            {
+                UnlockCamera();
+            }
+        }
+    }
+
+    private Transform FindEnemyToLockOn()
+    {
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+        Transform closestTarget = null;
+        float closestAngle = maxAngle;
+
+        foreach (Collider enemyCollider in nearbyEnemies)
+        {
+            Vector3 directionToEnemy = enemyCollider.transform.position - mainCamera.transform.position;
+            directionToEnemy.y = 0;
+
+            float angleToEnemy = Vector3.Angle(mainCamera.transform.forward, directionToEnemy);
+            if (angleToEnemy < closestAngle)
+            {
+                closestTarget = enemyCollider.transform;
+                closestAngle = angleToEnemy;
+            }
+        }
+
+        return closestTarget;
+    }
+
+    private void SwitchToEnemyCamera()
+    {
+        freeLook.Priority = 10;
+        enemyCamera.Priority = 20;
+    }
+
+    private void SwitchToFreeLookCamera()
+    {
+        freeLook.Priority = 20;
+        enemyCamera.Priority = 10;
+        switched = true;
+        locked = false;
+    }
+
+    private void UnlockCamera()
+    {
+        locked = false;
+        enemyCamera.LookAt = null;
+        SwitchToFreeLookCamera();
+    }
+
+    private void CheckEnemyDistance()
+    {
+        if (enemy != null)
+        {
+            Vector3 playerPosition = new Vector3(player.position.x, 0, player.position.z);
+            Vector3 enemyPosition = new Vector3(enemy.position.x, 0, enemy.position.z);
+
+            float distanceToEnemy = Vector3.Distance(playerPosition, enemyPosition);
+            if (distanceToEnemy > maxDistance)
+            {
+                UnlockCamera();
+                enemy = null;
+            }
+        }
+    }
+
+    private void PlayerLookAtEnemy()
+    {
+        if (locked && enemy != null)
+        {
+            Vector3 directionToEnemy = enemy.position - player.position;
+            directionToEnemy.y = 0;
+
+            Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
+            player.rotation = Quaternion.Slerp(player.rotation, targetRotation, rotationSmooth * Time.deltaTime);
+        }
+    }
+
+    private void UpdateCameraPosition()
+    {
+        if (locked && enemy != null)
+        {
+            Vector3 desiredPosition = player.position + player.TransformDirection(cameraOffset);
+            enemyCamera.transform.position = Vector3.Lerp(enemyCamera.transform.position, desiredPosition, rotationSmooth * Time.deltaTime);
+
+            Quaternion desiredRotation = Quaternion.LookRotation(enemy.position - enemyCamera.transform.position);
+            enemyCamera.transform.rotation = Quaternion.Slerp(enemyCamera.transform.rotation, desiredRotation, rotationSmooth * Time.deltaTime);
         }
     }
 }

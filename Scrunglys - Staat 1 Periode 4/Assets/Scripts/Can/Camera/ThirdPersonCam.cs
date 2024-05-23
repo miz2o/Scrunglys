@@ -7,6 +7,8 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
 
+    public SwordScript swordScript;
+
     public float rotationSpeed;
 
     private void Update()
@@ -14,15 +16,17 @@ public class ThirdPersonCam : MonoBehaviour
         
         Vector3 vieuwDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = vieuwDir.normalized;
-
-        float hor = Input.GetAxisRaw("Horizontal");
-        float vert = Input.GetAxisRaw("Vertical");
-
-        Vector3 inputDir = orientation.forward * vert + orientation.right * hor;
-
-        if (inputDir != Vector3.zero)
+        if (!swordScript.slashing)
         {
-            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, rotationSpeed * Time.deltaTime);
+            float hor = Input.GetAxisRaw("Horizontal");
+            float vert = Input.GetAxisRaw("Vertical");
+
+            Vector3 inputDir = orientation.forward * vert + orientation.right * hor;
+
+            if (inputDir != Vector3.zero)
+            {
+                player.forward = Vector3.Slerp(player.forward, inputDir.normalized, rotationSpeed * Time.deltaTime);
+            }
         }
     }
 }
