@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 319c4b8643253ac47bc0b87e8d3e48b2, type: 2}
+  - {fileID: 2100000, guid: 00b8ef78dee92a543bcbf6e95221a830, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,6 @@ MonoBehaviour:
   noticeRange: 13
   distanceFromPlayer: 1
   attackRange: 3
-  enemyPersonalSpace: 1
   wanderRange: 5
   searchRange: 10
   attackTime: 3

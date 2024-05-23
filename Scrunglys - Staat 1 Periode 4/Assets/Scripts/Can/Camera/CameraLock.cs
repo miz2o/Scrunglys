@@ -109,20 +109,20 @@ public class CameraLock : MonoBehaviour
             return null;
         }
     }
-    void SetCamera()
-    {
-        if (locked)
-        {
+    //void SetCamera()
+    //{
+    //    if (locked)
+    //    {
             
-            freeLook.Priority = 10;
-            enemyCamera.Priority = 20;
-        }
-        else
-        {
-            freeLook.Priority = 20;
-            enemyCamera.Priority = 10;
-        }
-    }
+    //        freeLook.Priority = 10;
+    //        enemyCamera.Priority = 20;
+    //    }
+    //    else
+    //    {
+    //        freeLook.Priority = 20;
+    //        enemyCamera.Priority = 10;
+    //    }
+    //}
     void CalcEnemyDistance()
     {
         if (enemy != null)
@@ -138,7 +138,7 @@ public class CameraLock : MonoBehaviour
                 enemy = null;
                 enemyCamera.LookAt = null;
                 freeLook.ForceCameraPosition(camReset.position, camReset.rotation);
-                SetCamera();
+                //SetCamera();
             }
         }
     }
@@ -149,8 +149,8 @@ public class CameraLock : MonoBehaviour
             Vector3 direction = enemy.position - player.position;
             direction.y = 0; 
             Quaternion rotation = Quaternion.LookRotation(direction);
-            Quaternion.Slerp(player.rotation, rotation, rotationSmooth);
-            //player.rotation = rotation;
+            //Quaternion.Slerp(player.rotation, rotation, rotationSmooth);
+            player.rotation = rotation;
         }
     }
 }
