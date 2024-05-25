@@ -6,13 +6,16 @@ using UnityEngine;
 public class SwordScript : MonoBehaviour
 {
     [Header("References")]
-    public Collider collider;
+    public new Collider collider;
     public Animator animator;
     public Movement movement;
     public PlayerStats playerStats;
 
     [Header("Stats")]
     public float damage;
+    private float damageToDo;
+
+    [Tooltip("The time it takes for your next attack to be ready")]
     public float attackReset;
     public float staminaCost;
 
@@ -27,7 +30,7 @@ public class SwordScript : MonoBehaviour
     {
         Inputs();
         AnimationController();
-
+        CheckDashing();
     }
     void Inputs()
     {
@@ -58,14 +61,18 @@ public class SwordScript : MonoBehaviour
     {
         if (movement.dashing)
         {
-            damage /= 2;
+            damageToDo = damage / 2;
+        }
+        else
+        {
+            damageToDo = damage;
         }
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Enemy" && slashing)
+        if(other.transform.tag == "Enemy" && slashing || other.transform.tag == "Enemy" && movement.dashing)
         {
-            other.GetComponent<BasicAI>().Health(damage);
+            other.GetComponent<BasicAI>().Health(damageToDo);
         }
     }
 }

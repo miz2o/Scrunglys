@@ -22,7 +22,6 @@ public class Movement : MonoBehaviour
     public float dashCooldown;
     public float dashDuration;
     public bool dashing;
-    public bool dashed;
     public float dashStamina;
 
     [Header("Inputs")]
@@ -32,6 +31,10 @@ public class Movement : MonoBehaviour
     [Header("Animation Bools")]
     public bool sprint;
     public bool walking;
+
+    [Header("Layers")]
+    public LayerMask enemy;
+    public LayerMask nothing;
 
     private Vector3 moveDir;
 
@@ -68,19 +71,24 @@ public class Movement : MonoBehaviour
 
             moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
         }
+        else
+        {
+            
+        }
         
 
-        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript)
         {
             playerStats.Stamina(sprintStamina);
             Sprint();
             sprint = true;
         }
-        else
+        else if (!swordScript.slashing)
         {
             Walk();
             sprint = false;
         }
+
         if (Input.GetKeyDown(KeyCode.Space) && !dashing && !swordScript.slashing && playerStats.stamina > 0)
         {
             playerStats.Stamina(dashStamina);
@@ -103,21 +111,25 @@ public class Movement : MonoBehaviour
     }
     IEnumerator Dash()
     {
-        dashed = true;
-
-        StartCoroutine(swordScript.Slash(dashDuration));
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
             cController.Move(moveDir.normalized * dash * Time.deltaTime);
             dashing = true;
+            swordScript.collider.enabled = true;
+
+            cController.excludeLayers = enemy;
             yield return null;
         }
 
+        if(Time.time > startTime + dashDuration)
+        {
+            swordScript.collider.enabled = false;
+            cController.excludeLayers = nothing;
+        }
         yield return new WaitForSeconds(dashCooldown);
         dashing = false;
-        dashed = false;
     }
     void AnimatorManager()
     {

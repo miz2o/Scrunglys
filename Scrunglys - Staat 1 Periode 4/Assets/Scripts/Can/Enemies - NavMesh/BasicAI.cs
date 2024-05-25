@@ -14,31 +14,32 @@ public class BasicAI : MonoBehaviour
     [Header("Stats/Health")]
     public float health;
 
-    [Header("Ranges")]
-    public float noticeRange;
-    public float distanceFromPlayer;
-    public float attackRange;
-    public float wanderRange;
-    public float searchRange;
+    //[Header("Ranges")]
+    //public float noticeRange;
+    //public float distanceFromPlayer;
+    //public float attackRange;
+    //public float wanderRange;
+    //public float searchRange;
 
-    [Header("Cooldowns")]
-    public float attackTime;
+    //[Header("Cooldowns")]
+    //public float attackTime;
 
     [Header("Timers")]
     public float wanderTimer;
-    public float wanderTimerMin;
-    public float wanderTimerMax;
+    //public float wanderTimerMin;
+    //public float wanderTimerMax;
 
     public float searchTimer;
-    public float searchTimerMin;
-    public float searchTimerMax;
+    //public float searchTimerMin;
+    //public float searchTimerMax;
 
     public float timer;
 
     [Header("Booleans")]
     public bool listed = false;
     public bool attacked = false;
-    public bool hit = false;
+
+    public EnemyData data;
 
     public State currentState = State.IDLE;
 
@@ -49,10 +50,7 @@ public class BasicAI : MonoBehaviour
         ATTACKING,
         WANDERING,
     }
-
     [Header("Layer")]
-    public LayerMask enemy;
-
     public NavMeshAgent agent;
 
     #region UPDATEAI
@@ -74,15 +72,15 @@ public class BasicAI : MonoBehaviour
             case State.IDLE:
                 if(searchTimer == 0)
                 {
-                    searchTimer = Random.Range(searchTimerMin, searchTimerMax);
+                    searchTimer = Random.Range(data.searchTimerMin, data.searchTimerMax);
                     timer = 0;
-                    Vector3 newPos = RandomNavSphereIdle(transform.position, searchRange, -1);
+                    Vector3 newPos = RandomNavSphereIdle(transform.position, data.searchRange, -1);
                     agent.SetDestination(newPos);
                 }
 
                 Search();
 
-                if(distance <= noticeRange)
+                if(distance <= data.noticeRange)
                 {
                     currentState = State.CHASING;
                 }
@@ -102,15 +100,15 @@ public class BasicAI : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation(direction);
                 transform.rotation = rotation; 
 
-                if (distance <= attackRange && !enemyManager.crowded)
+                if (distance <= data.attackRange && !enemyManager.crowded)
                 {
                     currentState = State.ATTACKING;
                 }
-                else if (distance <= wanderRange && enemyManager.crowded)
+                else if (distance <= data.wanderRange && enemyManager.crowded)
                 {
                     currentState = State.WANDERING;
                 }
-                else if (distance >= noticeRange)
+                else if (distance >= data.noticeRange)
                 {
                     currentState = State.IDLE;
                 }
@@ -132,7 +130,7 @@ public class BasicAI : MonoBehaviour
 
                 AttackPlayer();
                
-                if(distance >= attackRange)
+                if(distance >= data.attackRange)
                 {
                     currentState = State.CHASING;
                 }
@@ -148,9 +146,9 @@ public class BasicAI : MonoBehaviour
 
                 if (wanderTimer == 0)
                 {
-                    wanderTimer = Random.Range(wanderTimerMin, wanderTimerMax);
+                    wanderTimer = Random.Range(data.wanderTimerMin, data.wanderTimerMax);
                     timer = 0;
-                    Vector3 newPos = RandomNavSphereWander(player.position, wanderRange, -1);
+                    Vector3 newPos = RandomNavSphereWander(player.position, data.wanderRange, -1);
                     agent.SetDestination(newPos);
                 }
 
@@ -176,7 +174,7 @@ public class BasicAI : MonoBehaviour
         if (!attacked)
         {
             attacked = true;
-            Invoke(nameof(ResetAttack), attackTime);
+            Invoke(nameof(ResetAttack), data.attackTime);
         }
 
         if (attacked)
@@ -211,7 +209,7 @@ public class BasicAI : MonoBehaviour
 
         if (timer >= searchTimer)
         {
-            Vector3 newPos = RandomNavSphereIdle(transform.position, searchRange, -1);
+            Vector3 newPos = RandomNavSphereIdle(transform.position, data.searchRange, -1);
             agent.SetDestination(newPos);
             SetSearchTime();
             timer = 0;
@@ -219,7 +217,7 @@ public class BasicAI : MonoBehaviour
     }
     public void SetSearchTime()
     {
-        searchTimer = Random.Range(searchTimerMin, searchTimerMax);
+        searchTimer = Random.Range(data.searchTimerMin, data.searchTimerMax);
     }
     public static Vector3 RandomNavSphereIdle(Vector3 origin, float dist, int layermask)
     {
@@ -247,7 +245,7 @@ public class BasicAI : MonoBehaviour
 
         if (timer >= wanderTimer)
         {
-            Vector3 newPos = RandomNavSphereWander(player.position, wanderRange, -1);
+            Vector3 newPos = RandomNavSphereWander(player.position, data.wanderRange, -1);
             agent.SetDestination(newPos);
             SetWanderTime();
             timer = 0;
@@ -255,7 +253,7 @@ public class BasicAI : MonoBehaviour
     }
     public void SetWanderTime()
     {
-        wanderTimer = Random.Range(wanderTimerMin, wanderTimerMax);
+        wanderTimer = Random.Range(data.wanderTimerMin, data.wanderTimerMax);
     }
     public static Vector3 RandomNavSphereWander(Vector3 origin, float dist, int layermask)
     {

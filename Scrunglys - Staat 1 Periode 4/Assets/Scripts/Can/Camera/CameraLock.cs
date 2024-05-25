@@ -7,7 +7,7 @@ public class CameraLock : MonoBehaviour
     public Camera mainCamera;
     public CinemachineFreeLook freeLook;
     public CinemachineFreeLook enemyCamera;
-    public Transform camReset;
+    //public Transform camReset;
     public Transform player;
     public Transform orientation;
     private Transform enemy;
@@ -32,22 +32,22 @@ public class CameraLock : MonoBehaviour
         PlayerLookAtEnemy();
         CheckEnemyDistance();
 
-        enemyCamera.transform.position = camReset.position;
-        enemyCamera.transform.rotation = camReset.rotation;
+        //enemyCamera.transform.position = camReset.position;
+        //enemyCamera.transform.rotation = camReset.rotation;
 
         if (enemyCamera.LookAt == null && !switched)
         {
             SwitchToFreeLookCamera();
         }
     }
-
-    private void LateUpdate()
-    {
-        if (locked && enemy != null)
-        {
-            UpdateCameraPosition();
-        }
-    }
+     
+    //private void LateUpdate()
+    //{
+    //    if (locked && enemy != null)
+    //    {
+    //        UpdateCameraPosition();
+    //    }
+    //}
 
     private void HandleInputs()
     {
@@ -88,6 +88,10 @@ public class CameraLock : MonoBehaviour
                 closestTarget = enemyCollider.transform;
                 closestAngle = angleToEnemy;
             }
+        }
+        if(enemy == null)
+        {
+            print("GEEN ENEMY");
         }
 
         return closestTarget;
@@ -142,15 +146,15 @@ public class CameraLock : MonoBehaviour
         }
     }
 
-    private void UpdateCameraPosition()
-    {
-        if (locked && enemy != null)
-        {
-            Vector3 desiredPosition = player.position + player.TransformDirection(cameraOffset);
-            enemyCamera.transform.position = Vector3.Lerp(enemyCamera.transform.position, desiredPosition, rotationSmooth * Time.deltaTime);
+    //private void UpdateCameraPosition()
+    //{
+    //    if (locked && enemy != null)
+    //    {
+    //        Vector3 desiredPosition = player.position + player.TransformDirection(cameraOffset);
+    //        enemyCamera.transform.position = Vector3.Lerp(enemyCamera.transform.position, desiredPosition, rotationSmooth * Time.deltaTime);
 
-            Quaternion desiredRotation = Quaternion.LookRotation(enemy.position - enemyCamera.transform.position);
-            enemyCamera.transform.rotation = Quaternion.Slerp(enemyCamera.transform.rotation, desiredRotation, rotationSmooth * Time.deltaTime);
-        }
-    }
+    //        Quaternion desiredRotation = Quaternion.LookRotation(enemy.position - enemyCamera.transform.position);
+    //        enemyCamera.transform.rotation = Quaternion.Slerp(enemyCamera.transform.rotation, desiredRotation, rotationSmooth * Time.deltaTime);
+    //    }
+    //}
 }

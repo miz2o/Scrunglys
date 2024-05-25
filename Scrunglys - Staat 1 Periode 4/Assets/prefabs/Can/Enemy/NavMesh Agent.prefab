@@ -95,7 +95,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4701001090501062638}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 1479372276
   m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
@@ -124,26 +124,14 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyManager: {fileID: 0}
   health: 10
-  noticeRange: 13
-  distanceFromPlayer: 1
-  attackRange: 3
-  wanderRange: 5
-  searchRange: 10
-  attackTime: 3
   wanderTimer: 0
-  wanderTimerMin: 3
-  wanderTimerMax: 6
   searchTimer: 0
-  searchTimerMin: 5
-  searchTimerMax: 10
   timer: 0
   listed: 0
   attacked: 0
   hit: 0
+  data: {fileID: 11400000, guid: 1924787cfdb5d7c4e9e149d396f83272, type: 2}
   currentState: 0
-  enemy:
-    serializedVersion: 2
-    m_Bits: 128
   agent: {fileID: 4691555224585067889}
 --- !u!54 &5055282767035992414
 Rigidbody:
