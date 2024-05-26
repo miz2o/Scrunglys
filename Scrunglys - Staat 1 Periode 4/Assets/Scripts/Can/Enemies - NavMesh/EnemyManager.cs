@@ -15,7 +15,9 @@ public class EnemyManager : MonoBehaviour
     public int crowdCount;
 
     public List<GameObject> enemies;
+
     public BasicAI basicAI;
+    public SwordScript swordScript;
 
     public void Start()
     {
@@ -25,6 +27,7 @@ public class EnemyManager : MonoBehaviour
         {
             basicAI = enemy.GetComponent<BasicAI>();
             basicAI.player = player;
+            basicAI.animator = enemy.GetComponent<Animator>();
         }
     }
     private void Update()
@@ -41,6 +44,11 @@ public class EnemyManager : MonoBehaviour
             {
                 basicAI = enemy.GetComponent<BasicAI>();
                 basicAI.UpdateAI();
+
+                if (basicAI.hit && !swordScript.slashing)
+                {
+                    basicAI.hit = false;
+                }
             }
         }
 
@@ -61,44 +69,4 @@ public class EnemyManager : MonoBehaviour
             crowded = false; 
         }
     }
-    //public void CheckDistance()
-    //{
-    //    List<GameObject> enemiesToRemove = new List<GameObject>();
-
-    //    foreach (GameObject enemy in enemies)
-    //    {
-    //        float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
-
-    //        basicAI = enemy.GetComponent<BasicAI>();
-
-    //        if (distance <= basicAI.wanderRange)
-    //        {
-    //            enemyInWanderRange.Add(enemy);
-    //        }
-    //        else
-    //        {
-    //            if (enemyInWanderRange.Contains(enemy))
-    //            {
-    //                enemiesToRemove.Add(enemy);
-    //            }
-    //        }
-
-    //        if (distance <= basicAI.attackRange)
-    //        {
-    //            basicAI.AttackPlayer();
-    //        }
-    //        else if (crowded && !basicAI)
-    //        {
-    //            basicAI.WanderAroundPlayer();
-    //        }
-    //        else if (distance <= basicAI.noticeRange)
-    //        {
-    //            basicAI.currentState = BasicAI.State.WANDERING;
-    //        }
-    //    }
-    //    foreach(GameObject enemy in enemiesToRemove)
-    //    {
-    //        enemyInWanderRange.Remove(enemy);
-    //    }
-    //}
 }

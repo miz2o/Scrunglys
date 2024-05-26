@@ -129,7 +129,6 @@ MonoBehaviour:
   timer: 0
   listed: 0
   attacked: 0
-  hit: 0
   data: {fileID: 11400000, guid: 1924787cfdb5d7c4e9e149d396f83272, type: 2}
   currentState: 0
   agent: {fileID: 4691555224585067889}
@@ -158,7 +157,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!65 &223952198900551985
 BoxCollider:

@@ -10,34 +10,22 @@ public class BasicAI : MonoBehaviour
     [Header("References")]
     public Transform player;
     public EnemyManager enemyManager;
+    public Animator animator;
 
     [Header("Stats/Health")]
     public float health;
 
-    //[Header("Ranges")]
-    //public float noticeRange;
-    //public float distanceFromPlayer;
-    //public float attackRange;
-    //public float wanderRange;
-    //public float searchRange;
-
-    //[Header("Cooldowns")]
-    //public float attackTime;
-
     [Header("Timers")]
     public float wanderTimer;
-    //public float wanderTimerMin;
-    //public float wanderTimerMax;
-
     public float searchTimer;
-    //public float searchTimerMin;
-    //public float searchTimerMax;
 
     public float timer;
 
     [Header("Booleans")]
     public bool listed = false;
     public bool attacked = false;
+    public bool attacking = false;
+    public bool hit = false;
 
     public EnemyData data;
 
@@ -53,18 +41,21 @@ public class BasicAI : MonoBehaviour
     [Header("Layer")]
     public NavMeshAgent agent;
 
-    #region UPDATEAI
-    public void UpdateAI()
+    public void Awake()
     {
-        if (agent == null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-        }
+        agent = GetComponent<NavMeshAgent>();
+    }
+    public void Start()
+    {
         if (enemyManager == null)
         {
             enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         }
 
+    }
+    #region UPDATEAI
+    virtual public void UpdateAI()
+    {
         float distance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
@@ -127,12 +118,15 @@ public class BasicAI : MonoBehaviour
                     listed = true;
                 }
 
-
                 AttackPlayer();
                
-                if(distance >= data.attackRange)
+                if(distance >= data.attackRange && enemyManager.crowded)
                 {
-                    currentState = State.CHASING;
+                    currentState = State.WANDERING;
+                }
+                else if (distance >= data.attackRange && !enemyManager.crowded)
+                {
+                    currentState = State.WANDERING;
                 }
                 break;
 
@@ -164,7 +158,7 @@ public class BasicAI : MonoBehaviour
     #endregion
 
     #region ATTACK
-    public void AttackPlayer()
+    virtual public void AttackPlayer()
     {
         Vector3 direction = player.position - transform.position;
         direction.y = 0;
@@ -274,6 +268,7 @@ public class BasicAI : MonoBehaviour
         print("Hit");
         health -= damageToDo;
 
+        hit = true;
         if (health <= 0)
         {
             if (listed)
