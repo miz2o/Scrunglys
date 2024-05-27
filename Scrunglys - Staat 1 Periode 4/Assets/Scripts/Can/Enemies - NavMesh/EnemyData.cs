@@ -7,6 +7,11 @@ public class EnemyData : ScriptableObject
 {
     [Header("Cooldowns")]
     public float attackTime;
+    public float attackWaitTime;
+    public float waitAnimation;
+
+    [Header("Stats")]
+    public float damage;
 
     [Header("Ranges")]
     public float noticeRange;

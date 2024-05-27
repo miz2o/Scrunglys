@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4031cc28b59e51c40a4b2a963b657a13, type: 3}
   m_Name: Melee Character
   m_EditorClassIdentifier: 
-  attackTime: 3
+  attackTime: 1
+  attackWaitTime: 3
+  damage: 5
   noticeRange: 15
   attackRange: 2
   wanderRange: 5

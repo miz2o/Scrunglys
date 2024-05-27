@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     public float dashCooldown;
     public float dashDuration;
     public bool dashing;
+    public bool dashed;
     public float dashStamina;
 
     [Header("Inputs")]
@@ -73,13 +74,14 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            
+            vert = 0;
+            hor = 0;
         }
         
 
-        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript)
+        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript.slashing)
         {
-            playerStats.Stamina(sprintStamina);
+            playerStats.SprintStamina(sprintStamina);
             Sprint();
             sprint = true;
         }
@@ -89,7 +91,7 @@ public class Movement : MonoBehaviour
             sprint = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing && !swordScript.slashing && playerStats.stamina > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashed && !swordScript.slashing && playerStats.stamina > 0)
         {
             playerStats.Stamina(dashStamina);
             mainAnimation.SetTrigger("DashTrigger");
@@ -111,6 +113,7 @@ public class Movement : MonoBehaviour
     }
     IEnumerator Dash()
     {
+        dashed = true;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
@@ -119,17 +122,17 @@ public class Movement : MonoBehaviour
             dashing = true;
             swordScript.collider.enabled = true;
 
-            cController.excludeLayers = enemy;
             yield return null;
         }
 
         if(Time.time > startTime + dashDuration)
         {
             swordScript.collider.enabled = false;
-            cController.excludeLayers = nothing;
+            dashing = false;
         }
         yield return new WaitForSeconds(dashCooldown);
-        dashing = false;
+
+        dashed = false;
     }
     void AnimatorManager()
     {
