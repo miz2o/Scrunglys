@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackTime: 1
   attackWaitTime: 3
+  waitAnimation: 0.4
   damage: 5
   noticeRange: 15
-  attackRange: 2
+  attackRange: 1
   wanderRange: 5
   searchRange: 10
   wanderTimerMin: 1

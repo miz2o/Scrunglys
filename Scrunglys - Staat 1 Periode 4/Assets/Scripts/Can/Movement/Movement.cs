@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour
         }
         
 
-        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript.slashing)
+        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript.slashing && moveDir.magnitude > 0)
         {
             playerStats.SprintStamina(sprintStamina);
             Sprint();

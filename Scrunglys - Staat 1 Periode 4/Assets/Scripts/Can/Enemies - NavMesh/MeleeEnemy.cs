@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MeleeEnemy : BasicAI
 {
     public Collider attackCollider;
+
     private new void Awake()
     {
         base.Awake();
@@ -32,6 +33,12 @@ public class MeleeEnemy : BasicAI
     }
     public IEnumerator AttackPlayer(float attackDuration)
     {
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
+
+
         attacking = true;
 
         yield return new WaitForSeconds(data.waitAnimation);

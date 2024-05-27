@@ -29,7 +29,6 @@ public class SwordScript : MonoBehaviour
     private void Update()
     {
         Inputs();
-        AnimationController();
         CheckDashing();
     }
     void Inputs()
@@ -40,14 +39,11 @@ public class SwordScript : MonoBehaviour
             StartCoroutine(Slash(attackReset));
         }
     }
-    
-    void AnimationController()
-    {
-        animator.SetBool("Slash", slashing);
-    }
 
     public IEnumerator Slash(float attackReset)
     {
+        animator.SetTrigger("Slash");
+
         slashing = true;
         collider.enabled = true;
 
@@ -70,7 +66,7 @@ public class SwordScript : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Enemy" && slashing || other.transform.tag == "Enemy" && movement.dashing)
+        if(other.transform.tag == "Enemy" && slashing && !other.GetComponent<BasicAI>().hit || other.transform.tag == "Enemy" && movement.dashing && !other.GetComponent<BasicAI>().hit)
         {
             other.GetComponent<BasicAI>().Health(damageToDo);
         }
