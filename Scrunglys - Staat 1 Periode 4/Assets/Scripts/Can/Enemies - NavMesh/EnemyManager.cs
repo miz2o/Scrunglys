@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
 
     public List<GameObject> enemies;
 
-    public BasicAI basicAI;
+    public MeleeEnemy meleeAI;
     public SwordScript swordScript;
 
     public void Start()
@@ -25,9 +25,9 @@ public class EnemyManager : MonoBehaviour
 
         foreach(GameObject enemy in enemies)
         {
-            basicAI = enemy.GetComponent<BasicAI>();
-            basicAI.player = player;
-            basicAI.animator = enemy.GetComponent<Animator>();
+            meleeAI = enemy.GetComponent<MeleeEnemy>();
+            meleeAI.player = player;
+            meleeAI.animator = enemy.GetComponent<Animator>();
         }
     }
     private void Update()
@@ -42,12 +42,12 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                basicAI = enemy.GetComponent<BasicAI>();
-                basicAI.UpdateAI();
+                meleeAI = enemy.GetComponent<MeleeEnemy>();
+                meleeAI.UpdateAI();
 
-                if (basicAI.hit && !swordScript.slashing)
+                if (meleeAI.hit && !swordScript.slashing)
                 {
-                    basicAI.hit = false;
+                    meleeAI.hit = false;
                 }
             }
         }

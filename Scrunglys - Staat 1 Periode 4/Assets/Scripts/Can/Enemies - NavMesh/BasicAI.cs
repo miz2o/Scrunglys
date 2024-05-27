@@ -118,7 +118,12 @@ public class BasicAI : MonoBehaviour
                     listed = true;
                 }
 
-                AttackPlayer();
+                agent.SetDestination(transform.position);
+
+                if (!attacking)
+                {
+                    AttackPlayer();
+                }
                
                 if(distance >= data.attackRange && enemyManager.crowded)
                 {
