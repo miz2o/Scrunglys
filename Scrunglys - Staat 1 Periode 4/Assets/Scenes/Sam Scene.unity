@@ -510,6 +510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: snake
       objectReference: {fileID: 0}
+    - target: {fileID: 4594799275693589454, guid: 43161b2ea4d611646973bdb7a0106797, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -659,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 39439092}
     - target: {fileID: 8570421287365781524, guid: e62193a67646a044e91820a91a74d203, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.4366016
+      value: -7.45
       objectReference: {fileID: 0}
     - target: {fileID: 8570421287365781524, guid: e62193a67646a044e91820a91a74d203, type: 3}
       propertyPath: m_LocalPosition.y
