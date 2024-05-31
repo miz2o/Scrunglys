@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     public Transform thirdPersonCamera;
     public PlayerStats playerStats;
     public Animator mainAnimation;
-    public SwordScript swordScript;
+    public CheckCurrentSword currentSword;
 
     [Header("Basic movement")]
     public int walkSpeed;
@@ -37,12 +37,15 @@ public class Movement : MonoBehaviour
     public LayerMask enemy;
     public LayerMask nothing;
 
+    [Header("Swords")]
+    public GameObject[] swords;
+
     private Vector3 moveDir;
 
     private void Start()
     {
-         cController = GetComponent<CharacterController>();
-         mainAnimation = GetComponent<Animator>();
+        cController = GetComponent<CharacterController>();
+        mainAnimation = GetComponent<Animator>();
     }
    
     private void Update()
@@ -53,7 +56,7 @@ public class Movement : MonoBehaviour
     }
     void Inputs()
     {
-        if (!swordScript.slashing)
+        if (!currentSword.swordScript.slashing)
         {
             vert = Input.GetAxisRaw("Vertical");
             hor = Input.GetAxisRaw("Horizontal");
@@ -72,26 +75,20 @@ public class Movement : MonoBehaviour
 
             moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
         }
-        else
-        {
-            vert = 0;
-            hor = 0;
-        }
-        
 
-        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !swordScript.slashing && moveDir.magnitude > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !currentSword.swordScript.slashing && moveDir.magnitude > 0)
         {
             playerStats.SprintStamina(sprintStamina);
             Sprint();
             sprint = true;
         }
-        else if (!swordScript.slashing)
+        else
         {
             Walk();
             sprint = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashed && !swordScript.slashing && playerStats.stamina > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashed && !currentSword.swordScript.slashing && playerStats.stamina > 0)
         {
             playerStats.Stamina(dashStamina);
             mainAnimation.SetTrigger("DashTrigger");
@@ -120,14 +117,14 @@ public class Movement : MonoBehaviour
         {
             cController.Move(moveDir.normalized * dash * Time.deltaTime);
             dashing = true;
-            swordScript.collider.enabled = true;
+            currentSword.swordScript.collider.enabled = true;
 
             yield return null;
         }
 
         if(Time.time > startTime + dashDuration)
         {
-            swordScript.collider.enabled = false;
+            currentSword.swordScript.collider.enabled = false;
             dashing = false;
         }
         yield return new WaitForSeconds(dashCooldown);
