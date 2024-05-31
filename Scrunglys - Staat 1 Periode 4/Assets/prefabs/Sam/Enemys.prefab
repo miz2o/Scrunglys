@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.42
+      value: -3.203
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9459271
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43.88
+      value: -0.94782686
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_BlendShapeWeights.Array.data[1]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d266a25c85d438f428682a3e140f5004, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -411,6 +415,7 @@ MonoBehaviour:
   listed: 0
   attacked: 0
   attacking: 0
+  hit: 0
   data: {fileID: 11400000, guid: 1924787cfdb5d7c4e9e149d396f83272, type: 2}
   currentState: 0
   agent: {fileID: 0}
