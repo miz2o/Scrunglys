@@ -57,9 +57,12 @@ public class PlayerStats : MonoBehaviour
     }
     public void Stamina(float actionStamina)
     {
-        stamina -= actionStamina;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
-        resetStaminaTimer = Time.time;
+        if(Time.timeScale > 0)
+        {
+            stamina -= actionStamina;
+            stamina = Mathf.Clamp(stamina, 0, maxStamina);
+            resetStaminaTimer = Time.time;
+        }
     }
     public void SprintStamina(float sprintStamina)
     {

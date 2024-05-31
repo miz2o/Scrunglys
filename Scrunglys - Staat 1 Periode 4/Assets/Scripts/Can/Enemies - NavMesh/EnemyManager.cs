@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
     public List<GameObject> enemies;
 
     public MeleeEnemy meleeAI;
-    public SwordScript swordScript;
+    public CheckCurrentSword currentSword;
 
     public void Start()
     {
@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
                 meleeAI = enemy.GetComponent<MeleeEnemy>();
                 meleeAI.UpdateAI();
 
-                if (meleeAI.hit && !swordScript.slashing)
+                if (meleeAI.hit && !currentSword.swordScript.slashing)
                 {
                     meleeAI.hit = false;
                 }

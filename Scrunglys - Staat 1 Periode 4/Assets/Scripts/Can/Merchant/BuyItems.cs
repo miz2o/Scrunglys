@@ -9,56 +9,97 @@ public class BuyItems : MonoBehaviour
     public PlayerStats playerStats;
     public Currency currency;
 
-    public float daggerValue, swordValue, claymoreValue;
-
     public GameObject dagger;
     public GameObject sword;
     public GameObject claymore;
     public GameObject stick;
+
+    public GameObject merchantPanel;
+
+    [Header("weapon values")]
+    public float daggerValue, swordValue, claymoreValue;
+
+    [Header("Buyy Checks")]
+    public bool boughtDagger, boughtSword, boughtClaymore;
+
+    
 
     public void RefillPotions()
     {
         playerStats.potions = 3;
     }
 
+    public void EquipStick()
+    {
+        stick.SetActive(true);
+
+        sword.SetActive(false);
+        dagger.SetActive(false);
+        claymore.SetActive(false);
+    }
     public void BuyDagger()
     {
-        currency.crystals -= daggerValue;
+        if (!boughtDagger)
+        {
+            currency.crystals -= daggerValue;
+            boughtDagger = true;
+        }
     }
 
     public void EquipDagger()
     {
-        dagger.SetActive(true);
+        if (boughtDagger)
+        {
+            dagger.SetActive(true);
 
-        sword.SetActive(false);
-        stick.SetActive(false);
-        claymore.SetActive(false);
+            sword.SetActive(false);
+            stick.SetActive(false);
+            claymore.SetActive(false);
+        }
     }
     public void BuySword()
     {
-        currency.crystals -= swordValue;
+        if (!boughtSword)
+        {
+            currency.crystals -= swordValue;
+            boughtSword = true;
+        }
     }
     public void EquipSword()
     {
-        sword.SetActive(true);
+        if (boughtSword)
+        {
+            sword.SetActive(true);
 
-        dagger.SetActive(false);
-        stick.SetActive(false);
-        claymore.SetActive(false);
+            dagger.SetActive(false);
+            stick.SetActive(false);
+            claymore.SetActive(false);
+        }
     }
     public void BuyClaymore()
     {
-        currency.crystals -= claymoreValue;
+        if (!boughtClaymore)
+        {
+            currency.crystals -= claymoreValue;
+            boughtClaymore = true;
+        }
     }
 
     public void EquipClaymore()
     {
-        claymore.SetActive(true);
+        if (boughtClaymore)
+        {
+            claymore.SetActive(true);
 
-        dagger.SetActive(false);
-        stick.SetActive(false);
-        sword.SetActive(false);
+            dagger.SetActive(false);
+            stick.SetActive(false);
+            sword.SetActive(false);
+        }
     }
 
-
+    public void ExitShop()
+    {
+        merchantPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
 }
