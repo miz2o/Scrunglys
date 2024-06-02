@@ -32,7 +32,6 @@ public class PlayerStats : MonoBehaviour
         Inputs();
         RegenStamina();
         DisplayStats();
-        CheckDeath();
     }
 
     void Inputs()
@@ -54,6 +53,11 @@ public class PlayerStats : MonoBehaviour
     public void Health(float damageToDo)
     {
         health -= damageToDo;
+
+        if(health <= 0)
+        {
+            //Death();
+        }
     }
     public void Stamina(float actionStamina)
     {
@@ -86,13 +90,5 @@ public class PlayerStats : MonoBehaviour
         staminaText.text = stamina.ToString();
         healthText.text = health.ToString();
         potionsText.text = potions.ToString();
-    }
-    void CheckDeath()
-    {
-        if(health <= 0)
-        {
-            print("haha u dede");
-            // Game Over screen 
-        }
     }
 }

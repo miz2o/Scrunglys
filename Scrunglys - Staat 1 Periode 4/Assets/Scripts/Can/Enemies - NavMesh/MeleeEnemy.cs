@@ -22,22 +22,12 @@ public class MeleeEnemy : BasicAI
     }
     override public void AttackPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
-
         animator.SetTrigger("Attack");
 
         StartCoroutine(AttackPlayer(data.attackTime));
     }
     public IEnumerator AttackPlayer(float attackDuration)
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
-
 
         attacking = true;
 
@@ -52,6 +42,7 @@ public class MeleeEnemy : BasicAI
         yield return new WaitForSeconds(data.attackWaitTime);
 
         attacking = false;
+        hasRotated = false; 
     }
 
     public void OnAttackColliderTrigger(Collider other)

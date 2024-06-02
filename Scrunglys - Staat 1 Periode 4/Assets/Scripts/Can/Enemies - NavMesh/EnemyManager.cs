@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.SocialPlatforms;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -16,21 +14,24 @@ public class EnemyManager : MonoBehaviour
 
     public List<GameObject> enemies;
 
-    public MeleeEnemy meleeAI;
     public CheckCurrentSword currentSword;
 
-    public void Start()
+    void Start()
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
 
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
-            meleeAI = enemy.GetComponent<MeleeEnemy>();
-            meleeAI.player = player;
-            meleeAI.animator = enemy.GetComponent<Animator>();
+            BasicAI basicAI = enemy.GetComponent<BasicAI>();
+            if (basicAI != null)
+            {
+                basicAI.player = player;
+                basicAI.animator = enemy.GetComponent<Animator>();
+            }
         }
     }
-    private void Update()
+
+    void Update()
     {
         List<GameObject> enemiesToRemove = new List<GameObject>();
 
@@ -42,12 +43,19 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                meleeAI = enemy.GetComponent<MeleeEnemy>();
-                meleeAI.UpdateAI();
-
-                if (meleeAI.hit && !currentSword.swordScript.slashing)
+                BasicAI basicAI = enemy.GetComponent<BasicAI>();
+                if (basicAI != null)
                 {
-                    meleeAI.hit = false;
+                    basicAI.UpdateAI();
+
+                    MeleeEnemy meleeAI = enemy.GetComponent<MeleeEnemy>();
+                    if (meleeAI != null)
+                    {
+                        if (meleeAI.hit && !currentSword.swordScript.slashing)
+                        {
+                            meleeAI.hit = false;
+                        }
+                    }
                 }
             }
         }
@@ -58,15 +66,16 @@ public class EnemyManager : MonoBehaviour
         }
         CheckCrowd();
     }
+
     public void CheckCrowd()
     {
-        if (crowdCount == crowdLimit)
+        if (crowdCount >= crowdLimit)
         {
             crowded = true;
         }
-        else if (crowdCount < crowdLimit)
+        else
         {
-            crowded = false; 
+            crowded = false;
         }
     }
 }

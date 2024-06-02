@@ -18,6 +18,7 @@ public class BasicAI : MonoBehaviour
     [Header("Timers")]
     public float wanderTimer;
     public float searchTimer;
+    public float attackTimer;
 
     public float timer;
 
@@ -26,6 +27,7 @@ public class BasicAI : MonoBehaviour
     public bool attacked = false;
     public bool attacking = false;
     public bool hit = false;
+    public bool hasRotated = false;
 
     public EnemyData data;
 
@@ -187,18 +189,6 @@ public class BasicAI : MonoBehaviour
         attacked = false;
         print("Reset attack");
     }
-
-    //public static Vector3 RandomNavSphereAttacking(Vector3 origin, float dist, int layermask)
-    //{
-    //    Vector3 randDistance = Random.insideUnitSphere * dist;
-
-    //    randDistance += origin;
-
-    //    NavMeshHit navMeshHit;
-    //    NavMesh.SamplePosition(randDistance, out navMeshHit, dist, -1);
-
-    //    return navMeshHit.position;
-    //}
     #endregion
 
     #region SEARCHING
