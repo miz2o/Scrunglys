@@ -133,7 +133,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 1479372276
   m_Radius: 0.8
-  m_Speed: 3
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -208,14 +208,17 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyManager: {fileID: 0}
   animator: {fileID: 4583655162565338040}
+  currency: {fileID: 451530609244638616, guid: cefd15192bfd60245b00431da401f4fb, type: 3}
   health: 10
   wanderTimer: 0
   searchTimer: 0
+  attackTimer: 0
   timer: 0
   listed: 0
   attacked: 0
   attacking: 0
   hit: 0
+  hasRotated: 0
   data: {fileID: 11400000, guid: 1924787cfdb5d7c4e9e149d396f83272, type: 2}
   currentState: 0
   agent: {fileID: 0}

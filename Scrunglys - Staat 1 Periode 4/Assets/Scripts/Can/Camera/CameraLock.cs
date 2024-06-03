@@ -7,7 +7,7 @@ public class CameraLock : MonoBehaviour
     public Camera mainCamera;
     public CinemachineFreeLook freeLook;
     public CinemachineFreeLook enemyCamera;
-    //public Transform camReset;
+
     public Transform player;
     public Transform orientation;
     private Transform enemy;
