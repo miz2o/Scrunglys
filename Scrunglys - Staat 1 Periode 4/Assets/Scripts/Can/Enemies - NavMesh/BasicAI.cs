@@ -11,6 +11,7 @@ public class BasicAI : MonoBehaviour
     public Transform player;
     public EnemyManager enemyManager;
     public Animator animator;
+    public GameObject currency;
 
     [Header("Stats/Health")]
     public float health;
@@ -133,7 +134,7 @@ public class BasicAI : MonoBehaviour
                 }
                 else if (distance >= data.attackRange && !enemyManager.crowded)
                 {
-                    currentState = State.WANDERING;
+                    currentState = State.CHASING;
                 }
                 break;
 
@@ -277,6 +278,8 @@ public class BasicAI : MonoBehaviour
 
     void Death()
     {
+        Instantiate(currency, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
     #endregion

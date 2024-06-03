@@ -9,9 +9,11 @@ public class EnemyData : ScriptableObject
     public float attackTime;
     public float attackWaitTime;
     public float waitAnimation;
+    public float burstInterval;
 
     [Header("Stats")]
     public float damage;
+    public int bulletCap;
 
     [Header("Ranges")]
     public float noticeRange;
@@ -25,4 +27,10 @@ public class EnemyData : ScriptableObject
 
     public float searchTimerMin;
     public float searchTimerMax;
+
+    public float attackTimerMin;
+    public float attackTimerMax;
+
+    [Header("Other")]
+    public float rotationSmooth;
 }
