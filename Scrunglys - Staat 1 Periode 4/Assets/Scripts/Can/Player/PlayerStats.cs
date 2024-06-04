@@ -24,23 +24,27 @@ public class PlayerStats : MonoBehaviour
 
     [Header("References")]
     public Movement movement;
-    public TMP_Text staminaText;
-    public TMP_Text healthText;
-    public TMP_Text potionsText;
+    public Animator animator;
 
     public Slider healthSlider;
+    public Slider staminaSlider;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         health = maxHealth; 
+
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;
+
+        staminaSlider.maxValue = maxStamina;
+        staminaSlider.value = stamina;
     }
     public void Update()
     {
         Inputs();
         RegenStamina();
-        DisplayStats();
     }
 
     void Inputs()
@@ -79,13 +83,19 @@ public class PlayerStats : MonoBehaviour
         {
             stamina -= actionStamina;
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+            staminaSlider.value = stamina;
+
             resetStaminaTimer = Time.time;
         }
     }
     public void SprintStamina(float sprintStamina)
     {
         stamina -= sprintStamina * Time.deltaTime;
+
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+        staminaSlider.value = stamina;
         resetStaminaTimer = Time.time;
     }
     void RegenStamina()
@@ -97,12 +107,8 @@ public class PlayerStats : MonoBehaviour
             stamina += staminaRegenRate * Time.deltaTime;
 
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+            staminaSlider.value = stamina;
         }
-    }
-    void DisplayStats()
-    {
-        staminaText.text = stamina.ToString();
-        healthText.text = health.ToString();
-        potionsText.text = potions.ToString();
     }
 }

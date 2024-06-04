@@ -2132,7 +2132,7 @@ Material:
     - _OutlineUseVertexColorNormals: 0
     - _OutlineVertexColorMask: 0
     - _OutlineVertexColorMaskStrength: 1
-    - _OutlineWidth: 0.5
+    - _OutlineWidth: 0.86
     - _OutlineZTest: 4
     - _OutlinesMaxDistance: 1
     - _PBRNormalSelect: 1
@@ -2404,7 +2404,7 @@ Material:
     - _RimEnviroSharpness: 0
     - _RimEnviroWidth: 0.45
     - _RimFeather: 0.5
-    - _RimFlip: 0
+    - _RimFlip: 1
     - _RimFresnelPower: 3.5
     - _RimGlobalMask: 0
     - _RimGlobalMaskBlendType: 2
@@ -3770,7 +3770,7 @@ Material:
     - _Rim2MaskPan: {r: 0, g: 0, b: 0, a: 0}
     - _Rim2ShadowAlpha: {r: 0, g: 0, b: 0, a: 1}
     - _Rim2TexPan: {r: 0, g: 0, b: 0, a: 0}
-    - _RimColor: {r: 0.65999997, g: 0.5, b: 0.47999996, a: 1}
+    - _RimColor: {r: 0.2754717, g: 0.22401564, b: 0.22401564, a: 1}
     - _RimColorTexPan: {r: 0, g: 0, b: 0, a: 0}
     - _RimEnviroMaskPan: {r: 0, g: 0, b: 0, a: 0}
     - _RimIndirColor: {r: 1, g: 1, b: 1, a: 1}

@@ -24,8 +24,8 @@ MonoBehaviour:
   searchRange: 20
   wanderTimerMin: 1
   wanderTimerMax: 2
-  searchTimerMin: 2
-  searchTimerMax: 4
+  searchTimerMin: 4
+  searchTimerMax: 8
   attackTimerMin: 3
   attackTimerMax: 5
   rotationSmooth: 10

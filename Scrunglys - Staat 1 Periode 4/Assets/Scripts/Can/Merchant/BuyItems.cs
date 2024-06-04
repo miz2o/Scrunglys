@@ -41,7 +41,7 @@ public class BuyItems : MonoBehaviour
     {
         if (!boughtDagger)
         {
-            currency.crystals -= daggerValue;
+            currency.SubtractCrystals(daggerValue);
             boughtDagger = true;
         }
     }
@@ -61,7 +61,8 @@ public class BuyItems : MonoBehaviour
     {
         if (!boughtSword)
         {
-            currency.crystals -= swordValue;
+            currency.SubtractCrystals(swordValue);
+
             boughtSword = true;
         }
     }
@@ -80,7 +81,8 @@ public class BuyItems : MonoBehaviour
     {
         if (!boughtClaymore)
         {
-            currency.crystals -= claymoreValue;
+            currency.SubtractCrystals(claymoreValue);
+
             boughtClaymore = true;
         }
     }
