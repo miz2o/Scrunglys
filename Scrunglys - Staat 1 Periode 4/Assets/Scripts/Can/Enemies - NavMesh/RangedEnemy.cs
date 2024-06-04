@@ -67,8 +67,6 @@ public class RangedEnemy : BasicAI
 
             case State.ATTACKING:
 
-                agent.SetDestination(transform.position);
-
                 timer += Time.deltaTime;
 
                 if (!attacking)
@@ -87,6 +85,8 @@ public class RangedEnemy : BasicAI
     {
         if (timer >= attackTimer)
         {
+            agent.SetDestination(transform.position);
+
             animator.SetTrigger("Attack");
 
             StartCoroutine(AttackPlayerRoutine(data.attackTime));
@@ -94,6 +94,10 @@ public class RangedEnemy : BasicAI
             ResetAttackTimer(); 
 
             timer = 0;
+        }
+        else
+        {
+
         }
     }
     private IEnumerator AttackPlayerRoutine(float attackDuration)
@@ -107,12 +111,6 @@ public class RangedEnemy : BasicAI
     {
         for(int i = 0; i <= data.bulletCap; i++)
         {
-            Vector3 directionToPlayer = transform.position - player.position;
-            directionToPlayer.y = 0;
-
-            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-            player.rotation = Quaternion.Slerp(player.rotation, targetRotation, data.rotationSmooth * Time.deltaTime);
-
             ShootProjectile();
 
              yield return new WaitForSeconds(burstinterval);
@@ -122,7 +120,7 @@ public class RangedEnemy : BasicAI
 
     private void ShootProjectile()
     {
-       
+
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
         Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,6 +28,14 @@ public class PlayerStats : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text potionsText;
 
+    public Slider healthSlider;
+
+    private void Start()
+    {
+        health = maxHealth; 
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+    }
     public void Update()
     {
         Inputs();
@@ -46,6 +55,9 @@ public class PlayerStats : MonoBehaviour
         if(potions != 0)
         {
             health += potionValue;
+
+            healthSlider.value = health;
+
             potions--;
         }
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -54,7 +66,9 @@ public class PlayerStats : MonoBehaviour
     {
         health -= damageToDo;
 
-        if(health <= 0)
+        healthSlider.value = health;
+
+        if (health <= 0)
         {
             //Death();
         }
