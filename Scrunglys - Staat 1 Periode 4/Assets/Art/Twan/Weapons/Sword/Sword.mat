@@ -15,7 +15,16 @@ Material:
   - _ENVIRONMENTREFLECTIONS_OFF
   - _NORMALMAP
   - _SPECULAR_SETUP
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHACLIP_OFF
+  - _CASTHAIRSHADOWMASK_OFF
+  - _ENABLEMATCAP_OFF
+  - _ENABLESTENCIL_OFF
+  - _INVERSECLIPMASK_OFF
+  - _RECEIVEHAIRSHADOWMASK_OFF
+  - _RIMFLIP_OFF
+  - _SPECULARTYPE_OFF
+  - _USESMOOTHNORMAL_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
