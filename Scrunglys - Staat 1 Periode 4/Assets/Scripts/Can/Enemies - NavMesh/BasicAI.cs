@@ -28,7 +28,6 @@ public class BasicAI : MonoBehaviour
     public bool attacked = false;
     public bool attacking = false;
     public bool hit = false;
-    public bool hasRotated = false;
 
     public EnemyData data;
 
@@ -89,10 +88,7 @@ public class BasicAI : MonoBehaviour
             case State.CHASING:
                 agent.destination = player.position;
 
-                Vector3 direction = player.position - transform.position; //rotate enemy to look at player without ruining other rotations
-                direction.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                transform.rotation = rotation; 
+                RotateTowardsPlayer();
 
                 if (distance <= data.attackRange && !enemyManager.crowded)
                 {
@@ -168,10 +164,7 @@ public class BasicAI : MonoBehaviour
     #region ATTACK
     virtual public void AttackPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
+        RotateTowardsPlayer();
 
         if (!attacked)
         {
@@ -227,11 +220,7 @@ public class BasicAI : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
-
+        RotateTowardsPlayer();
 
         if (timer >= wanderTimer)
         {
@@ -283,5 +272,12 @@ public class BasicAI : MonoBehaviour
         Destroy(gameObject);
     }
     #endregion
+    public void RotateTowardsPlayer()
+    {
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = rotation;
+    }
 }
 

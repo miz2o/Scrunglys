@@ -15,7 +15,9 @@ MonoBehaviour:
   attackTime: 0.65
   attackWaitTime: 3.2
   waitAnimation: 0.4
-  damage: 3
+  burstInterval: 0
+  damage: 7
+  bulletCap: 0
   noticeRange: 15
   attackRange: 1.5
   wanderRange: 7
@@ -24,3 +26,6 @@ MonoBehaviour:
   wanderTimerMax: 3
   searchTimerMin: 2
   searchTimerMax: 4
+  attackTimerMin: 0
+  attackTimerMax: 0
+  rotationSmooth: 0

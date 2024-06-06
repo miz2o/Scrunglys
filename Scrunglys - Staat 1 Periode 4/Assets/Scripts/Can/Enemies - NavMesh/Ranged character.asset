@@ -20,7 +20,7 @@ MonoBehaviour:
   bulletCap: 3
   noticeRange: 15
   attackRange: 8
-  wanderRange: 10
+  wanderRange: 8
   searchRange: 20
   wanderTimerMin: 1
   wanderTimerMax: 2

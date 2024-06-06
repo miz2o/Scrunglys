@@ -48,13 +48,9 @@ public class EnemyManager : MonoBehaviour
                 {
                     basicAI.UpdateAI();
 
-                    MeleeEnemy meleeAI = enemy.GetComponent<MeleeEnemy>();
-                    if (meleeAI != null)
+                    if (basicAI.hit && !currentSword.swordScript.slashing)
                     {
-                        if (meleeAI.hit && !currentSword.swordScript.slashing)
-                        {
-                            meleeAI.hit = false;
-                        }
+                        basicAI.hit = false;
                     }
                 }
             }

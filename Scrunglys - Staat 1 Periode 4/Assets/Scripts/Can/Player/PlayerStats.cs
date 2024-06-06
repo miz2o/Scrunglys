@@ -15,7 +15,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Potions")]
     public int potions;
-    public float potionValue;
+    public float potionValue, animationDuration;
+    public bool healing = false;
 
     [Header("Cooldowns")]
     public float timer;
@@ -49,7 +50,7 @@ public class PlayerStats : MonoBehaviour
 
     void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !healing)
         {
             Heal();
         }
@@ -58,13 +59,24 @@ public class PlayerStats : MonoBehaviour
     {
         if(potions != 0)
         {
+            animator.SetTrigger("Drink");
+
             health += potionValue;
 
             healthSlider.value = health;
 
+            healing = true;
+
             potions--;
+
+            Invoke("ResetHeal", animationDuration);
         }
+
         health = Mathf.Clamp(health, 0, maxHealth);
+    }
+    private void ResetHeal()
+    {
+        healing = false;
     }
     public void Health(float damageToDo)
     {

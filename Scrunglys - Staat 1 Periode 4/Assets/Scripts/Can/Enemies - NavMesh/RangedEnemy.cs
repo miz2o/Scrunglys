@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting.ReorderableList;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.AI;
 using static Thry.AnimationParser;
 
 public class RangedEnemy : BasicAI
@@ -12,7 +15,7 @@ public class RangedEnemy : BasicAI
     public Transform projectileSpawnPoint;
 
     public float projectileSpeed;
-
+    public bool moving;
     private new void Awake()
     {
         base.Awake();
@@ -50,10 +53,7 @@ public class RangedEnemy : BasicAI
 
                 agent.destination = player.position;
 
-                Vector3 direction = player.position - transform.position; //rotate enemy to look at player without ruining other rotations
-                direction.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                transform.rotation = rotation;
+                RotateTowardsPlayer();
 
                 if (distance <= data.attackRange)
                 {
@@ -69,9 +69,25 @@ public class RangedEnemy : BasicAI
 
                 timer += Time.deltaTime;
 
-                if (!attacking)
+                if (!attacking && !moving)
+                {
+                    Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
+                    agent.SetDestination(newPos);
+
+                    moving = true;
+
+                    if (agent.velocity.sqrMagnitude <= 1f)
+                    {
+                        moving = false;
+                    }
+                }
+                else if (!attacking && !moving)
                 {
                     AttackPlayer();
+                }
+                else if (attacking)
+                {
+                    RotateTowardsPlayer();
                 }
                 else if (distance >= data.attackRange)
                 {
@@ -85,6 +101,8 @@ public class RangedEnemy : BasicAI
     {
         if (timer >= attackTimer)
         {
+            attacking = true;
+
             agent.SetDestination(transform.position);
 
             animator.SetTrigger("Attack");
@@ -95,11 +113,17 @@ public class RangedEnemy : BasicAI
 
             timer = 0;
         }
-        else
-        {
-
-        }
     }
+
+    public Vector3 RandomNavSphereTowardsPlayer(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * dist;
+        randomDirection += player.position;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randomDirection, out navHit, dist, layermask);
+        return navHit.position;
+    }
+
     private IEnumerator AttackPlayerRoutine(float attackDuration)
     {
         yield return new WaitForSeconds(attackDuration);
@@ -111,15 +135,19 @@ public class RangedEnemy : BasicAI
     {
         for(int i = 0; i <= data.bulletCap; i++)
         {
-            ShootProjectile();
+             ShootProjectile();
 
              yield return new WaitForSeconds(burstinterval);
         }
-       
+        yield return attacking = false;
     }
 
     private void ShootProjectile()
     {
+        Vector3 atdirection = player.position - transform.position;
+        atdirection.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(atdirection);
+        transform.rotation = rotation;
 
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
