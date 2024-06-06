@@ -69,19 +69,7 @@ public class RangedEnemy : BasicAI
 
                 timer += Time.deltaTime;
 
-                if (!attacking && !moving)
-                {
-                    Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
-                    agent.SetDestination(newPos);
-
-                    moving = true;
-
-                    if (agent.velocity.sqrMagnitude <= 1f)
-                    {
-                        moving = false;
-                    }
-                }
-                else if (!attacking && !moving)
+                if (!attacking)
                 {
                     AttackPlayer();
                 }
@@ -140,14 +128,13 @@ public class RangedEnemy : BasicAI
              yield return new WaitForSeconds(burstinterval);
         }
         yield return attacking = false;
+
+        SetDestination();
     }
 
     private void ShootProjectile()
     {
-        Vector3 atdirection = player.position - transform.position;
-        atdirection.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(atdirection);
-        transform.rotation = rotation;
+       RotateTowardsPlayer();
 
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
@@ -160,6 +147,11 @@ public class RangedEnemy : BasicAI
     void ResetAttackTimer()
     {
         attackTimer = Random.Range(data.attackTimerMin, data.attackTimerMax);
+    }
+    void SetDestination()
+    {
+        Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
+        agent.SetDestination(newPos);
     }
 }
 

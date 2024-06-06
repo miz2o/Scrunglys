@@ -42,7 +42,6 @@ public class MeleeEnemy : BasicAI
         yield return new WaitForSeconds(data.attackWaitTime);
 
         attacking = false;
-        hasRotated = false; 
     }
 
     public void OnAttackColliderTrigger(Collider other)

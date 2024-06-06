@@ -17,6 +17,10 @@ public class CheckCurrentSword : MonoBehaviour
             {
                 swordScript = sword.GetComponent<SwordScript>();
             }
+            if (!sword.activeSelf)
+            {
+                sword.GetComponent<SwordScript>().slashing = false;
+            }
         }
     }
 }
