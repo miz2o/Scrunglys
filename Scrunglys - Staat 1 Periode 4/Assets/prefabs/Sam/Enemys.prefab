@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281203916708853082}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: Shoot pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,31 +41,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.93
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000023841858
+      value: -3.9459271
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.59
+      value: 47.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -442,7 +442,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 1479372276
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -500,8 +500,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.9704071, z: 1.4954147}
-  m_Center: {x: 0, y: 0.999471, z: -0.24770737}
+  m_Size: {x: 1, y: 1.2930663, z: 1.4954147}
+  m_Center: {x: 0, y: 0.6608006, z: -0.24770737}
 --- !u!114 &4878082326019804555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +518,8 @@ MonoBehaviour:
   enemyManager: {fileID: 0}
   animator: {fileID: 0}
   currency: {fileID: 451530609244638616, guid: cefd15192bfd60245b00431da401f4fb, type: 3}
-  health: 8
+  health: 9
+  rotationSmooth: 0.1
   wanderTimer: 0
   searchTimer: 0
   attackTimer: 0
@@ -527,14 +528,14 @@ MonoBehaviour:
   attacked: 0
   attacking: 0
   hit: 0
-  hasRotated: 0
   data: {fileID: 11400000, guid: 51169d2311e3ce9428ad7c790637fd42, type: 2}
   currentState: 0
   agent: {fileID: 0}
-  projectile: {fileID: 3461420298044313749, guid: ddaf9e1b9bb265246afa89ff4e870b92, type: 3}
+  projectile: {fileID: 4934327927059969546, guid: f226089c9208ee04cb4e071d1caf26bf, type: 3}
   attackPoint: {fileID: 0}
   projectileSpawnPoint: {fileID: 281203916708853082}
   projectileSpeed: 5
+  moving: 0
 --- !u!4 &7614436549945731262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8255645945288074149, guid: d2961b5b6f16cc345a62021a1204a397, type: 3}
