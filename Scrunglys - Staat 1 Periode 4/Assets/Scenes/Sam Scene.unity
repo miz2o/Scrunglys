@@ -467,10 +467,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 673623863570565911, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f73d12292670bb4cae3b66831243921, type: 2}
     - target: {fileID: 919132149155446097, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_Name
       value: bunnyenemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78a8b619f5a81504a8fa34e53ad858e8, type: 2}
     - target: {fileID: 5866666021909216657, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_Controller
       value: 
