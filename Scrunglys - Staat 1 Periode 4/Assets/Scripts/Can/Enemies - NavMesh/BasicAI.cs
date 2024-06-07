@@ -15,6 +15,7 @@ public class BasicAI : MonoBehaviour
 
     [Header("Stats/Health")]
     public float health;
+    public float rotationSmooth;
 
     [Header("Timers")]
     public float wanderTimer;
@@ -39,6 +40,9 @@ public class BasicAI : MonoBehaviour
         CHASING,
         ATTACKING,
         WANDERING,
+
+        MELEE,
+        RANGED,
     }
     [Header("Layer")]
     public NavMeshAgent agent;
@@ -122,6 +126,8 @@ public class BasicAI : MonoBehaviour
                 if (!attacking)
                 {
                     AttackPlayer();
+
+                    RotateTowardsPlayer();
                 }
                
                 if(distance >= data.attackRange && enemyManager.crowded)
@@ -277,7 +283,7 @@ public class BasicAI : MonoBehaviour
         Vector3 direction = player.position - transform.position;
         direction.y = 0;
         Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSmooth);
     }
 }
 

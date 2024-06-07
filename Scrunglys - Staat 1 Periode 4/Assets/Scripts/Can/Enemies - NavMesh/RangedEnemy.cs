@@ -27,6 +27,8 @@ public class RangedEnemy : BasicAI
     #region Update 
     override public void UpdateAI()
     {
+        Animator();
+
         float distance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
@@ -89,10 +91,12 @@ public class RangedEnemy : BasicAI
     {
         if (timer >= attackTimer)
         {
+            RotateTowardsPlayer();
+
             attacking = true;
+            moving = false;
 
             agent.SetDestination(transform.position);
-
             animator.SetTrigger("Attack");
 
             StartCoroutine(AttackPlayerRoutine(data.attackTime));
@@ -152,6 +156,12 @@ public class RangedEnemy : BasicAI
     {
         Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
         agent.SetDestination(newPos);
+        moving = true;
+    }
+
+    void Animator()
+    {
+        animator.SetBool("Moving", moving);
     }
 }
 
