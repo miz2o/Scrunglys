@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f7ddda58ecee4354aa7bb3da9a3c2e7c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2b5a712eed6cddf4c887502d3e453113, type: 2}
+      objectReference: {fileID: 2100000, guid: d7b84871c05a8564d85c60232c08fb5a, type: 2}
     - target: {fileID: 919132149155446097, guid: f7ddda58ecee4354aa7bb3da9a3c2e7c, type: 3}
       propertyPath: m_Name
       value: Bush_Stack Big
@@ -77,7 +77,7 @@ PrefabInstance:
       addedObject: {fileID: 4030600650768638897}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7ddda58ecee4354aa7bb3da9a3c2e7c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -883362265169538320}
+      addedObject: {fileID: 5277754206272190560}
   m_SourcePrefab: {fileID: 100100000, guid: f7ddda58ecee4354aa7bb3da9a3c2e7c, type: 3}
 --- !u!1 &4618889792383760650 stripped
 GameObject:
@@ -107,8 +107,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6564396384468441311}
   m_Enabled: 1
---- !u!65 &-883362265169538320
-BoxCollider:
+--- !u!136 &5277754206272190560
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,8 +125,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7371639, y: 1.5058664, z: 1.694308}
+  serializedVersion: 2
+  m_Radius: 0.86858195
+  m_Height: 1.5058664
+  m_Direction: 1
   m_Center: {x: -0.2104359, y: 0.36326513, z: 0.43222332}
 --- !u!23 &6564396384468441311 stripped
 MeshRenderer:

@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ebef0968ec4703548a2a80cdc03e6bba, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2b5a712eed6cddf4c887502d3e453113, type: 2}
+      objectReference: {fileID: 2100000, guid: d7b84871c05a8564d85c60232c08fb5a, type: 2}
     - target: {fileID: 919132149155446097, guid: ebef0968ec4703548a2a80cdc03e6bba, type: 3}
       propertyPath: m_Name
       value: Bush_medium big
@@ -69,7 +69,7 @@ PrefabInstance:
       addedObject: {fileID: 7110240889877322297}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ebef0968ec4703548a2a80cdc03e6bba, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9220549137596343641}
+      addedObject: {fileID: -972103682574617276}
   m_SourcePrefab: {fileID: 100100000, guid: ebef0968ec4703548a2a80cdc03e6bba, type: 3}
 --- !u!23 &2573752485410970175 stripped
 MeshRenderer:
@@ -104,8 +104,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2573752485410970175}
   m_Enabled: 1
---- !u!65 &9220549137596343641
-BoxCollider:
+--- !u!136 &-972103682574617276
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,6 +122,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.2687972, y: 1.8903192, z: 1.7547026}
+  serializedVersion: 2
+  m_Radius: 1.1343986
+  m_Height: 1.8903192
+  m_Direction: 1
   m_Center: {x: -0.18334375, y: 0.17126113, z: 0.32934326}
