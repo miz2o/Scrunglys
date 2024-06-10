@@ -94,7 +94,6 @@ public class RangedEnemy : BasicAI
             RotateTowardsPlayer();
 
             attacking = true;
-            moving = false;
 
             agent.SetDestination(transform.position);
             animator.SetTrigger("Attack");
@@ -127,9 +126,9 @@ public class RangedEnemy : BasicAI
     {
         for(int i = 0; i <= data.bulletCap; i++)
         {
-             ShootProjectile();
+            ShootProjectile();
 
-             yield return new WaitForSeconds(burstinterval);
+            yield return new WaitForSeconds(burstinterval);
         }
         yield return attacking = false;
 
@@ -156,11 +155,18 @@ public class RangedEnemy : BasicAI
     {
         Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
         agent.SetDestination(newPos);
-        moving = true;
     }
 
     void Animator()
     {
+        if(agent.velocity != Vector3.zero)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
         animator.SetBool("Moving", moving);
     }
 }

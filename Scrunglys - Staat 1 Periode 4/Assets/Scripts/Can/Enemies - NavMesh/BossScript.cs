@@ -52,7 +52,7 @@ public class BossScript : BasicAI
             attacking = true;
 
             agent.SetDestination(transform.position);
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack Ranged");
 
             StartCoroutine(RangedAttackStart(data.attackTime));
 
