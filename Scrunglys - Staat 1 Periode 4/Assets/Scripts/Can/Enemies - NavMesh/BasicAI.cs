@@ -43,6 +43,8 @@ public class BasicAI : MonoBehaviour
 
         MELEE,
         RANGED,
+
+        SUMMONING,
     }
     [Header("Layer")]
     public NavMeshAgent agent;

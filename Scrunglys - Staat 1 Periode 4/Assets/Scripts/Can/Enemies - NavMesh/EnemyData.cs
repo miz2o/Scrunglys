@@ -18,6 +18,8 @@ public class EnemyData : ScriptableObject
     [Header("Ranges")]
     public float noticeRange;
     public float attackRange;
+
+    public float meleeAttackRange, rangedAttackRange;
     public float wanderRange;
     public float searchRange;
 
