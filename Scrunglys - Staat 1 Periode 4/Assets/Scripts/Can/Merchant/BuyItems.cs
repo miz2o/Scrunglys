@@ -14,6 +14,8 @@ public class BuyItems : MonoBehaviour
     public GameObject claymore;
     public GameObject stick;
 
+    public GameObject branchUI, daggerUI, swordUI, claymoreUI;
+
     public GameObject merchantPanel;
 
     [Header("weapon values")]
@@ -51,10 +53,15 @@ public class BuyItems : MonoBehaviour
         if (boughtDagger)
         {
             dagger.SetActive(true);
+            daggerUI.SetActive(true);
 
             sword.SetActive(false);
             stick.SetActive(false);
             claymore.SetActive(false);
+
+            swordUI.SetActive(false);
+            branchUI.SetActive(false);
+            claymoreUI.SetActive(false);
         }
     }
     public void BuySword()
@@ -71,10 +78,15 @@ public class BuyItems : MonoBehaviour
         if (boughtSword)
         {
             sword.SetActive(true);
+            swordUI.SetActive(true);
 
             dagger.SetActive(false);
             stick.SetActive(false);
             claymore.SetActive(false);
+            
+            daggerUI.SetActive(false);
+            branchUI.SetActive(false);
+            claymoreUI.SetActive(false);
         }
     }
     public void BuyClaymore()
@@ -92,10 +104,15 @@ public class BuyItems : MonoBehaviour
         if (boughtClaymore)
         {
             claymore.SetActive(true);
+            claymoreUI.SetActive(true);
 
             dagger.SetActive(false);
             stick.SetActive(false);
             sword.SetActive(false);
+
+            daggerUI.SetActive(false);
+            branchUI.SetActive(false);
+            swordUI.SetActive(false);
         }
     }
 

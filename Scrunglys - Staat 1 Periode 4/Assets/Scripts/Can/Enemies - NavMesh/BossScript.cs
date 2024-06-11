@@ -10,6 +10,7 @@ public class BossScript : BasicAI
 {
     public GameObject projectileBoss;
     public GameObject snakes;
+    public Collider attackCollider;
     public Transform snakeSummonPos;
     public Transform targetPos;
     public Transform shootPos;
@@ -68,8 +69,6 @@ public class BossScript : BasicAI
                     currentState = State.RANGED;
                 }
 
-               
-
                 break;
 
             case State.RANGED:
@@ -92,11 +91,12 @@ public class BossScript : BasicAI
                 {
                     currentState = State.SUMMONING;
                 }
+
                 break;
+
             case State.SUMMONING:
                 
                 StartCoroutine(SnakeRoutine(summonSpeed));
-
 
                 if(summoned && distance <= data.meleeAttackRange)
                 {
@@ -112,9 +112,27 @@ public class BossScript : BasicAI
                 }
 
                 break;
-            
+
         }
     }
+
+     public IEnumerator AttackPlayerMelee(float attackDuration)
+    {
+        attacking = true;
+
+        yield return new WaitForSeconds(data.waitAnimation);
+
+        attackCollider.enabled = true;
+
+        yield return new WaitForSeconds(attackDuration);
+
+        attackCollider.enabled = false;
+
+        yield return new WaitForSeconds(data.attackWaitTime);
+
+        attacking = false;
+    }
+
      public void AttackPlayerRanged()
     {
         if (timer >= attackTimer)
@@ -189,7 +207,7 @@ public class BossScript : BasicAI
             yield return new WaitForSeconds(burstinterval);
         }
         yield return summoned = false;
-
+        
     }
     void ChangeStats()
     {
