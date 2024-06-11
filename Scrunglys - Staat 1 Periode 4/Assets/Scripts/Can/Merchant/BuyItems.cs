@@ -18,6 +18,7 @@ public class BuyItems : MonoBehaviour
 
     public GameObject merchantPanel;
 
+
     [Header("weapon values")]
     public float daggerValue, swordValue, claymoreValue;
 
@@ -34,10 +35,15 @@ public class BuyItems : MonoBehaviour
     public void EquipStick()
     {
         stick.SetActive(true);
+        branchUI.SetActive(true);
 
         sword.SetActive(false);
         dagger.SetActive(false);
         claymore.SetActive(false);
+
+        swordUI.SetActive(false);
+        daggerUI.SetActive(false);
+        claymoreUI.SetActive(false);
     }
     public void BuyDagger()
     {

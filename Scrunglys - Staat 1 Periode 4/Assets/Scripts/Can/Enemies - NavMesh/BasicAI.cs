@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 
 public class BasicAI : MonoBehaviour
@@ -12,6 +13,7 @@ public class BasicAI : MonoBehaviour
     public EnemyManager enemyManager;
     public Animator animator;
     public GameObject currency;
+    public Slider healthSlider;
 
     [Header("Stats/Health")]
     public float health;
@@ -260,7 +262,7 @@ public class BasicAI : MonoBehaviour
     {
         print("Hit");
         health -= damageToDo;
-
+       /*  UpdateHealthBar(); */
         hit = true;
         if (health <= 0)
         {
@@ -271,6 +273,11 @@ public class BasicAI : MonoBehaviour
             }
             Death();
         }
+    }
+    
+    void UpdateHealthBar(float currenthealth)
+    {
+        healthSlider.value = currenthealth;
     }
 
     void Death()

@@ -36,7 +36,7 @@ public class SwordScript : MonoBehaviour
     }
     void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina > 0 && !playerStats.healing)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina >= staminaCost/2 && !playerStats.healing)
         {
             playerStats.Stamina(staminaCost);
             StartCoroutine(Slash(attackReset));

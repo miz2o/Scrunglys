@@ -27,6 +27,8 @@ public class PlayerStats : MonoBehaviour
     public Movement movement;
     public Animator animator;
 
+    public GameObject potionModel;
+
     public Slider healthSlider;
     public Slider staminaSlider;
 
@@ -66,6 +68,7 @@ public class PlayerStats : MonoBehaviour
             healthSlider.value = health;
 
             healing = true;
+            potionModel.SetActive(true);
 
             potions--;
 
@@ -77,6 +80,7 @@ public class PlayerStats : MonoBehaviour
     private void ResetHeal()
     {
         healing = false;
+        potionModel.SetActive(false);
     }
     public void Health(float damageToDo)
     {
