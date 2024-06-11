@@ -35,12 +35,8 @@ public class BossScript : BasicAI
                 agent.destination = player.position;
 
                 RotateTowardsPlayer();
-
-                if(distance <= data.meleeAttackRange)
-                {
-                    currentState = State.MELEE;
-                }
-                else if (distance <= data.rangedAttackRange)
+                
+                if (distance <= data.rangedAttackRange)
                 {
                     currentState = State.RANGED;
                 }
@@ -57,6 +53,7 @@ public class BossScript : BasicAI
                 if(!attacking && timer >= attackTimer)
                 {
                     timer = 0;
+                    // attack player 
                 }
 
                 if(health <= health/2 && !summoned)
@@ -112,10 +109,14 @@ public class BossScript : BasicAI
                 }
 
                 break;
-
         }
     }
-
+    IEnumerator MeleeAttackStart(float animationDuration)
+    {
+        yield return new WaitForSeconds(animationDuration);
+        
+        StartCoroutine(AttackPlayerMelee(data.meleeAttackTime));
+    }
      public IEnumerator AttackPlayerMelee(float attackDuration)
     {
         attacking = true;
@@ -144,7 +145,7 @@ public class BossScript : BasicAI
             agent.SetDestination(transform.position);
             animator.SetTrigger("Attack Ranged");
 
-            StartCoroutine(RangedAttackStart(data.attackTime));
+            StartCoroutine(RangedAttackStart(data.rangedAttackTime));
 
             timer = 0;
         }

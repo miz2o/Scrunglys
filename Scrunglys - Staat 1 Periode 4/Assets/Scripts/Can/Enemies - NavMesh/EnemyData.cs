@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [Header("Cooldowns")]
-    public float attackTime;
+    public float attackTime, meleeAttackTime, rangedAttackTime;
     public float attackWaitTime;
     public float waitAnimation;
     public float burstInterval;

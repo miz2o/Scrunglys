@@ -74,20 +74,20 @@ public class Movement : MonoBehaviour
 
         moveDir = Quaternion.AngleAxis(thirdPersonCamera.rotation.eulerAngles.y, Vector3.up) * moveDir;
         
-
+        
         if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0 && !currentSword.swordScript.slashing && moveDir.magnitude > 0 && !playerStats.healing)
         {
             playerStats.SprintStamina(sprintStamina);
             Sprint();
             sprint = true;
         }
-        else
+        else 
         {
-            Walk();
-            sprint = false;
+             Walk();
+             sprint = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashed && !currentSword.swordScript.slashing && playerStats.stamina > 0 && !playerStats.healing)
+        if (Input.GetKeyDown(KeyCode.Space) && !dashed && !currentSword.swordScript.slashing && playerStats.stamina >= dashStamina/2 && !playerStats.healing)
         {
             playerStats.Stamina(dashStamina);
             mainAnimation.SetTrigger("DashTrigger");
@@ -97,7 +97,14 @@ public class Movement : MonoBehaviour
     }
     void Walk()
     {
-        cController.Move(moveDir.normalized * walkSpeed * Time.deltaTime);
+        if(currentSword.swordScript.slashing)
+        {
+            cController.Move(moveDir.normalized * walkSpeed/1.2f * Time.deltaTime);
+        }
+        else
+        {
+            cController.Move(moveDir.normalized * walkSpeed * Time.deltaTime);
+        }
     }
     void Sprint()
     {
