@@ -563,7 +563,7 @@ MonoBehaviour:
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 150
-    Dutch: -180
+    Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
@@ -1000,7 +1000,7 @@ MonoBehaviour:
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 150
-    Dutch: -180
+    Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
@@ -1716,7 +1716,7 @@ MonoBehaviour:
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 150
-    Dutch: -180
+    Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
@@ -7425,7 +7425,7 @@ MonoBehaviour:
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 150
-    Dutch: -180
+    Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
