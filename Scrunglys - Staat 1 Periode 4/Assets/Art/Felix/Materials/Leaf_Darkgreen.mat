@@ -131,6 +131,7 @@ Material:
     - _DiffuseRampV: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Emmision: 0.725
     - _EnableMatCap: 0
     - _EnableOutline: 0
     - _EnableStencil: 0

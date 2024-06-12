@@ -179,10 +179,11 @@ Material:
     - _Surface: 0
     - _SurfaceType: 0
     - _UseSmoothNormal: 0
-    - _Wind_speed: 1.2
-    - _Wind_strength: 0.2
+    - _Wind_speed: 1.06
+    - _Wind_strength: 0.345
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _eMIISON: 1
     m_Colors:
     - _BaseColor: {r: 0.2028302, g: 0.4908275, b: 1, a: 1}
     - _Color: {r: 0.08966714, g: 0.20419635, b: 0.6132076, a: 1}
