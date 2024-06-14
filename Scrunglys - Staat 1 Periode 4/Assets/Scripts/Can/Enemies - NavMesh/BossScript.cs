@@ -22,6 +22,10 @@ public class BossScript : BasicAI
 
     int snakeCap;
 
+    public override void Start()
+    {
+        currentState = State.CHASING;
+    }
     override public void UpdateAI()
     {
         float distance = Vector3.Distance(transform.position, player.position);
@@ -143,7 +147,7 @@ public class BossScript : BasicAI
             attacking = true;
 
             agent.SetDestination(transform.position);
-            animator.SetTrigger("Attack Ranged");
+            /* animator.SetTrigger("Attack Ranged"); */
 
             StartCoroutine(RangedAttackStart(data.rangedAttackTime));
 

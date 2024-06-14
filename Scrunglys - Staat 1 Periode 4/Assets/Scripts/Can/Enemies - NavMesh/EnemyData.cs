@@ -32,7 +32,5 @@ public class EnemyData : ScriptableObject
 
     public float attackTimerMin;
     public float attackTimerMax;
-
-    [Header("Other")]
-    public float rotationSmooth;
+    
 }

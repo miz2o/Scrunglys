@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4031cc28b59e51c40a4b2a963b657a13, type: 3}
-  m_Name: Melee Character
+  m_Name: Bunny data
   m_EditorClassIdentifier: 
-  attackTime: 0.65
+  attackTime: 1
   meleeAttackTime: 0
   rangedAttackTime: 0
-  attackWaitTime: 3.2
+  attackWaitTime: 2.5
   waitAnimation: 0.4
   burstInterval: 0
-  damage: 7
+  damage: 9
   bulletCap: 0
-  noticeRange: 15
+  noticeRange: 18
   attackRange: 1
   meleeAttackRange: 0
   rangedAttackRange: 0
-  wanderRange: 7
-  searchRange: 10
-  wanderTimerMin: 1
-  wanderTimerMax: 3
-  searchTimerMin: 2
-  searchTimerMax: 4
-  attackTimerMin: 0
-  attackTimerMax: 0
+  wanderRange: 6
+  searchRange: 15
+  wanderTimerMin: 0
+  wanderTimerMax: 2
+  searchTimerMin: 0
+  searchTimerMax: 3
+  attackTimerMin: 1
+  attackTimerMax: 2

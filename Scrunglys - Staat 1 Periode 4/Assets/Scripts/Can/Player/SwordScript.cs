@@ -8,7 +8,7 @@ public class SwordScript : MonoBehaviour
 {
     [Header("References")]
     public new Collider collider;
-    public CheckCurrentSword currentSword;
+   /*  public CheckCurrentSword currentSword; */
     public Animator animator;
     public Movement movement;
     public PlayerStats playerStats;

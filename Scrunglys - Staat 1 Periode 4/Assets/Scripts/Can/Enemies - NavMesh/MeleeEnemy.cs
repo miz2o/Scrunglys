@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MeleeEnemy : BasicAI
 {
     public Collider attackCollider;
+    public bool moving;
 
     private new void Awake()
     {
@@ -19,6 +20,7 @@ public class MeleeEnemy : BasicAI
     override public void UpdateAI()
     {
         base.UpdateAI();
+        Animator();
     }
     override public void AttackPlayer()
     {
@@ -42,6 +44,19 @@ public class MeleeEnemy : BasicAI
         yield return new WaitForSeconds(data.attackWaitTime);
 
         attacking = false;
+    }
+
+    void Animator()
+    {
+        if(agent.velocity != Vector3.zero)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+        animator.SetBool("Moving", moving);
     }
 
     public void OnAttackColliderTrigger(Collider other)
