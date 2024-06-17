@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -517.5177
+      value: -483.02203
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 260.03
+      value: 260.17017
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 158.47108
+      value: 176.44366
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,15 +62,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5f7b70ea929dd42429801cabb164c15d, type: 2}
     - target: {fileID: -2515774189844703809, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: -2288701048477364818, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0a4923bcdfe40224bb4d15086bb27bb3, type: 2}
+    - target: {fileID: -190013060312328523, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: -190013060312328523, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.39
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       propertyPath: m_Name
       value: Twin_Tree (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436148349675535097, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79,9 +95,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1370473584325351028}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7645462145878045932}
   m_SourcePrefab: {fileID: 100100000, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
 --- !u!1 &788258424361259367 stripped
 GameObject:
@@ -109,38 +122,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.093581, y: 3.7202091, z: 1}
   m_Center: {x: -0.04679061, y: 1.6273222, z: 2.3610416e-10}
---- !u!205 &7645462145878045932
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788258424361259367}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.10492897, y: 3.720997, z: -0.052957296}
-  m_Size: 7.9052043
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.40212426
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5080511486464889301}
-    - renderer: {fileID: 7353810329899327896}
-  - screenRelativeHeight: 0.20673752
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5080511486464889301}
-    - renderer: {fileID: 7353810329899327896}
-  m_Enabled: 1
---- !u!23 &5080511486464889301 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -4561997667017277981, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
-  m_PrefabInstance: {fileID: 446169782632197174}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &7353810329899327896 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -2288701048477364818, guid: c7e07a4a687ac3f4f914b6834ca09d02, type: 3}
-  m_PrefabInstance: {fileID: 446169782632197174}
-  m_PrefabAsset: {fileID: 0}
