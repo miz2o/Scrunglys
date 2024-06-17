@@ -24,7 +24,9 @@ public class BossScript : BasicAI
 
     int snakeCap;
 
-    public AudioSource projectileSFX;
+    public AudioClip projectileSFX;
+    public float pitch;
+    public float volume;
 
     public override void Start()
     {
@@ -171,7 +173,7 @@ public class BossScript : BasicAI
     IEnumerator RangedAttackStart(float animationDuration)
     {
         yield return new WaitForSeconds(animationDuration);
-        projectileSFX.Play();
+        
         StartCoroutine(RangedAttack());
     }
 
@@ -181,7 +183,7 @@ public class BossScript : BasicAI
 
         GameObject spawnedProjectile = Instantiate(projectileBoss, shootPos.position, Quaternion.identity);
         
-        projectileSFX.Play();
+        SFXManager.instance.PlaySFXClip(projectileSFX, transform, volume, pitch);
 
         Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
 
