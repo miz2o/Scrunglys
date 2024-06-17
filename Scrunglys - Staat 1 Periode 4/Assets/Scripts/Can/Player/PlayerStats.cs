@@ -31,6 +31,8 @@ public class PlayerStats : MonoBehaviour
 
     public Slider healthSlider;
     public Slider staminaSlider;
+    public AudioSource hitSFX;
+    public AudioSource potionSFX;
 
     private void Start()
     {
@@ -61,6 +63,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(potions != 0)
         {
+            potionSFX.Play();
             animator.SetTrigger("Drink");
 
             health += potionValue;
@@ -85,6 +88,7 @@ public class PlayerStats : MonoBehaviour
     public void Health(float damageToDo)
     {
         health -= damageToDo;
+        hitSFX.Play();
 
         healthSlider.value = health;
 

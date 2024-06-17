@@ -7,7 +7,7 @@ public class MeleeEnemy : BasicAI
 {
     public Collider attackCollider;
     public bool moving;
-
+/* 
     private new void Awake()
     {
         base.Awake();
@@ -15,7 +15,7 @@ public class MeleeEnemy : BasicAI
     private new void Start()
     {
         base.Start();
-    }
+    } */
 
     override public void UpdateAI()
     {

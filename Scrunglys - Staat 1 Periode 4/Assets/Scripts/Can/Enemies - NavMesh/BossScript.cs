@@ -20,11 +20,16 @@ public class BossScript : BasicAI
     public float projectileSpeed;
     public float summonSpeed;
 
+    public float halfHealth;
+
     int snakeCap;
+
+    public AudioSource projectileSFX;
 
     public override void Start()
     {
         currentState = State.CHASING;
+        halfHealth = health/2;
     }
     override public void UpdateAI()
     {
@@ -45,7 +50,7 @@ public class BossScript : BasicAI
                     currentState = State.RANGED;
                 }
                 
-                if(health <= health/2 && !summoned)
+                if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
                 }
@@ -56,11 +61,13 @@ public class BossScript : BasicAI
 
                 if(!attacking && timer >= attackTimer)
                 {
-                    timer = 0;
+                    RotateTowardsPlayer();
+                
                     // attack player 
                 }
+                
 
-                if(health <= health/2 && !summoned)
+                if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
                 }
@@ -74,9 +81,11 @@ public class BossScript : BasicAI
 
             case State.RANGED:
             
+                RotateTowardsPlayer();
                 if (!attacking && timer >= attackTimer)
                 {
-                    timer = 0;
+                    RotateTowardsPlayer();
+
                     AttackPlayerRanged();
                 }
                 if (distance <= data.meleeAttackRange)
@@ -88,7 +97,7 @@ public class BossScript : BasicAI
                     currentState = State.CHASING;
                 }
 
-                if(health <= health/2 && !summoned)
+                if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
                 }
@@ -132,33 +141,37 @@ public class BossScript : BasicAI
         yield return new WaitForSeconds(attackDuration);
 
         attackCollider.enabled = false;
+        SetDestination();
+
 
         yield return new WaitForSeconds(data.attackWaitTime);
+
 
         attacking = false;
     }
 
      public void AttackPlayerRanged()
     {
-        if (timer >= attackTimer)
+        if(timer >= attackTimer)
         {
             RotateTowardsPlayer();
 
             attacking = true;
 
+            
             agent.SetDestination(transform.position);
             /* animator.SetTrigger("Attack Ranged"); */
 
             StartCoroutine(RangedAttackStart(data.rangedAttackTime));
 
-            timer = 0;
-        }
+            timer = 0; 
+        }     
     }
 
     IEnumerator RangedAttackStart(float animationDuration)
     {
         yield return new WaitForSeconds(animationDuration);
-        
+        projectileSFX.Play();
         StartCoroutine(RangedAttack());
     }
 
@@ -166,39 +179,45 @@ public class BossScript : BasicAI
     {
         RotateTowardsPlayer();
 
-
         GameObject spawnedProjectile = Instantiate(projectileBoss, shootPos.position, Quaternion.identity);
+        
+        projectileSFX.Play();
 
         Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
 
         Vector3 direction = (targetPos.transform.position - shootPos.position).normalized;
+
+        
 
         rb.velocity = direction * projectileSpeed;
 
         yield return new WaitForSeconds(attackRestTimer);
         
         ResetAttackTimer();
+
+        attacking = false;
+
         agent.SetDestination(player.position);
     }
 
-   /*  void SetDestination()
+    void SetDestination()
     {
         Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
         agent.SetDestination(newPos);
-    } */
+    }
     void ResetAttackTimer()
     {
         attackTimer = Random.Range(data.attackTimerMin, data.attackTimerMax);
     }
 
-    /* public Vector3 RandomNavSphereTowardsPlayer(Vector3 origin, float dist, int layermask)
+    public Vector3 RandomNavSphereTowardsPlayer(Vector3 origin, float dist, int layermask)
     {
         Vector3 randomDirection = Random.insideUnitSphere * dist;
         randomDirection += player.position;
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomDirection, out navHit, dist, layermask);
         return navHit.position;
-    } */
+    }
     void SummonSnakes()
     {
         Instantiate(snakes, snakeSummonPos, snakeSummonPos);

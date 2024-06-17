@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class BuyItems : MonoBehaviour
 {
     [Header("References")]
     public PlayerStats playerStats;
+    public InteractMerchant interactMerchant;
     public Currency currency;
-
     public GameObject dagger;
     public GameObject sword;
     public GameObject claymore;
@@ -24,9 +23,6 @@ public class BuyItems : MonoBehaviour
 
     [Header("Buyy Checks")]
     public bool boughtDagger, boughtSword, boughtClaymore;
-
-    
-
     public void RefillPotions()
     {
         playerStats.potions = 3;
@@ -125,6 +121,7 @@ public class BuyItems : MonoBehaviour
     public void ExitShop()
     {
         merchantPanel.SetActive(false);
+        interactMerchant.shopping = false;
         Time.timeScale = 1;
     }
 }

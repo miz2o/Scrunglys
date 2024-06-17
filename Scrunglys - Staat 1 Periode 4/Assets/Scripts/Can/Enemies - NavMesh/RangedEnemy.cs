@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Unity.VisualScripting.ReorderableList;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
-using static Thry.AnimationParser;
+
 
 public class RangedEnemy : BasicAI
 {
@@ -16,6 +15,7 @@ public class RangedEnemy : BasicAI
 
     public float projectileSpeed;
     public bool moving;
+
     private new void Awake()
     {
         base.Awake();
@@ -137,7 +137,7 @@ public class RangedEnemy : BasicAI
 
     private void ShootProjectile()
     {
-       RotateTowardsPlayer();
+        RotateTowardsPlayer();
 
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 

@@ -12,6 +12,8 @@ public class SwordScript : MonoBehaviour
     public Animator animator;
     public Movement movement;
     public PlayerStats playerStats;
+    public InteractMerchant interactMerchant;
+    public AudioSource swooshSFX;
 
     [Header("Stats")]
     public float damage;
@@ -36,7 +38,7 @@ public class SwordScript : MonoBehaviour
     }
     void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina >= staminaCost/2 && !playerStats.healing)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !slashing && !movement.dashing && playerStats.stamina >= staminaCost/2 && !playerStats.healing && !interactMerchant.shopping)
         {
             playerStats.Stamina(staminaCost);
             StartCoroutine(Slash(attackReset));
@@ -46,6 +48,7 @@ public class SwordScript : MonoBehaviour
     public IEnumerator Slash(float attackReset)
     {
         animator.SetTrigger("Slash");
+        swooshSFX.Play();
 
         slashing = true;
         collider.enabled = true;
