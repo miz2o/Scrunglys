@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [Header("Cooldowns")]
-    public float attackTime;
+    public float attackTime, meleeAttackTime, rangedAttackTime;
     public float attackWaitTime;
     public float waitAnimation;
     public float burstInterval;
@@ -18,6 +18,8 @@ public class EnemyData : ScriptableObject
     [Header("Ranges")]
     public float noticeRange;
     public float attackRange;
+
+    public float meleeAttackRange, rangedAttackRange;
     public float wanderRange;
     public float searchRange;
 
@@ -30,7 +32,5 @@ public class EnemyData : ScriptableObject
 
     public float attackTimerMin;
     public float attackTimerMax;
-
-    [Header("Other")]
-    public float rotationSmooth;
+    
 }

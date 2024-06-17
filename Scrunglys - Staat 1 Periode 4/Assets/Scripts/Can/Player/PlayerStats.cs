@@ -27,8 +27,12 @@ public class PlayerStats : MonoBehaviour
     public Movement movement;
     public Animator animator;
 
+    public GameObject potionModel;
+
     public Slider healthSlider;
     public Slider staminaSlider;
+    public AudioSource hitSFX;
+    public AudioSource potionSFX;
 
     private void Start()
     {
@@ -59,6 +63,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(potions != 0)
         {
+            potionSFX.Play();
             animator.SetTrigger("Drink");
 
             health += potionValue;
@@ -66,6 +71,7 @@ public class PlayerStats : MonoBehaviour
             healthSlider.value = health;
 
             healing = true;
+            potionModel.SetActive(true);
 
             potions--;
 
@@ -77,10 +83,12 @@ public class PlayerStats : MonoBehaviour
     private void ResetHeal()
     {
         healing = false;
+        potionModel.SetActive(false);
     }
     public void Health(float damageToDo)
     {
         health -= damageToDo;
+        hitSFX.Play();
 
         healthSlider.value = health;
 

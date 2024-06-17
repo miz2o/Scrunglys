@@ -8,10 +8,10 @@ public class InteractMerchant : MonoBehaviour
     public RaycastHit hit;
     public float rayLength;
     public LayerMask merchant;
-
     public GameObject pressFText;
     public GameObject merchantPanel;
     public Mouse mouse;
+    public bool shopping;
 
     public void Update()
     {
@@ -22,15 +22,18 @@ public class InteractMerchant : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 merchantPanel.SetActive(true);
+                shopping = true;
 
                 mouse.Visible();
-
-                Time.timeScale = 0;
             }
         }
         else
         {
             pressFText.SetActive(false);
+        }
+        if (shopping)
+        {
+            Time.timeScale = 0;
         }
     }
 }

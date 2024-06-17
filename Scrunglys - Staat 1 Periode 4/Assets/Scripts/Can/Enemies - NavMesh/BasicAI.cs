@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 
 public class BasicAI : MonoBehaviour
@@ -12,6 +13,8 @@ public class BasicAI : MonoBehaviour
     public EnemyManager enemyManager;
     public Animator animator;
     public GameObject currency;
+    public GameObject healthSlider;
+    
 
     [Header("Stats/Health")]
     public float health;
@@ -43,6 +46,8 @@ public class BasicAI : MonoBehaviour
 
         MELEE,
         RANGED,
+
+        SUMMONING,
     }
     [Header("Layer")]
     public NavMeshAgent agent;
@@ -51,13 +56,12 @@ public class BasicAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
     }
-    public void Start()
+    virtual public void Start()
     {
         if (enemyManager == null)
         {
             enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         }
-
     }
     #region UPDATEAI
     virtual public void UpdateAI()
@@ -200,7 +204,9 @@ public class BasicAI : MonoBehaviour
         {
             Vector3 newPos = RandomNavSphereIdle(transform.position, data.searchRange, -1);
             agent.SetDestination(newPos);
+
             SetSearchTime();
+
             timer = 0;
         }
     }
@@ -258,7 +264,12 @@ public class BasicAI : MonoBehaviour
     {
         print("Hit");
         health -= damageToDo;
-
+        healthSlider.SetActive(true);
+        if(healthSlider == null)
+        {
+            print("noHealthSlider");
+        }
+        UpdateHealthBar(health); 
         hit = true;
         if (health <= 0)
         {
@@ -269,6 +280,11 @@ public class BasicAI : MonoBehaviour
             }
             Death();
         }
+    }
+    
+    void UpdateHealthBar(float currenthealth)
+    {
+        healthSlider.GetComponent<Slider>().value = currenthealth;
     }
 
     void Death()

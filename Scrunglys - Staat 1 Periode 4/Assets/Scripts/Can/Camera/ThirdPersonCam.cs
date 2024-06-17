@@ -7,7 +7,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
 
-    public SwordScript swordScript;
+    public CheckCurrentSword checkCurrentSword;
 
     public float rotationSpeed;
 
@@ -16,7 +16,7 @@ public class ThirdPersonCam : MonoBehaviour
         
         Vector3 vieuwDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = vieuwDir.normalized;
-        if (!swordScript.slashing)
+        if (!checkCurrentSword.swordScript.slashing)
         {
             float hor = Input.GetAxisRaw("Horizontal");
             float vert = Input.GetAxisRaw("Vertical");

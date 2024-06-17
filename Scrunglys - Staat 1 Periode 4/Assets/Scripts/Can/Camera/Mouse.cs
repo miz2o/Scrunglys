@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mouse : MonoBehaviour
-{
+{   
+    public GameObject optionsPanel;
+    public GameObject playerStatsPanel;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -13,6 +15,10 @@ public class Mouse : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Visible();
+            playerStatsPanel.SetActive(false);
+            optionsPanel.SetActive(true);
+            
+            Time.timeScale = 0;
         }
     }
 

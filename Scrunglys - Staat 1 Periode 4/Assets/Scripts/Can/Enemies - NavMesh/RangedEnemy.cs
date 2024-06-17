@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Unity.VisualScripting.ReorderableList;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
-using static Thry.AnimationParser;
+
 
 public class RangedEnemy : BasicAI
 {
@@ -16,6 +15,7 @@ public class RangedEnemy : BasicAI
 
     public float projectileSpeed;
     public bool moving;
+
     private new void Awake()
     {
         base.Awake();
@@ -94,7 +94,6 @@ public class RangedEnemy : BasicAI
             RotateTowardsPlayer();
 
             attacking = true;
-            moving = false;
 
             agent.SetDestination(transform.position);
             animator.SetTrigger("Attack");
@@ -127,9 +126,9 @@ public class RangedEnemy : BasicAI
     {
         for(int i = 0; i <= data.bulletCap; i++)
         {
-             ShootProjectile();
+            ShootProjectile();
 
-             yield return new WaitForSeconds(burstinterval);
+            yield return new WaitForSeconds(burstinterval);
         }
         yield return attacking = false;
 
@@ -138,7 +137,7 @@ public class RangedEnemy : BasicAI
 
     private void ShootProjectile()
     {
-       RotateTowardsPlayer();
+        RotateTowardsPlayer();
 
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
@@ -156,11 +155,18 @@ public class RangedEnemy : BasicAI
     {
         Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
         agent.SetDestination(newPos);
-        moving = true;
     }
 
     void Animator()
     {
+        if(agent.velocity != Vector3.zero)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
         animator.SetBool("Moving", moving);
     }
 }
