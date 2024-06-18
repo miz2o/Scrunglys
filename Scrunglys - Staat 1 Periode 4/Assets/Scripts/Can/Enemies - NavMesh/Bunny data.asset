@@ -21,7 +21,7 @@ MonoBehaviour:
   damage: 9
   bulletCap: 0
   noticeRange: 18
-  attackRange: 1
+  attackRange: 1.2
   meleeAttackRange: 0
   rangedAttackRange: 0
   wanderRange: 6
