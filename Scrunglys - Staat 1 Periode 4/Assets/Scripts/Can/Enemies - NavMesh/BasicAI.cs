@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
+
 public class BasicAI : MonoBehaviour
 {
     [Header("References")]
@@ -14,6 +15,7 @@ public class BasicAI : MonoBehaviour
     public Animator animator;
     public GameObject currency;
     public GameObject healthSlider;
+    public AudioClip hurtSFX;
     
 
     [Header("Stats/Health")]
@@ -26,6 +28,10 @@ public class BasicAI : MonoBehaviour
     public float attackTimer;
 
     public float timer;
+    [Header("Audio")]
+    public float volumeHurt;
+    private float pitchHurt;
+    public float pitchMin, pitchMax;
 
     [Header("Booleans")]
     public bool listed = false;
@@ -36,7 +42,8 @@ public class BasicAI : MonoBehaviour
     public EnemyData data;
 
     public State currentState = State.IDLE;
-
+    
+ 
     public enum State
     {
         IDLE,
@@ -265,10 +272,9 @@ public class BasicAI : MonoBehaviour
         print("Hit");
         health -= damageToDo;
         healthSlider.SetActive(true);
-        if(healthSlider == null)
-        {
-            print("noHealthSlider");
-        }
+
+        SFXManager.instance.PlaySFXClip(hurtSFX, transform, volumeHurt, Pitch());
+        
         UpdateHealthBar(health); 
         hit = true;
         if (health <= 0)
@@ -301,5 +307,10 @@ public class BasicAI : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSmooth);
     }
-}
+    public float Pitch()
+    {
+        pitchHurt = Random.Range(pitchMin, pitchMax);
 
+        return pitchHurt;
+    }
+}

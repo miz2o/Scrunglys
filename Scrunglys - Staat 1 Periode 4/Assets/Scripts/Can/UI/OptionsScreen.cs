@@ -11,15 +11,19 @@ public class OptionsScreen : MonoBehaviour
  public GameObject playerStatsPanel;
 
  public Mouse mouse;
- public AudioSource bling;
+ public AudioClip bling;
+ public float volumeBling;
+ public float pitchBling;
+ public float pitchMin, pitchMax;
 
  public void ExitButton()
  {
     pausePanel.SetActive(false);
     playerStatsPanel.SetActive(true);
-
-    bling.Play();
-
+   
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
+    
+    mouse.paused = false;  
     Time.timeScale = 1;
     mouse.Hide();
  }
@@ -28,7 +32,7 @@ public class OptionsScreen : MonoBehaviour
     optionsPanel.SetActive(true);
     pausePanel.SetActive(false);
 
-    bling.Play();
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
  }
 
  public void ReturnButton()
@@ -36,13 +40,20 @@ public class OptionsScreen : MonoBehaviour
   optionsPanel.SetActive(false);
   pausePanel.SetActive(true);
 
-  bling.Play();
+  SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
  }
 
  public void QuitGame()
  {
    SceneManager.LoadScene("Can Scene UI", LoadSceneMode.Single);
 
-   bling.Play();
+   SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
+ }
+
+ public float Pitch()
+ {
+   pitchBling = Random.Range(pitchMin, pitchMax);
+
+   return pitchBling;
  }
 }
