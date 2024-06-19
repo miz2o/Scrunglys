@@ -14,7 +14,6 @@ Color & Normals/Color Adjust/Continuous Hue Shift;80e5451b6d4c5d147abcb49b5a25ca
 Color & Normals/Alpha Options/Center Fade;c62e16dcbb7c663458f6e5a0b7c135e6
 Color & Normals/Alpha Options/Alpha to Coverage + Dithering;876e0e5a05f7ef545a8b9f7ef7c9b8ab
 Rendering/Blending/Traditional Fade;ed1b6067028b7954795c81e6bf01b79c
-Rendering/RenderTargetsAlphaFix;a8afcc492d1d60140b3f7b38f372f420
 SpecialFX/Iridescence/Basic Replace;a2148f1e07bda204f95afdd9b7dc1363
 Lighting/Maximum Add intensity Infinite;0851fe0f5c94ef3488bb45752e84ecc7
 SpecialFX/Stats Overlay/FPS Counter;bd64ff25d55580d4babac484ae4eb86a
@@ -44,3 +43,4 @@ SpecialFX/Mirror/Hide In Mirror;5bc9ee9a1e88a4e4eafa886eda898605
 Rendering/Double Sided;1080d7f1b2a986b4c97921a6ec4165d6
 SpecialFX/Glitter/GlitterStars;e41c3ae22febb2941b81d61ae77282e1
 Examples/Early Outline/Sunglasses;e882f4d57a954904b8a144bdcea017ea
+Rendering/RenderTargetsAlphaFix;a8afcc492d1d60140b3f7b38f372f420
