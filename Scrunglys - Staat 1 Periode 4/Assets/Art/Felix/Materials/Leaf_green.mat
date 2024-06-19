@@ -122,6 +122,7 @@ Material:
     - _DiffuseRampV: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Emmision: 0
     - _EnableMatCap: 0
     - _EnableOutline: 0
     - _EnableStencil: 0
@@ -170,13 +171,14 @@ Material:
     - _Surface: 0
     - _SurfaceType: 0
     - _UseSmoothNormal: 0
+    - _Wiggleoffset: 0
     - _Wind_speed: 1.2
     - _Wind_strength: 0.2
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.8301887, g: 0.69567806, b: 0.06657174, a: 1}
-    - _Color: {r: 1, g: 0.7236857, b: 0.1745283, a: 1}
+    - _Color: {r: 0.3984514, g: 0.5605044, b: 0.6981132, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LdotFL: {r: 0, g: 0, b: 0, a: 0}
     - _MatCapColor: {r: 0, g: 0, b: 0, a: 0}

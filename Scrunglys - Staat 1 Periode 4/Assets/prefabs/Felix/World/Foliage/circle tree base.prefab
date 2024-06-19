@@ -128,14 +128,6 @@ PrefabInstance:
       propertyPath: m_LODs.Array.data[0].renderers.Array.data[1].renderer
       value: 
       objectReference: {fileID: 6146669835223103153}
-    - target: {fileID: 4742473837712756890, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
-      propertyPath: m_LODs.Array.data[1].renderers.Array.data[1].renderer
-      value: 
-      objectReference: {fileID: 1016508705313743378}
-    - target: {fileID: 4742473837712756890, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
-      propertyPath: m_LODs.Array.data[2].renderers.Array.data[1].renderer
-      value: 
-      objectReference: {fileID: 5732329685800985082}
     - target: {fileID: 5295896859687703464, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -150,7 +142,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4742473837712756890, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8548453848669686864, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
+    - {fileID: -5645253178240207197, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
+    - {fileID: 3017083970304842279, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
+    - {fileID: 6751497368914753593, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
+    - {fileID: -3818761224155284364, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
@@ -183,16 +180,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1016508705313743378 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 641974125375754304, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
-  m_PrefabInstance: {fileID: 500916988899684946}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &5732329685800985082 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5295896859687703464, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}
-  m_PrefabInstance: {fileID: 500916988899684946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &6146669835223103153 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -3188892688128277277, guid: 631f5df0ce17c7545b96de4b0db60d8a, type: 3}

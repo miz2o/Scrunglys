@@ -167,7 +167,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularShift: 0
     - _SpecularShiftIntensity: 1
-    - _SpecularStep: 0.5
+    - _SpecularStep: 1
     - _SpecularType: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
