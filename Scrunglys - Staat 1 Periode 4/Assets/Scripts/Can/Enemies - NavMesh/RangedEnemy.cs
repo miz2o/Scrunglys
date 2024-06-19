@@ -16,6 +16,10 @@ public class RangedEnemy : BasicAI
     public float projectileSpeed;
     public bool moving;
 
+    public AudioClip projectileSFX;
+    public float volume;
+    public float pitch;
+
     private new void Awake()
     {
         base.Awake();
@@ -139,6 +143,8 @@ public class RangedEnemy : BasicAI
     {
         RotateTowardsPlayer();
 
+        SFXManager.instance.PlaySFXClip(projectileSFX, transform, volume, pitch);
+        
         GameObject spawnedProjectile = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
 
         Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
