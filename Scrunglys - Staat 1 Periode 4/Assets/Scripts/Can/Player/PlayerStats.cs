@@ -34,6 +34,7 @@ public class PlayerStats : MonoBehaviour
     public AudioClip hitSFX;
     public AudioClip potionSFX;
     public float pitchPotion, pitchHit;
+    public float volumePotion, volumeHit;
 
     private void Start()
     {
@@ -64,7 +65,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(potions != 0)
         {
-            SFXManager.instance.PlaySFXClip(potionSFX, transform, 1f, pitchPotion);
+            SFXManager.instance.PlaySFXClip(potionSFX, transform, volumePotion, pitchPotion);
 
             animator.SetTrigger("Drink");
 
@@ -90,7 +91,7 @@ public class PlayerStats : MonoBehaviour
     public void Health(float damageToDo)
     {
         health -= damageToDo;
-        SFXManager.instance.PlaySFXClip(hitSFX, transform, 1f, pitchHit);
+        SFXManager.instance.PlaySFXClip(hitSFX, transform, volumeHit, pitchHit);
 
         healthSlider.value = health;
 
