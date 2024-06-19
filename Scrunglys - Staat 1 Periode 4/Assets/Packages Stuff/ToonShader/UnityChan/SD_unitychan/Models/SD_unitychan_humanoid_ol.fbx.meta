@@ -920,11 +920,7 @@ ModelImporter:
     blendShapeNormalImportMode: 0
     normalSmoothingSource: 0
   referencedClips:
-<<<<<<< HEAD
-  - 378e367fe9b92a34f9e9683518bbc519
-=======
-  - 5f9ea3891ffee6f40a471a098ee8c6b5
->>>>>>> 72e2666234da40fa392858b69c0d79f4219bd8c7
+  - 3d90d4e0f034b264abcfe40607829adb
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
