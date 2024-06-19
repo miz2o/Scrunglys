@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: metarig|Idle_Boss (1)
-      takeName: metarig|Idle_Boss
+      name: metarig|Action_Range
+      takeName: metarig|Action_Range
       internalID: 8143964655209547246
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
