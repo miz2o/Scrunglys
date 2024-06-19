@@ -422,6 +422,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "e071b75ec1d1428ba0ea1389723f5f12"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "94cbdb5fd1b443409c2cfa63bf9ac661"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "e4a6b677e81c430da150a66fec386cfd"
                 },
                 "m_SlotId": 1
@@ -1768,9 +1782,9 @@
     "m_Value": {
         "serializedVersion": "2",
         "key0": {
-            "r": 0.26190727949142458,
-            "g": 0.4716981053352356,
-            "b": 0.06452475488185883,
+            "r": 0.02892489731311798,
+            "g": 0.08722379058599472,
+            "b": 0.4716981053352356,
             "a": 1.0
         },
         "key1": {
@@ -2316,10 +2330,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2896.0,
-            "y": 951.0,
+            "x": -1325.0,
+            "y": 457.0000305175781,
             "width": 208.0,
-            "height": 327.0
+            "height": 326.9999694824219
         }
     },
     "m_Slots": [
@@ -3580,9 +3594,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2197.0,
-            "y": 956.0,
-            "width": 207.9998779296875,
+            "x": -626.0,
+            "y": 462.0,
+            "width": 208.0,
             "height": 302.0
         }
     },
@@ -3883,9 +3897,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2581.0,
-            "y": 988.0,
-            "width": 208.0,
+            "x": -1010.0000610351563,
+            "y": 494.0,
+            "width": 208.00006103515626,
             "height": 302.0
         }
     },
