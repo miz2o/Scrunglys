@@ -2473,7 +2473,7 @@ Material:
     - _ShadingRampedLightMapInverseApplyGlobalMaskIndex: 0
     - _ShadingShadeMapBlendType: 0
     - _Shadow1Feather: 0
-    - _Shadow1Step: 0.5
+    - _Shadow1Step: 0.343
     - _Shadow2Feather: 0
     - _Shadow2Step: 0.3
     - _Shadow2ndBlur: 0.3

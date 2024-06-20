@@ -48,13 +48,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8383124558419344257, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -7252206974635170655, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c87ff1429c90424db795ed64c039696, type: 2}
+    - target: {fileID: -5568371526223589888, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
       propertyPath: m_Name
       value: Fallen Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: fb4849761d809e34cbb60111e2ea425a, type: 3}
       propertyPath: m_Materials.Array.data[0]

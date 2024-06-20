@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4777242381444007766, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -56,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a6f3922d944177f409dcd391269b17d8, type: 2}
+    - target: {fileID: -2149541580070738595, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -825983499609961982, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -67,6 +79,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
       propertyPath: m_Name
       value: Weapon Holder With Weapons
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264043378928718972, guid: f020c2962943f564db1d6466c984bbb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
