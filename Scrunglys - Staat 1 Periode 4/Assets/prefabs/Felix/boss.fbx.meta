@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: metarig|Action_Range (1)
-      takeName: metarig|Action_Range
+      name: metarig|Action_MeleeRight
+      takeName: metarig|Action_MeleeRight
       internalID: 4942394849604322997
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -49025,6 +49025,8 @@ MonoBehaviour:
   attackReset: 1.2
   staminaCost: 8
   slashing: 0
+  volumeSwoosh: 0
+  pitchSwoosh: 0
 --- !u!4 &622921453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2025847662879408613, guid: d2544e565c1cb1a4fa488e0616d31360, type: 3}
@@ -49956,6 +49958,8 @@ MonoBehaviour:
   attackReset: 0.85
   staminaCost: 5
   slashing: 0
+  volumeSwoosh: 0
+  pitchSwoosh: 0
 --- !u!65 &675598873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54968,6 +54972,8 @@ MonoBehaviour:
   attackReset: 0.4
   staminaCost: 3
   slashing: 0
+  volumeSwoosh: 0
+  pitchSwoosh: 0
 --- !u!1001 &1085289093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65242,6 +65248,10 @@ PrefabInstance:
     - target: {fileID: 7409143263586721511, guid: b8bd4d817b29afc40b57b22e8a1f4003, type: 3}
       propertyPath: animationDuration
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657287278627250465, guid: b8bd4d817b29afc40b57b22e8a1f4003, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8859450382385707233, guid: b8bd4d817b29afc40b57b22e8a1f4003, type: 3}
       propertyPath: m_IsActive

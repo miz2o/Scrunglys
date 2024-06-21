@@ -1,21 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MeleeEnemy : BasicAI
 {
-    public Collider attackCollider;
+    public Collider[] attackCollider;
     public bool moving;
-/* 
-    private new void Awake()
-    {
-        base.Awake();
-    }
-    private new void Start()
-    {
-        base.Start();
-    } */
 
     override public void UpdateAI()
     {
@@ -34,12 +26,18 @@ public class MeleeEnemy : BasicAI
         attacking = true;
 
         yield return new WaitForSeconds(data.waitAnimation);
-
-        attackCollider.enabled = true;
+        foreach(Collider collider in attackCollider)
+        {
+            collider.enabled = true;
+        }
+        
 
         yield return new WaitForSeconds(attackDuration);
 
-        attackCollider.enabled = false;
+        foreach(Collider collider in attackCollider)
+        {
+            collider.enabled = false;
+        }
 
         yield return new WaitForSeconds(data.attackWaitTime);
 
