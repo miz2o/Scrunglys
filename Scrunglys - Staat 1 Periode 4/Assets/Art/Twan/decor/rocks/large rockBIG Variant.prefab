@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: large rockBIG Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4658137364727199850, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
       propertyPath: m_LocalScale.x
       value: 3

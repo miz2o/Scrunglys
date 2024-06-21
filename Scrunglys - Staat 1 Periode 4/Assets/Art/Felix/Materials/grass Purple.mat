@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: grass Redish
-  m_Shader: {fileID: -6465566751694194690, guid: 60ee009182532cb4da206a94aedf42aa, type: 3}
+  m_Name: grass Purple
+  m_Shader: {fileID: -6465566751694194690, guid: 9404557a62b7cbc4fa0a6f7a6749ee6f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
