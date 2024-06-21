@@ -64,8 +64,9 @@ public class BossScript : BasicAI
                 if(!attacking && timer >= attackTimer)
                 {
                     RotateTowardsPlayer();
-                
-                    // attack player 
+
+                    animator.SetTrigger("Attack Melee");
+                    MeleeAttackStart(data.meleeAttackTime);
                 }
                 
 

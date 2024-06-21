@@ -524,7 +524,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1401093
+      value: -2.3701093
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.5290623
+      value: 9.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -755,7 +755,8 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 1924787cfdb5d7c4e9e149d396f83272, type: 2}
   currentState: 0
   agent: {fileID: 0}
-  attackCollider: {fileID: 7573793312468759853}
+  attackCollider:
+  - {fileID: 7573793312468759853}
   moving: 0
 --- !u!1 &1717914689521198810 stripped
 GameObject:
