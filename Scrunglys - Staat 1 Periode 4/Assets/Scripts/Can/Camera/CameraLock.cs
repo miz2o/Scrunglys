@@ -1,4 +1,5 @@
 using Cinemachine;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class CameraLock : MonoBehaviour
@@ -46,15 +47,21 @@ public class CameraLock : MonoBehaviour
                 enemy = FindEnemyToLockOn();
                 if (enemy != null)
                 {
-                    enemyCamera.LookAt = enemy;
+                    enemyCamera.LookAt = enemy.GetComponent<BasicAI>().lookAt;
                     switched = false;
                     locked = true;
+
+                    enemy.GetComponent<BasicAI>().arrowIndicator.SetActive(true);
+
                     SwitchToEnemyCamera();
                 }
             }
             else
             {
-                UnlockCamera();
+
+                enemy.GetComponent<BasicAI>().arrowIndicator.SetActive(false);
+
+                UnlockCamera();        
             }
         }
     }

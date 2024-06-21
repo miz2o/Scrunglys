@@ -12,8 +12,8 @@ public class Movement : MonoBehaviour
     public CheckCurrentSword currentSword;
 
     [Header("Basic movement")]
-    public int walkSpeed;
-    public int sprintSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
     public float gravity;
     public float sprintStamina;
 

@@ -11,11 +11,13 @@ public class BasicAI : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
+    public Transform lookAt;
     public EnemyManager enemyManager;
     public Animator animator;
     public GameObject currency;
     public GameObject healthSlider;
     public AudioClip hurtSFX;
+    public GameObject arrowIndicator;
     
 
     [Header("Stats/Health")]
@@ -38,6 +40,7 @@ public class BasicAI : MonoBehaviour
     public bool attacked = false;
     public bool attacking = false;
     public bool hit = false;
+    public bool lockedOn;
 
     public EnemyData data;
 
@@ -73,6 +76,14 @@ public class BasicAI : MonoBehaviour
     #region UPDATEAI
     virtual public void UpdateAI()
     {
+       /*  if(lockedOn)
+        {
+            arrowIndicator.SetActive(true);
+        }
+        else
+        {
+            arrowIndicator.SetActive(false);
+        } */
         float distance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)

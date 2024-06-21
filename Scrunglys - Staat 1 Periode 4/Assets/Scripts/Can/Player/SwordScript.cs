@@ -13,7 +13,7 @@ public class SwordScript : MonoBehaviour
     public Movement movement;
     public PlayerStats playerStats;
     public InteractMerchant interactMerchant;
-    public AudioSource swooshSFX;
+    public AudioClip swooshSFX;
 
     [Header("Stats")]
     public float damage;
@@ -24,6 +24,11 @@ public class SwordScript : MonoBehaviour
     public float staminaCost;
 
     public bool slashing;
+
+    [Header("Audio")]
+    public float volumeSwoosh;
+    public float pitchSwoosh;
+
 
     
     public void Start()
@@ -48,7 +53,7 @@ public class SwordScript : MonoBehaviour
     public IEnumerator Slash(float attackReset)
     {
         animator.SetTrigger("Slash");
-        swooshSFX.Play();
+        SFXManager.instance.PlaySFXClip(swooshSFX, transform, volumeSwoosh, pitchSwoosh);
 
         slashing = true;
         collider.enabled = true;

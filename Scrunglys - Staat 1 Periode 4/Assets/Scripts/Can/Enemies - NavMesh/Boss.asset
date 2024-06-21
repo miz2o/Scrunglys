@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackTime: 0
   meleeAttackTime: 0
-  rangedAttackTime: 2
+  rangedAttackTime: 1
   attackWaitTime: 0
   waitAnimation: 0
   burstInterval: 0

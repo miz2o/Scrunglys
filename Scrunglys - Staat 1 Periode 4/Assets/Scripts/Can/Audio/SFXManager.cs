@@ -15,6 +15,8 @@ public class SFXManager : MonoBehaviour
         {
             instance = this;
         }
+
+        print("here");
     }
 
     public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume, float pitch)

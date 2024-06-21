@@ -162,7 +162,7 @@ public class BossScript : BasicAI
 
             
             agent.SetDestination(transform.position);
-            /* animator.SetTrigger("Attack Ranged"); */
+            animator.SetTrigger("Attack Ranged");
 
             StartCoroutine(RangedAttackStart(data.rangedAttackTime));
 
