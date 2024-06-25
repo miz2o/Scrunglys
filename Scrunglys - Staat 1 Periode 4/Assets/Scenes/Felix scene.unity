@@ -2219,6 +2219,76 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8cf457863f48364588396f6f1e5ae79, type: 3}
+--- !u!1001 &169518487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 256444550}
+    m_Modifications:
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.5424
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.7244
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 286.50327
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 101.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 479.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.58861023
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.36283454
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.45843267
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5583266
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -4.863
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 288.513
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -83.474
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073819568721604523, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+      propertyPath: m_Name
+      value: Stone 2 (10) Variant (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+--- !u!4 &169518488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8549941497470121233, guid: e2a7dcc4a13490b49b0d5c15d99b59fe, type: 3}
+  m_PrefabInstance: {fileID: 169518487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &170743823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4209,6 +4279,7 @@ Transform:
   - {fileID: 1366734719}
   - {fileID: 929526374}
   - {fileID: 1111240342}
+  - {fileID: 632825329}
   - {fileID: 1605444508}
   - {fileID: 182693152}
   - {fileID: 1804709077}
@@ -4251,6 +4322,7 @@ Transform:
   - {fileID: 1932742837}
   - {fileID: 1903190983}
   - {fileID: 610410563}
+  - {fileID: 169518488}
   - {fileID: 1940298015}
   - {fileID: 761630469}
   - {fileID: 1017431549}
@@ -51167,6 +51239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 622788076}
+  currentSword: {fileID: 0}
   animator: {fileID: 902039500}
   movement: {fileID: 902039492}
   playerStats: {fileID: 902039490}
@@ -51176,6 +51249,10 @@ MonoBehaviour:
   attackReset: 1.2
   staminaCost: 8
   slashing: 0
+  dagger: 0
+  branch: 0
+  sword: 0
+  claymore: 0
   volumeSwoosh: 0
   pitchSwoosh: 0
 --- !u!4 &622921453 stripped
@@ -51520,6 +51597,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a263dfda1d802aa41918be6fa73e0bcc, type: 3}
+--- !u!1001 &632825328
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 256444550}
+    m_Modifications:
+    - target: {fileID: 4658137364727199850, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_Name
+      value: large rock (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.4755042
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6.5641603
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.206508
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 279.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 99.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 485.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.14224526
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9898315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 196.356
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+--- !u!4 &632825329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5471548007008281296, guid: 060538685442a0e41a177f3d865dba80, type: 3}
+  m_PrefabInstance: {fileID: 632825328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &641409413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9175552559702317232, guid: f1e375cdab86aaf4d8640e5fa53ebe34, type: 3}
@@ -52242,6 +52393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 675598873}
+  currentSword: {fileID: 0}
   animator: {fileID: 902039500}
   movement: {fileID: 902039492}
   playerStats: {fileID: 902039490}
@@ -52251,6 +52403,10 @@ MonoBehaviour:
   attackReset: 0.85
   staminaCost: 5
   slashing: 0
+  dagger: 0
+  branch: 0
+  sword: 0
+  claymore: 0
   volumeSwoosh: 0
   pitchSwoosh: 0
 --- !u!65 &675598873
@@ -58873,6 +59029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 1080047522}
+  currentSword: {fileID: 0}
   animator: {fileID: 902039500}
   movement: {fileID: 902039492}
   playerStats: {fileID: 902039490}
@@ -58882,6 +59039,10 @@ MonoBehaviour:
   attackReset: 0.4
   staminaCost: 3
   slashing: 0
+  dagger: 0
+  branch: 0
+  sword: 0
+  claymore: 0
   volumeSwoosh: 0
   pitchSwoosh: 0
 --- !u!4 &1081852830 stripped
@@ -78285,7 +78446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9175552559702317232, guid: f1e375cdab86aaf4d8640e5fa53ebe34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 346.83
+      value: 346.71
       objectReference: {fileID: 0}
     - target: {fileID: 9175552559702317232, guid: f1e375cdab86aaf4d8640e5fa53ebe34, type: 3}
       propertyPath: m_LocalPosition.z
