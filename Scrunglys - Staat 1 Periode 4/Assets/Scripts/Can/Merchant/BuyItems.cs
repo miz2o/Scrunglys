@@ -147,9 +147,9 @@ public class BuyItems : MonoBehaviour
         SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
     }
     public float Pitch()
- {
-     pitchBling = Random.Range(pitchMin, pitchMax);
+    {
+        pitchBling = Random.Range(pitchMin, pitchMax);
 
-    return pitchBling;
- }
+        return pitchBling;
+    }  
 }
