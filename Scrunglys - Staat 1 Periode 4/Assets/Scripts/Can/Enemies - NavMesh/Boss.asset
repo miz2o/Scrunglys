@@ -13,22 +13,23 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   attackTime: 0
-  meleeAttackTime: 0
+  meleeAttackTime: 0.6
   rangedAttackTime: 1
   attackWaitTime: 0
   waitAnimation: 0
   burstInterval: 0
-  damage: 5
-  bulletCap: 0
+  damage: 10
+  projectileDamage: 13
+  bulletCap: 3
   noticeRange: 15
   attackRange: 0
-  meleeAttackRange: 3
+  meleeAttackRange: 1.5
   rangedAttackRange: 9
-  wanderRange: 0
+  wanderRange: 8
   searchRange: 0
   wanderTimerMin: 0
   wanderTimerMax: 0
   searchTimerMin: 0
   searchTimerMax: 2
-  attackTimerMin: 0
-  attackTimerMax: 2
+  attackTimerMin: 5
+  attackTimerMax: 7

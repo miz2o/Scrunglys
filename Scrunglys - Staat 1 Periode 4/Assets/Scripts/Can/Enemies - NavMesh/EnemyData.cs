@@ -13,6 +13,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Stats")]
     public float damage;
+    public float projectileDamage;
     public int bulletCap;
 
     [Header("Ranges")]

@@ -21,7 +21,7 @@ public class OptionsScreen : MonoBehaviour
     pausePanel.SetActive(false);
     playerStatsPanel.SetActive(true);
    
-    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
     
     mouse.paused = false;  
     Time.timeScale = 1;
@@ -32,7 +32,7 @@ public class OptionsScreen : MonoBehaviour
     optionsPanel.SetActive(true);
     pausePanel.SetActive(false);
 
-    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
  }
 
  public void ReturnButton()
@@ -40,7 +40,7 @@ public class OptionsScreen : MonoBehaviour
   optionsPanel.SetActive(false);
   pausePanel.SetActive(true);
 
-  SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, pitchBling);
+  SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
  }
 
  public void QuitGame()

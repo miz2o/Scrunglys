@@ -16,7 +16,7 @@ public class BasicAI : MonoBehaviour
     public Animator animator;
     public GameObject currency;
     public GameObject healthSlider;
-    public AudioClip hurtSFX;
+    public AudioClip[] hurtSFX;
     public GameObject arrowIndicator;
     
 
@@ -76,14 +76,7 @@ public class BasicAI : MonoBehaviour
     #region UPDATEAI
     virtual public void UpdateAI()
     {
-       /*  if(lockedOn)
-        {
-            arrowIndicator.SetActive(true);
-        }
-        else
-        {
-            arrowIndicator.SetActive(false);
-        } */
+      
         float distance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
@@ -284,7 +277,7 @@ public class BasicAI : MonoBehaviour
         health -= damageToDo;
         healthSlider.SetActive(true);
 
-        SFXManager.instance.PlaySFXClip(hurtSFX, transform, volumeHurt, Pitch());
+        SFXManager.instance.PlayMultipleSFXClip(hurtSFX, transform, volumeHurt, Pitch());
         
         UpdateHealthBar(health); 
         hit = true;

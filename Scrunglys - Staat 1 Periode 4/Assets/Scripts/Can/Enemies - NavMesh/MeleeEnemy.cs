@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class MeleeEnemy : BasicAI
 {
     public Collider[] attackCollider;
     public bool moving;
+
+    public AudioClip attack;
+    public float volume;
+    public float pitch;
+  
 
     override public void UpdateAI()
     {
@@ -17,6 +23,7 @@ public class MeleeEnemy : BasicAI
     override public void AttackPlayer()
     {
         animator.SetTrigger("Attack");
+          SFXManager.instance.PlaySFXClip(attack, transform, volume, pitch);
 
         StartCoroutine(AttackPlayer(data.attackTime));
     }

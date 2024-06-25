@@ -17,6 +17,12 @@ public class BuyItems : MonoBehaviour
 
     public GameObject merchantPanel;
 
+    public AudioClip bling;
+    public float volumeBling;
+    private float pitchBling;
+    public float pitchMin;
+    public float pitchMax;
+
 
     [Header("weapon values")]
     public float daggerValue, swordValue, claymoreValue;
@@ -40,6 +46,8 @@ public class BuyItems : MonoBehaviour
         swordUI.SetActive(false);
         daggerUI.SetActive(false);
         claymoreUI.SetActive(false);
+
+        SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
     }
     public void BuyDagger()
     {
@@ -47,6 +55,8 @@ public class BuyItems : MonoBehaviour
         {
             currency.SubtractCrystals(daggerValue);
             boughtDagger = true;
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
 
@@ -64,6 +74,8 @@ public class BuyItems : MonoBehaviour
             swordUI.SetActive(false);
             branchUI.SetActive(false);
             claymoreUI.SetActive(false);
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
     public void BuySword()
@@ -73,6 +85,8 @@ public class BuyItems : MonoBehaviour
             currency.SubtractCrystals(swordValue);
 
             boughtSword = true;
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
     public void EquipSword()
@@ -89,6 +103,8 @@ public class BuyItems : MonoBehaviour
             daggerUI.SetActive(false);
             branchUI.SetActive(false);
             claymoreUI.SetActive(false);
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
     public void BuyClaymore()
@@ -98,6 +114,8 @@ public class BuyItems : MonoBehaviour
             currency.SubtractCrystals(claymoreValue);
 
             boughtClaymore = true;
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
 
@@ -115,6 +133,8 @@ public class BuyItems : MonoBehaviour
             daggerUI.SetActive(false);
             branchUI.SetActive(false);
             swordUI.SetActive(false);
+
+            SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
         }
     }
 
@@ -123,5 +143,13 @@ public class BuyItems : MonoBehaviour
         merchantPanel.SetActive(false);
         interactMerchant.shopping = false;
         Time.timeScale = 1;
+
+        SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
     }
+    public float Pitch()
+ {
+     pitchBling = Random.Range(pitchMin, pitchMax);
+
+    return pitchBling;
+ }
 }

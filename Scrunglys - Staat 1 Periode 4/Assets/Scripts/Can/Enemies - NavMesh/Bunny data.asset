@@ -18,7 +18,8 @@ MonoBehaviour:
   attackWaitTime: 2.5
   waitAnimation: 0.4
   burstInterval: 0
-  damage: 9
+  damage: 4
+  projectileDamage: 0
   bulletCap: 0
   noticeRange: 18
   attackRange: 1.2

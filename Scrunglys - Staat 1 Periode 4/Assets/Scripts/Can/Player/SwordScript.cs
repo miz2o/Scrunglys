@@ -8,12 +8,14 @@ public class SwordScript : MonoBehaviour
 {
     [Header("References")]
     public new Collider collider;
-   /*  public CheckCurrentSword currentSword; */
+    public CheckCurrentSword currentSword;
     public Animator animator;
     public Movement movement;
     public PlayerStats playerStats;
     public InteractMerchant interactMerchant;
     public AudioClip swooshSFX;
+
+    private string slashAnim;
 
     [Header("Stats")]
     public float damage;
@@ -25,6 +27,8 @@ public class SwordScript : MonoBehaviour
 
     public bool slashing;
 
+    public bool dagger, branch, sword, claymore;
+
     [Header("Audio")]
     public float volumeSwoosh;
     public float pitchSwoosh;
@@ -35,6 +39,7 @@ public class SwordScript : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         collider.enabled = false;
+        CheckCurrentSword();
     }
     private void Update()
     {
@@ -52,7 +57,7 @@ public class SwordScript : MonoBehaviour
 
     public IEnumerator Slash(float attackReset)
     {
-        animator.SetTrigger("Slash");
+        animator.SetTrigger(slashAnim);
         SFXManager.instance.PlaySFXClip(swooshSFX, transform, volumeSwoosh, pitchSwoosh);
 
         slashing = true;
@@ -74,6 +79,23 @@ public class SwordScript : MonoBehaviour
         {
             damageToDo = damage;
         }
+    }
+    void CheckCurrentSword()
+    {
+       if(branch || sword)
+       {
+            slashAnim = "Slash";
+       }
+
+       if(dagger)
+       {
+            slashAnim = "Slash Dagger";
+       }
+
+       if(claymore)
+       {
+            slashAnim = "Slash Claymore";
+       }
     }
     public void OnTriggerEnter(Collider other)
     {

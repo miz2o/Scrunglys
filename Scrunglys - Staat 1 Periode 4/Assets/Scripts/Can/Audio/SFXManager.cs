@@ -35,7 +35,7 @@ public class SFXManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
     }
 
-    public void PlayMulitpleSFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume, float pitch)
+    public void PlayMultipleSFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume, float pitch)
     {   
         int rand = UnityEngine.Random.Range(0, audioClip.Length);
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, quaternion.identity);

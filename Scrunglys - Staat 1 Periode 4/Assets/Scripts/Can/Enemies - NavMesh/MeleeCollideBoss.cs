@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeCollider : MonoBehaviour
+public class MeleeCollideBoss : MonoBehaviour
 {
-    private MeleeEnemy parentMeleeEnemy;
+    private BossScript parentMeleeEnemy;
 
     private void Start()
     {
-        parentMeleeEnemy = GetComponentInParent<MeleeEnemy>();
+        parentMeleeEnemy = GetComponentInParent<BossScript>();
 
     }
 

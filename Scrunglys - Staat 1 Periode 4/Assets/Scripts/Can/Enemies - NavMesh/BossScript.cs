@@ -22,7 +22,7 @@ public class BossScript : BasicAI
 
     public float halfHealth;
 
-    int snakeCap;
+    public int snakeCap;
 
     public AudioClip projectileSFX;
     public float pitch;
@@ -61,15 +61,19 @@ public class BossScript : BasicAI
 
             case State.MELEE:
 
-                if(!attacking && timer >= attackTimer)
+                if(!attacking )
                 {
                     RotateTowardsPlayer();
 
-                    animator.SetTrigger("Attack Melee");
-                    MeleeAttackStart(data.meleeAttackTime);
-                }
-                
+                    if(timer >= attackTimer)
+                    {
+                        RotateTowardsPlayer();
 
+                        print("Attacking");
+                        AttackPlayerMelee();
+                    }
+                }
+            
                 if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
@@ -129,12 +133,34 @@ public class BossScript : BasicAI
     }
     IEnumerator MeleeAttackStart(float animationDuration)
     {
+        animator.SetTrigger("Melee Attack");
+        
         yield return new WaitForSeconds(animationDuration);
         
+        print("corotine start");
         StartCoroutine(AttackPlayerMelee(data.meleeAttackTime));
+    }
+
+     public void AttackPlayerMelee()
+    {
+        if(timer >= attackTimer)
+        {
+            RotateTowardsPlayer();
+
+            attacking = true;
+
+            
+            agent.SetDestination(transform.position);
+            animator.SetTrigger("Attack Melee");
+
+            StartCoroutine(MeleeAttackStart(data.meleeAttackTime));
+
+            timer = 0; 
+        }     
     }
      public IEnumerator AttackPlayerMelee(float attackDuration)
     {
+        
         attacking = true;
 
         yield return new WaitForSeconds(data.waitAnimation);
@@ -151,6 +177,10 @@ public class BossScript : BasicAI
 
 
         attacking = false;
+
+        timer = 0;
+    
+        
     }
 
      public void AttackPlayerRanged()
@@ -172,8 +202,10 @@ public class BossScript : BasicAI
     }
 
     IEnumerator RangedAttackStart(float animationDuration)
-    {
+    {     
         yield return new WaitForSeconds(animationDuration);
+
+        SFXManager.instance.PlaySFXClip(projectileSFX, transform, volume, pitch);
         
         StartCoroutine(RangedAttack());
     }
@@ -182,15 +214,11 @@ public class BossScript : BasicAI
     {
         RotateTowardsPlayer();
 
-        GameObject spawnedProjectile = Instantiate(projectileBoss, shootPos.position, Quaternion.identity);
-        
-        SFXManager.instance.PlaySFXClip(projectileSFX, transform, volume, pitch);
+        GameObject spawnedProjectile = Instantiate(projectileBoss, shootPos.position, Quaternion.identity);    
 
         Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
 
-        Vector3 direction = (targetPos.transform.position - shootPos.position).normalized;
-
-        
+        Vector3 direction = (targetPos.transform.position - shootPos.position).normalized;    
 
         rb.velocity = direction * projectileSpeed;
 
@@ -207,6 +235,7 @@ public class BossScript : BasicAI
     {
         Vector3 newPos = RandomNavSphereTowardsPlayer(transform.position, data.wanderRange, -1);
         agent.SetDestination(newPos);
+        print("New pos");
     }
     void ResetAttackTimer()
     {
@@ -233,9 +262,18 @@ public class BossScript : BasicAI
 
             yield return new WaitForSeconds(burstinterval);
         }
-        yield return summoned = false;
+        yield return summoned = true;
         
     }
+
+    public void OnAttackColliderTrigger(Collider other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerStats>().Health(data.damage);
+        }
+    }
+
     void ChangeStats()
     {
         // decrease some attack timers for 2nd phase maybe
