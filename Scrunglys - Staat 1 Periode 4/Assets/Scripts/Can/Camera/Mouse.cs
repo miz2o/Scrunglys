@@ -6,6 +6,7 @@ public class Mouse : MonoBehaviour
 {   
     public GameObject optionsPanel;
     public GameObject playerStatsPanel;
+    public InteractMerchant interactMerchant;
 
     public bool paused;
     void Start()
@@ -14,11 +15,12 @@ public class Mouse : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !paused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !paused && !interactMerchant.shopping)
         {
             Visible();
 
             playerStatsPanel.SetActive(false);
+
             optionsPanel.SetActive(true);
             paused = true;
             

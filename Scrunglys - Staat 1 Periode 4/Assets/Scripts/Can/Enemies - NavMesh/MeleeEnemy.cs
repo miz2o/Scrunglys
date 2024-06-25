@@ -23,7 +23,7 @@ public class MeleeEnemy : BasicAI
     override public void AttackPlayer()
     {
         animator.SetTrigger("Attack");
-          SFXManager.instance.PlaySFXClip(attack, transform, volume, pitch);
+        SFXManager.instance.PlaySFXClip(attack, transform, volume, pitch);
 
         StartCoroutine(AttackPlayer(data.attackTime));
     }

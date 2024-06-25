@@ -28,6 +28,7 @@ public class PlayerStats : MonoBehaviour
     public Animator animator;
 
     public GameObject potionModel;
+    public GameObject gameOverPanel;
 
     public Slider healthSlider;
     public Slider staminaSlider;
@@ -59,6 +60,10 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !healing)
         {
             Heal();
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Death();
         }
     }
     void Heal()
@@ -92,13 +97,25 @@ public class PlayerStats : MonoBehaviour
     {
         health -= damageToDo;
         SFXManager.instance.PlaySFXClip(hitSFX, transform, volumeHit, pitchHit);
+        
+        health = Mathf.Clamp(health, 0, maxHealth);
 
         healthSlider.value = health;
 
-        if (health <= 0)
+        // voor de presentatie, zodat we niet dood kunnen gaan
+        /* if (health <= 0) 
         {
-            //Death();
-        }
+            Death();
+        } */
+    }
+
+    public void Death()
+    {
+        Time.timeScale = 0;
+
+        Cursor.lockState = CursorLockMode.Confined;
+
+        gameOverPanel.SetActive(true);
     }
     public void Stamina(float actionStamina)
     {

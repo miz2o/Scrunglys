@@ -37,23 +37,32 @@ public class OptionsScreen : MonoBehaviour
 
  public void ReturnButton()
  {
-  optionsPanel.SetActive(false);
-  pausePanel.SetActive(true);
+    optionsPanel.SetActive(false);
+    pausePanel.SetActive(true);
 
-  SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
  }
 
  public void QuitGame()
  {
-   SceneManager.LoadScene("Can Scene UI", LoadSceneMode.Single);
+    SceneManager.LoadScene("Can Scene UI", LoadSceneMode.Single);
 
-   SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
+ }
+
+ public void TryAgain()
+ {
+    SceneManager.LoadScene("Can Scene", LoadSceneMode.Single);
+
+    Time.timeScale = 1;
+
+    SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
  }
 
  public float Pitch()
  {
-   pitchBling = Random.Range(pitchMin, pitchMax);
+    pitchBling = Random.Range(pitchMin, pitchMax);
 
-   return pitchBling;
+    return pitchBling;
  }
 }
