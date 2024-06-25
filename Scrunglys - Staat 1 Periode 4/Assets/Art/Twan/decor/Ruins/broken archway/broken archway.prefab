@@ -59,5 +59,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eefc4ec7318a5164eb0ef7bc3c3c14a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8824902067985861186}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eefc4ec7318a5164eb0ef7bc3c3c14a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6910885605368524429}
   m_SourcePrefab: {fileID: 100100000, guid: eefc4ec7318a5164eb0ef7bc3c3c14a5, type: 3}
+--- !u!1 &1886200958269457437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eefc4ec7318a5164eb0ef7bc3c3c14a5, type: 3}
+  m_PrefabInstance: {fileID: 1651774426031208780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8824902067985861186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886200958269457437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8418274, y: 1.5506442, z: 0.6773987}
+  m_Center: {x: 0.01965332, y: 0.6011733, z: -0.011672974}
+--- !u!65 &6910885605368524429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886200958269457437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.108165, y: 1.2419894, z: 0.8687501}
+  m_Center: {x: -0.0028924942, y: 0.4468459, z: 3.1500123}
