@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-/* using Unity.Mathematics; */
+using Unity.Mathematics;
+
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -119,11 +120,11 @@ public class BossScript : BasicAI
                 {
                     currentState = State.MELEE;
                 }
-                else if(distance <= data.rangedAttackRange)
+                else if(summoned && distance <= data.rangedAttackRange)
                 {
                     currentState = State.RANGED;
                 }
-                else
+                else if(summoned)
                 {
                     currentState = State.CHASING;
                 }
@@ -133,8 +134,6 @@ public class BossScript : BasicAI
     }
     IEnumerator MeleeAttackStart(float animationDuration)
     {
-        animator.SetTrigger("Melee Attack");
-        
         yield return new WaitForSeconds(animationDuration);
         
         print("corotine start");
@@ -216,11 +215,11 @@ public class BossScript : BasicAI
 
         GameObject spawnedProjectile = Instantiate(projectileBoss, shootPos.position, Quaternion.identity);    
 
-        Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
+        /* Rigidbody rb = spawnedProjectile.GetComponent<Rigidbody>();
 
         Vector3 direction = (targetPos.transform.position - shootPos.position).normalized;    
 
-        rb.velocity = direction * projectileSpeed;
+        rb.velocity = direction * projectileSpeed; */
 
         yield return new WaitForSeconds(attackRestTimer);
         
@@ -239,12 +238,12 @@ public class BossScript : BasicAI
     }
     void ResetAttackTimer()
     {
-        attackTimer = Random.Range(data.attackTimerMin, data.attackTimerMax);
+        attackTimer = UnityEngine.Random.Range(data.attackTimerMin, data.attackTimerMax);
     }
 
     public Vector3 RandomNavSphereTowardsPlayer(Vector3 origin, float dist, int layermask)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * dist;
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * dist;
         randomDirection += player.position;
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomDirection, out navHit, dist, layermask);
@@ -252,18 +251,19 @@ public class BossScript : BasicAI
     }
     void SummonSnakes()
     {
-        Instantiate(snakes, snakeSummonPos, snakeSummonPos);
+        enemyManager.enemies.Add(Instantiate(snakes, snakeSummonPos.position, quaternion.identity));
+        
     }
     private IEnumerator SnakeRoutine(float burstinterval)
     {
-        for(int i = 0; i <= snakeCap; i++)
+        for(int i = 0; i < snakeCap; i++)
         {
             SummonSnakes();
 
             yield return new WaitForSeconds(burstinterval);
         }
-        yield return summoned = true;
-        
+
+        summoned = true;
     }
 
     public void OnAttackColliderTrigger(Collider other)
