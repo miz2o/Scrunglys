@@ -8870,6 +8870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 0}
   playerStatsPanel: {fileID: 0}
+  interactMerchant: {fileID: 0}
   paused: 0
 --- !u!114 &1555082621
 MonoBehaviour:
@@ -9042,6 +9043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 0}
   playerStatsPanel: {fileID: 0}
+  interactMerchant: {fileID: 0}
   paused: 0
 --- !u!114 &1655336441
 MonoBehaviour:
