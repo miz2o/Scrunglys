@@ -57,6 +57,7 @@ public class BasicAI : MonoBehaviour
         MELEE,
         RANGED,
 
+        STANDBY,
         SUMMONING,
     }
     [Header("Layer")]
@@ -140,10 +141,12 @@ public class BasicAI : MonoBehaviour
 
                 if (!attacking)
                 {
-                    AttackPlayer();
+                    /* RotateTowardsPlayer(); */
 
-                    RotateTowardsPlayer();
+                    AttackPlayer();
                 }
+
+                RotateTowardsPlayer();
                
                 if(distance >= data.attackRange && enemyManager.crowded)
                 {

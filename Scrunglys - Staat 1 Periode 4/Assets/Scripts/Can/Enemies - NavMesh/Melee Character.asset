@@ -19,9 +19,10 @@ MonoBehaviour:
   waitAnimation: 0.4
   burstInterval: 0
   damage: 7
+  projectileDamage: 0
   bulletCap: 0
   noticeRange: 15
-  attackRange: 1
+  attackRange: 1.5
   meleeAttackRange: 0
   rangedAttackRange: 0
   wanderRange: 7

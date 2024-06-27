@@ -46,7 +46,9 @@ public class OptionsScreen : MonoBehaviour
  public void QuitGame()
  {
     SceneManager.LoadScene("Can Scene UI", LoadSceneMode.Single);
-
+   
+    mouse.paused = false;  
+    Time.timeScale = 1;
     SFXManager.instance.PlaySFXClip(bling, transform, volumeBling, Pitch());
  }
 

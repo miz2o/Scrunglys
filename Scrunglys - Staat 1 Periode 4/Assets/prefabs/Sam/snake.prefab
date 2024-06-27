@@ -120,9 +120,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 11
   m_WholeNumbers: 0
-  m_Value: 15
+  m_Value: 11
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -524,7 +524,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3701093
+      value: -3.1401093
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.37
+      value: 6.5699997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -658,7 +658,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 1479372276
   m_Radius: 0.7
-  m_Speed: 2.8
+  m_Speed: 2.4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -736,17 +736,18 @@ MonoBehaviour:
   animator: {fileID: 4583655162565338040}
   currency: {fileID: 451530609244638616, guid: cefd15192bfd60245b00431da401f4fb, type: 3}
   healthSlider: {fileID: 5899392121608405900}
-  hurtSFX: {fileID: 8300000, guid: 21b894c9c35657d48988666804c427eb, type: 3}
+  hurtSFX:
+  - {fileID: 8300000, guid: 8baa51911787f9e498a70a1e62e0a2c3, type: 3}
   arrowIndicator: {fileID: 7853505633962116837}
-  health: 15
+  health: 12
   rotationSmooth: 0.15
   wanderTimer: 0
   searchTimer: 0
   attackTimer: 0
   timer: 0
-  volumeHurt: 0
-  pitchMin: 0
-  pitchMax: 0
+  volumeHurt: 1
+  pitchMin: 1.5
+  pitchMax: 1.6
   listed: 0
   attacked: 0
   attacking: 0
@@ -758,6 +759,9 @@ MonoBehaviour:
   attackCollider:
   - {fileID: 7573793312468759853}
   moving: 0
+  attack: {fileID: 8300000, guid: a664c204a3e495b4b940c28ec9322c82, type: 3}
+  volume: 1
+  pitch: 1
 --- !u!1 &1717914689521198810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1322270215080830924, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}

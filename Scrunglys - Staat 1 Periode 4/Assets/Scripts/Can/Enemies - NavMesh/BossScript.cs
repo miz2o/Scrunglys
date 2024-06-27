@@ -42,6 +42,15 @@ public class BossScript : BasicAI
         
         switch (currentState)
         {
+            case State.STANDBY:
+                
+                agent.destination = transform.position;
+
+                if(distance <= 20)
+                {
+                    currentState = State.CHASING;
+                }
+                break;
             case State.CHASING:
 
                 agent.destination = player.position;

@@ -9,7 +9,6 @@ public class MeleeEnemy : BasicAI
 {
     public Collider[] attackCollider;
     public bool moving;
-
     public AudioClip attack;
     public float volume;
     public float pitch;
