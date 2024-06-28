@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class SwordScript : MonoBehaviour
     [Header("References")]
     public new Collider collider;
     public CheckCurrentSword currentSword;
+    public GameObject vFXHit;
+    public Transform vFXPos;
     public Animator animator;
     public Movement movement;
     public PlayerStats playerStats;
@@ -101,6 +104,8 @@ public class SwordScript : MonoBehaviour
     {
         if(other.transform.tag == "Enemy" && slashing && !other.GetComponent<BasicAI>().hit || other.transform.tag == "Enemy" && movement.dashing && !other.GetComponent<BasicAI>().hit)
         {
+            GameObject vfx = Instantiate(vFXHit, vFXPos.position, quaternion.identity);
+            Destroy(vfx, 0.2f);
             other.GetComponent<BasicAI>().Health(damageToDo);
         }
     }

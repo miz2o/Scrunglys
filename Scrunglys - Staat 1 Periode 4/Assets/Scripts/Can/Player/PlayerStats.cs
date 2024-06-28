@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Potions")]
     public int potions;
     public float potionValue, animationDuration;
+    public TMP_Text potionText;
     public bool healing = false;
 
     [Header("Cooldowns")]
@@ -38,6 +39,7 @@ public class PlayerStats : MonoBehaviour
     public float volumePotion, volumeHit;
 
     public bool staminaLock;
+    public bool canDie = true;
 
     private void Start()
     {
@@ -63,9 +65,13 @@ public class PlayerStats : MonoBehaviour
         {
             Heal();
         }
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.P) && canDie)
         {
-            Death();
+            canDie = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.P) && !canDie)
+        {
+            canDie = true;
         }
         if(Input.GetKeyDown(KeyCode.O) && !staminaLock)
         {
@@ -92,6 +98,7 @@ public class PlayerStats : MonoBehaviour
             potionModel.SetActive(true);
 
             potions--;
+            potionText.text = potions.ToString();
 
             Invoke("ResetHeal", animationDuration);
         }
@@ -113,10 +120,10 @@ public class PlayerStats : MonoBehaviour
         healthSlider.value = health;
 
         // voor de presentatie, zodat we niet dood kunnen gaan
-        /* if (health <= 0) 
+        if (health <= 0 && canDie) 
         {
             Death();
-        } */
+        } 
     }
 
     public void Death()

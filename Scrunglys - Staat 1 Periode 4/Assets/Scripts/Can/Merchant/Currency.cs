@@ -30,8 +30,14 @@ public class Currency : MonoBehaviour
     }
     public void SubtractCrystals(float amount)
     {
-        crystals -= amount;
+        if(crystals >= amount)
+        {
+            crystals -= amount;
 
         currencyText.text = crystals.ToString();
+        }
+      /*   crystals -= amount;
+
+        currencyText.text = crystals.ToString(); */
     }
 }

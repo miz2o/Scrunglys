@@ -262,9 +262,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 13
   m_WholeNumbers: 0
-  m_Value: 15
+  m_Value: 13
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -536,15 +536,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.2
+      value: -171.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9459271
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.4
+      value: -29.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb3252a277f40e94c861f79dea4cf86f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1165,17 +1165,17 @@ MonoBehaviour:
   currency: {fileID: 451530609244638616, guid: cefd15192bfd60245b00431da401f4fb, type: 3}
   healthSlider: {fileID: 1127841738482572129}
   hurtSFX:
-  - {fileID: 8300000, guid: 8d7173ce7679bfb4cbb84fda1804d9a1, type: 3}
+  - {fileID: 8300000, guid: 803b5cd238322d64bb2d2f144f265c66, type: 3}
   arrowIndicator: {fileID: 4246267803475951554}
-  health: 15
+  health: 13
   rotationSmooth: 0.1
   wanderTimer: 0
   searchTimer: 0
   attackTimer: 0
   timer: 0
-  volumeHurt: 0
-  pitchMin: 0
-  pitchMax: 0
+  volumeHurt: 1
+  pitchMin: 1.5
+  pitchMax: 1.5
   listed: 0
   attacked: 0
   attacking: 0
@@ -1188,9 +1188,9 @@ MonoBehaviour:
   - {fileID: 3802044868508913669}
   - {fileID: 5075246176653010075}
   moving: 0
-  attack: {fileID: 8300000, guid: b06489b6930b0844db09b5e26fc0c44a, type: 3}
-  volume: 0
-  pitch: 0
+  attack: {fileID: 8300000, guid: ff37c5775dc520641b4bcf552b873e67, type: 3}
+  volume: 1
+  pitch: 1
 --- !u!114 &3103327789792815961
 MonoBehaviour:
   m_ObjectHideFlags: 0

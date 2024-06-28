@@ -120,9 +120,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 12
+  m_MaxValue: 8
   m_WholeNumbers: 0
-  m_Value: 12
+  m_Value: 8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -524,7 +524,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.22
+      value: -20.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.5
+      value: 17.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b38e894a704b63448bf00ad19e07cd3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -739,7 +739,7 @@ MonoBehaviour:
   hurtSFX:
   - {fileID: 8300000, guid: 8baa51911787f9e498a70a1e62e0a2c3, type: 3}
   arrowIndicator: {fileID: 7853505633962116837}
-  health: 12
+  health: 8
   rotationSmooth: 0.15
   wanderTimer: 0
   searchTimer: 0

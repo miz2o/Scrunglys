@@ -12,10 +12,12 @@ public class BossScript : BasicAI
     public GameObject projectileBoss;
     public GameObject snakes;
     public GameObject winScreen;
+    public GameObject meleeVFX;
     public Collider attackCollider;
     public Transform snakeSummonPos;
     public Transform targetPos;
     public Transform shootPos;
+    public Transform vFXPos;
 
     public bool summoned;
     public float attackRestTimer;
@@ -26,7 +28,8 @@ public class BossScript : BasicAI
 
     public int snakeCap;
 
-    public AudioClip projectileSFX;
+    public AudioClip projectileSFX, meleeSFX;
+    public AudioSource hover;
     public float pitch;
     public float volume;
 
@@ -56,6 +59,10 @@ public class BossScript : BasicAI
 
                 agent.destination = player.position;
 
+                if(hover.enabled == false)
+                {
+                    hover.enabled = true;
+                }
                 RotateTowardsPlayer();
                 
                 if (distance <= data.rangedAttackRange)
@@ -171,10 +178,14 @@ public class BossScript : BasicAI
     {
         
         attacking = true;
-
+        SFXManager.instance.PlaySFXClip(meleeSFX, transform, volume, pitch);
+        meleeVFX.GetComponent<ParticleSystem>().Play();
+        // Instantiate(meleeVFX, vFXPos.position, quaternion.identity);
         yield return new WaitForSeconds(data.waitAnimation);
 
         attackCollider.enabled = true;
+
+        SFXManager.instance.PlaySFXClip(meleeSFX, transform, volume, pitch);
 
         yield return new WaitForSeconds(attackDuration);
 
@@ -291,5 +302,6 @@ public class BossScript : BasicAI
     public void OnDestroy()
     {
         winScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
