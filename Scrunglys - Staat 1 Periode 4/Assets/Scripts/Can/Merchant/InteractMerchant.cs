@@ -15,7 +15,7 @@ public class InteractMerchant : MonoBehaviour
 
     public void Update()
     {
-        if(Physics.Raycast(mainCamera.transform.position, Vector3.forward, rayLength, merchant))
+        if(Physics.Raycast(mainCamera.transform.position, Vector3.forward, rayLength, merchant) && !shopping)
         {
             pressFText.SetActive(true);
 

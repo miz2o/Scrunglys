@@ -11,6 +11,7 @@ public class BossScript : BasicAI
 {
     public GameObject projectileBoss;
     public GameObject snakes;
+    public GameObject winScreen;
     public Collider attackCollider;
     public Transform snakeSummonPos;
     public Transform targetPos;
@@ -31,7 +32,7 @@ public class BossScript : BasicAI
 
     public override void Start()
     {
-        currentState = State.CHASING;
+        currentState = State.STANDBY;
         halfHealth = health/2;
     }
     override public void UpdateAI()
@@ -62,10 +63,10 @@ public class BossScript : BasicAI
                     currentState = State.RANGED;
                 }
                 
-                if(health <= halfHealth && !summoned)
+              /*   if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
-                }
+                } */
                
                 break;
 
@@ -83,11 +84,11 @@ public class BossScript : BasicAI
                         AttackPlayerMelee();
                     }
                 }
-            
+            /* 
                 if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
-                }
+                } */
 
                 if(distance >= data.meleeAttackRange)
                 {
@@ -114,14 +115,14 @@ public class BossScript : BasicAI
                     currentState = State.CHASING;
                 }
 
-                if(health <= halfHealth && !summoned)
+               /*  if(health <= halfHealth && !summoned)
                 {
                     currentState = State.SUMMONING;
                 }
-
+ */
                 break;
 
-            case State.SUMMONING:
+           /*  case State.SUMMONING:
                 
                 StartCoroutine(SnakeRoutine(summonSpeed));
 
@@ -138,7 +139,7 @@ public class BossScript : BasicAI
                     currentState = State.CHASING;
                 }
 
-                break;
+                break; */
         }
     }
     IEnumerator MeleeAttackStart(float animationDuration)
@@ -286,5 +287,9 @@ public class BossScript : BasicAI
     void ChangeStats()
     {
         // decrease some attack timers for 2nd phase maybe
+    }
+    public void OnDestroy()
+    {
+        winScreen.SetActive(true);
     }
 }

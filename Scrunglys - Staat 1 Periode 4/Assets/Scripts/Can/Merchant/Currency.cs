@@ -9,9 +9,18 @@ public class Currency : MonoBehaviour
 
     public TMP_Text currencyText;
 
+
     public void Start()
     {
         currencyText.text = crystals.ToString();
+    }
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I)) 
+        {
+            AddCrystals(50);
+        }
     }
     public void AddCrystals(float amount)
     {

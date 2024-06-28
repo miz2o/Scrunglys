@@ -75,17 +75,17 @@ public class RangedEnemy : BasicAI
 
                 timer += Time.deltaTime;
 
-                if (!attacking)
+                if (distance >= data.attackRange)
+                {
+                    currentState = State.CHASING;
+                }
+                else if (!attacking)
                 {
                     AttackPlayer();
                 }
                 else if (attacking)
                 {
                     RotateTowardsPlayer();
-                }
-                else if (distance >= data.attackRange)
-                {
-                    currentState = State.CHASING;
                 }
                 break;
         }

@@ -37,6 +37,8 @@ public class PlayerStats : MonoBehaviour
     public float pitchPotion, pitchHit;
     public float volumePotion, volumeHit;
 
+    public bool staminaLock;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -64,6 +66,14 @@ public class PlayerStats : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             Death();
+        }
+        if(Input.GetKeyDown(KeyCode.O) && !staminaLock)
+        {
+            staminaLock = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            staminaLock = false;
         }
     }
     void Heal()
@@ -126,7 +136,7 @@ public class PlayerStats : MonoBehaviour
 
             staminaSlider.value = stamina;
 
-            resetStaminaTimer = Time.time;
+            timer = 0;
         }
     }
     public void SprintStamina(float sprintStamina)
@@ -136,18 +146,28 @@ public class PlayerStats : MonoBehaviour
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
 
         staminaSlider.value = stamina;
-        resetStaminaTimer = Time.time;
+        
+        timer = 0;
     }
     void RegenStamina()
     {
-        timer += Time.deltaTime;
-
-        if(timer >= resetStaminaTimer + staminaRegenCD)
+        if(!staminaLock)
         {
-            stamina += staminaRegenRate * Time.deltaTime;
+            timer += Time.deltaTime;
 
-            stamina = Mathf.Clamp(stamina, 0, maxStamina);
+            if(timer >= staminaRegenCD)
+            {
+                stamina += staminaRegenRate * Time.deltaTime;
 
+                stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+                staminaSlider.value = stamina;
+
+            }
+        }
+        else
+        {
+            stamina = maxStamina;
             staminaSlider.value = stamina;
         }
     }
