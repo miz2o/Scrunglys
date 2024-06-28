@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public PlayerStats playerStats;
     public Animator mainAnimation;
     public CheckCurrentSword currentSword;
+    public AudioClip dashSFX;
 
     [Header("Basic movement")]
     public float walkSpeed;
@@ -91,6 +92,7 @@ public class Movement : MonoBehaviour
         {
             playerStats.Stamina(dashStamina);
             mainAnimation.SetTrigger("DashTrigger");
+            SFXManager.instance.PlaySFXClip(dashSFX, transform, 1, 1);
 
             StartCoroutine(Dash());
         }
